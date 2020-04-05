@@ -3,9 +3,13 @@ package client;
 
 import validate.Validator;
 
+import java.util.HashMap;
+
 import model.GameEngine;
 import model.GameEngineImpl;
 import model.PlayerImpl;
+import model.card.CardImpl;
+import model.card.Rank;
 import model.card.Suit;
 import view.ConsoleLoggerCallback;
 
@@ -54,6 +58,31 @@ public class BasicTestClient
 		engine.addPlayer(new PlayerImpl("P2", "Player Two", 2000));
 		engine.addPlayer(new PlayerImpl("P3", "Player Three", 3000));
 		engine.addPlayer(new PlayerImpl("X4", "Player Four", 4000));
+		// to be deleted as this is messing about and testing stuff
+		
+		CardImpl test = new CardImpl(Suit.HEARTS, Rank.TWO);
+		CardImpl test1 = new CardImpl(Suit.CLUBS, Rank.FOUR);
+//		test.getClass();
+//		test.getSuit();
+//		test1.getSuit();
+		
+//		System.out.print(test.getSuit());
+//		System.out.println(test.getValue());
+//		System.out.println(test.getValue());
+//		Rank myrank = test.getRank();
+//		System.out.print(myrank.ordinal());
+	
+		int result = test.compareTo(test1);
+		System.out.print(result);
+//		for (Rank c : Rank.values())
+//		    System.out.println(c);
+//		System.out.print(test.test();
+
+		
+//		HashMap<Rank, Integer> hmap = new HashMap<Rank, Integer>();
+//		hmap.put(Rank.ACE, 1);
+		
+		// end of messing about
 		
 		// removes player
 		engine.removePlayer("X4");

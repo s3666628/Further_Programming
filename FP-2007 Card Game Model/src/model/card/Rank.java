@@ -1,5 +1,8 @@
 package model.card;
 
+import java.util.EnumMap;
+import java.util.HashMap;
+
 /**
  * This enum represent the rank for each card
  * 
@@ -28,55 +31,152 @@ package model.card;
  * @see model.card.Suit
  *
  */
-public enum Rank
-{ ACE,
-  TWO,
-  THREE,
-  FOUR,
-  FIVE,
-  SIX,
-  SEVEN,
-  EIGHT,
-  NINE,
-  TEN,
-  JACK,
-  QUEEN,
-  KING;
-	//TODO this doesn't do anything and always returns 0 
-	//TODO so need to figure out how to return an actual value based on the Rank
-	public int getRankValue() {
-		return 0;
-		}
-		
-		
+public enum Rank {
+    ACE
+    {
+    	private int aceValue =1;
+    	
+    	public int getRankValue()
+    	{
+			return aceValue;
+    		
+    	}
+    },  //calls constructor with value 3
+    TWO
+    {
+    	private int twoValue =2;
+    	
+    	public int getRankValue()
+    	{
+			return twoValue;
+    		
+    	}
+    },  //calls constructor with value 2
+    THREE
+    {
+    	private int threeValue =3;
+    	
+    	public int getRankValue()
+    	{
+			return threeValue;
+    		
+    	}
+    },   //calls constructor with value 1
+    FOUR
+    {
+    	private int fourValue =4;
+    	
+    	public int getRankValue()
+    	{
+			return fourValue;
+    		
+    	}
+    },  //calls constructor with value 2
+    FIVE
+    {
+    	private int fiveValue =5;
+    	
+    	public int getRankValue()
+    	{
+			return fiveValue;
+    		
+    	}
+    },  //calls constructor with value 2
+    SIX
+    {
+    	private int sixValue =6;
+    	
+    	public int getRankValue()
+    	{
+			return sixValue;
+    		
+    	}
+    },  //calls constructor with value 2
+    SEVEN
+    {
+    	private int sevenValue =7;
+    	
+    	public int getRankValue()
+    	{
+			return sevenValue;
+    		
+    	}
+    },  //calls constructor with value 2
+    EIGHT
+    {
+    	private int eightValue =8;
+    	
+    	public int getRankValue()
+    	{
+			return eightValue;
+    		
+    	}
+    },  //calls constructor with value 2
+    NINE
+    {
+    	private int nineValue =9;
+    	
+    	public int getRankValue()
+    	{
+			return nineValue;
+    		
+    	}
+    },  //calls constructor with value 2
+    TEN
+    {
+    	private int tenValue =10;
+    	
+    	public int getRankValue()
+    	{
+			return tenValue;
+    		
+    	}
+    },  //calls constructor with value 2
+    JACK
+    {
+    	private int jackValue =10;
+    	
+    	public int getRankValue()
+    	{
+			return jackValue;
+    		
+    	}
+    },  //calls constructor with value 2
+    QUEEN
+    {
+    	private int queenValue =10;
+    	
+    	public int getRankValue()
+    	{
+			return queenValue;
+    		
+    	}
+    },  //calls constructor with value 2
+    KING    {
+    	private int kingValue =10;
+    	
+    	public int getRankValue()
+    	{
+			return kingValue;
+    		
+    	}
+    }
+    ; 
+//    
+    public int getRankValue() {
+        
+    	return 0;}
+//    }
+//    public void test() {
+//	for (Rank c : Rank.values())
+//	    System.out.println(c);}
+//	
+//	
 	
-
-//	public static final Rank ACE;
-   
-//      ACE(1),
-//      TWO(2),
-//      THREE(3),
-//      FOUR(4),
-//      FIVE(5),
-//      SIX(6),
-//      SEVEN(7),
-//      EIGHT(8),
-//      NINE(9),
-//      TEN(10),
-//      JACK(11),
-//      QUEEN(12),
-//      KING(13);
-//	    
-//	  int rank;
-//	     
-//	   Rank(int rank)
-//	      {          
-//	        this.rank = rank;
-//	      }
-//	       
-//	      public int getRank()  {	         
-//	        return rank;
-//	      }
-
-	
+//	public static Rank[] values()
+////	Returns an array containing the constants of this enum type, in the order they are declared. This method may be used to iterate over the constants as follows:
+//	for (Rank c : Rank.values())
+//	    System.out.println(c);
+//		
+//	
 }

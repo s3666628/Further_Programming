@@ -1,11 +1,13 @@
 package model.card;
 
 import java.util.Collection;
+import java.util.HashMap;
 
 public class HandImpl implements Hand {
 	
 	public HandImpl() {
 	}
+	
 
 	@Override
 	public boolean dealCard(Card card) {
