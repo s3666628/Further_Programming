@@ -3,6 +3,7 @@ package model.card;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 
 
@@ -14,7 +15,7 @@ public class CardImpl implements Card, Comparable<Card> {
 	private Rank rank;
 	private int value;
 	
-	static HashMap<Rank, Integer> hmap = new HashMap<Rank, Integer>();
+//	static HashMap<Rank, Integer> hmap = new HashMap<Rank, Integer>();
 	
 	
 	public CardImpl(Suit suit, Rank rank){
@@ -22,30 +23,6 @@ public class CardImpl implements Card, Comparable<Card> {
 		this.suit = suit;
 		this.rank = rank;		
 	}
-//	static private void addCardRanks() {
-//		
-//		hmap.put(Rank.ACE, 1);
-//		hmap.put(Rank.TWO, 2);
-//		hmap.put(Rank.THREE, 3);		
-//	}
-
-	
-	
-//	HashMap<Rank, Integer> hmap = new HashMap<Rank, Integer>();
-	
-
-	
-//	List<Card> cardValues = new ArrayList<Card>(11);
-	
-	
-	
-//	static public String name = "phil";
-////	System.out.print(name);
-////	System.out.print(test.getSuit());
-	
-//	Rank suit1 = Rank.ACE;
-
-	
 
 	@Override
 	public Suit getSuit() {
@@ -70,11 +47,15 @@ public class CardImpl implements Card, Comparable<Card> {
 	}
 	
 	@Override
-	// checks whether card passed in is the same as card instance variable
 	public boolean equals(Object obj) {
-		if (obj instanceof Card)
-			return this.equals((Card)obj);		
-		return false;
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof CardImpl)) {
+			return false;
+		}
+		CardImpl other = (CardImpl) obj;
+		return rank == other.rank && suit == other.suit;
 	}
 
 	@Override
@@ -137,9 +118,15 @@ public class CardImpl implements Card, Comparable<Card> {
 //		return value;
 		//		return card !=null ? this.getValue() == card.getValue() : false;
 	
+	@Override
 	public int hashCode() {
-		return 0;
-}
+		return Objects.hash(rank, suit);
+	}
+
+	@Override
+	public String toString() {
+		return rank + " of " + suit;
+	}
 	
 	
 	}

@@ -65,6 +65,7 @@ public class BasicTestClient
 //		test.getClass();
 //		test.getSuit();
 //		test1.getSuit();
+		System.out.println(test);
 		
 //		System.out.print(test.getSuit());
 //		System.out.println(test.getValue());
@@ -73,7 +74,7 @@ public class BasicTestClient
 //		System.out.print(myrank.ordinal());
 	
 		int result = test.compareTo(test1);
-		System.out.print(result);
+		System.out.println(result);
 //		for (Rank c : Rank.values())
 //		    System.out.println(c);
 //		System.out.print(test.test();
