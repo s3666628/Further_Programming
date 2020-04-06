@@ -1,6 +1,8 @@
 package model.card;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 //import card.Rank;
@@ -13,50 +15,51 @@ public class DeckImpl implements Deck {
 	// this is from the interface Deck
 	private static int totalCards = Deck.TOTAL_NUM_CARDS;
 	static List<Card> deckOfCards = new ArrayList<>(totalCards);
-	
-	private static void addCardsToDeck() {
-		 for (Suit s : Suit.values()) {
-//		     System.out.println(s);
-			 for (Rank r : Rank.values()) {
-			     System.out.print(r + " of " );
-			     System.out.print(s + " ");
-//			     new CardImpl(Suit.HEARTS, Rank.TWO)
-			     deckOfCards.add(new CardImpl(s, r));
-
-			 }
-		 }
-	}
+	static List<String> deckOfCards2 = new ArrayList<>(totalCards);
 	
 	
-	
-//	private static List<Card> protoDeck = new ArrayList<Card>();
-	
-//	private void addCards (){
-//		protoDeck.add(Card.class);
-	
-
-	
+	// Deck should be sorted by default as we create the deck in order
 	public static Deck createShuffledDeck() {
-//		List<Suit, Rank> deckOfCards = new ArrayList<Suit, Rank>(totalCards);
-//		deckOfCards.add(Suit.CLUBS.ordinal());
-		
-		
-		return null;		
+		 for (Suit suit : Suit.values()) {
+			 for (Rank rank : Rank.values()) {
+			     deckOfCards.add(new CardImpl(suit, rank));	 
+			     }
+		 }
+		Collections.shuffle(deckOfCards);
+		return (Deck) deckOfCards;
 	}
+	
+	
+	// Deck should be sorted by default as we create the deck in order
 	public static Deck createSortedDeck() {
-		return null;
+		 for (Suit suit : Suit.values()) {
+			 for (Rank rank : Rank.values()) {
+//			     System.out.print(rank + " of " );
+//			     System.out.print(suit + " ");
+			     deckOfCards.add(new CardImpl(suit, rank));
+//			     deckOfCards2.add(rank + " of " + suit);			 
+			     }
+		 }
+		return (Deck) deckOfCards;
 	}
 	
 	@Override
 	public Card removeNextCard() throws IllegalStateException {
 		// TODO Auto-generated method stub
-		return null;
+		Card card = null;
+		Iterator<Card> itr = deckOfCards.iterator();
+		if (itr.hasNext() == true)
+		{
+			card = itr.next();
+			return card;
+		}
+		return card;
 	}
 
 	@Override
 	public int cardsInDeck() {
-		// TODO Auto-generated method stub
-		return 0;
+		// gets the size of the deck of cards
+		return deckOfCards.size();
 	}
 
 	@Override

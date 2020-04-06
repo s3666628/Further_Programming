@@ -3,11 +3,14 @@ package client;
 
 import validate.Validator;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import model.GameEngine;
 import model.GameEngineImpl;
 import model.PlayerImpl;
+import model.card.Card;
 import model.card.CardImpl;
 import model.card.Rank;
 import model.card.Suit;
@@ -66,6 +69,10 @@ public class BasicTestClient
 //		test.getSuit();
 //		test1.getSuit();
 		System.out.println(test);
+		
+		List<Card> mydeck = new ArrayList<>(); 
+		
+		
 		
 //		System.out.print(test.getSuit());
 //		System.out.println(test.getValue());
