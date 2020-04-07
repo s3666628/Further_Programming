@@ -15,7 +15,7 @@ public class DeckImpl implements Deck {
 	// this is from the interface Deck
 	private static int totalCards = Deck.TOTAL_NUM_CARDS;
 	static List<Card> deckOfCards = new ArrayList<>(totalCards);
-	static List<String> deckOfCards2 = new ArrayList<>(totalCards);
+//	static List<String> deckOfCards2 = new ArrayList<>(totalCards);
 	
 	
 	// Deck should be sorted by default as we create the deck in order

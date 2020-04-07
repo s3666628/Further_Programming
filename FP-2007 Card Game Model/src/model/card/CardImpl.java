@@ -3,7 +3,6 @@ package model.card;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 
 
@@ -15,7 +14,7 @@ public class CardImpl implements Card, Comparable<Card> {
 	private Rank rank;
 	private int value;
 	
-//	static HashMap<Rank, Integer> hmap = new HashMap<Rank, Integer>();
+	static HashMap<Rank, Integer> hmap = new HashMap<Rank, Integer>();
 	
 	
 	public CardImpl(Suit suit, Rank rank){
@@ -23,6 +22,30 @@ public class CardImpl implements Card, Comparable<Card> {
 		this.suit = suit;
 		this.rank = rank;		
 	}
+//	static private void addCardRanks() {
+//		
+//		hmap.put(Rank.ACE, 1);
+//		hmap.put(Rank.TWO, 2);
+//		hmap.put(Rank.THREE, 3);		
+//	}
+
+	
+	
+//	HashMap<Rank, Integer> hmap = new HashMap<Rank, Integer>();
+	
+
+	
+//	List<Card> cardValues = new ArrayList<Card>(11);
+	
+	
+	
+//	static public String name = "phil";
+////	System.out.print(name);
+////	System.out.print(test.getSuit());
+	
+//	Rank suit1 = Rank.ACE;
+
+	
 
 	@Override
 	public Suit getSuit() {
@@ -47,20 +70,16 @@ public class CardImpl implements Card, Comparable<Card> {
 	}
 	
 	@Override
+	// checks whether card passed in is the same as card instance variable
 	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (!(obj instanceof CardImpl)) {
-			return false;
-		}
-		CardImpl other = (CardImpl) obj;
-		return rank == other.rank && suit == other.suit;
+		if (obj instanceof Card)
+			return this.equals((Card)obj);		
+		return false;
 	}
 
 	@Override
 	public int compareTo(Card card) {
-		
+		// variables for the method
 		int valCurrCard = this.rank.ordinal()+1;
 		int valOtherCard = card.getValue();		
 		
@@ -71,13 +90,8 @@ public class CardImpl implements Card, Comparable<Card> {
 		System.out.print(valCurrSuit);
 		System.out.print("value of Other suit");
 		System.out.print(valOtherSuit);
-		
-//		System.out.println();
-//		System.out.print("calling the CompareTo method");
-//		System.out.println();
-//		System.out.print("value of Current Card is " + this.rank.name());
-//		System.out.print("value of Other Card is " + card.getRank());
-		// 1 - check if cards are same suit if they are then check the ranks
+		// check if suits are the same - if they are then we need to check the ranks
+
 		if (valCurrSuit == valOtherSuit) {
 		
 		if (valCurrCard > valOtherCard) {
@@ -118,15 +132,9 @@ public class CardImpl implements Card, Comparable<Card> {
 //		return value;
 		//		return card !=null ? this.getValue() == card.getValue() : false;
 	
-	@Override
 	public int hashCode() {
-		return Objects.hash(rank, suit);
-	}
-
-	@Override
-	public String toString() {
-		return rank + " of " + suit;
-	}
+		return 0;
+}
 	
 	
 	}
