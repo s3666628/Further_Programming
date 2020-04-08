@@ -12,9 +12,9 @@ import java.util.Scanner;
 // Ohm's law V=IR .. https://en.wikipedia.org/wiki/Ohm%27s_law
 public class TuteLab01
 {
-   static double volts[];
-   static double amps[];
-   static double resistance[];
+//   static double volts[];
+//   static double amps[];
+//   static double resistance[];
    static Scanner scanner = new Scanner(System.in);
    static double v;
    static double i;
@@ -29,12 +29,30 @@ public class TuteLab01
    static double ravg;
    static double rmax;
    static double rmin;
+   
+   private static final int NUM_INPUTS = 3;
+   // message for intputting information
+   private static String enterMessage(String kind, String subKind)
+   {
+	String message = "Enter " + kind +  " in " + subKind + ":";
+	return message;
+	   
+   }
+   
+   // message for intputting information
+   private static String calcAverage(String kind)
+  	int iavg = (kind[0] + amps[1] + amps[2]) / 3;
+   {
+	String message = "Enter " + kind +  " in " + subKind + ":";
+	return message;
+	   
+   }
 
    public static void main(String[] args)
    {
-      volts = new double[3];
-      amps = new double[3];
-      resistance = new double[3];
+	  double volts[] = new double[NUM_INPUTS];
+	  double amps[] = new double[NUM_INPUTS];
+	  double resistance[] = new double[NUM_INPUTS];
 
       scanner = new Scanner(System.in);
 
@@ -49,7 +67,7 @@ public class TuteLab01
          {
             try
             {
-               System.out.print("Enter Voltage (V) in volts: ");
+               System.out.print(enterMessage("Voltage", "volts"));
                // parseDouble() will "throw" an exception if a number is not
                // entered. Execution then immediately moves to catch block
                num = Double.parseDouble(scanner.nextLine());
@@ -71,7 +89,8 @@ public class TuteLab01
          {
             try
             {
-               System.out.print("Enter Current (I) in amperes: ");
+//               System.out.print("Enter Current (I) in amperes: ");
+               System.out.print(enterMessage("Current", "amperes"));
                // parseDouble() will "throw" an exception if a number is not
                // entered. Execution then immediately moves to catch block
                num = Double.parseDouble(scanner.nextLine());
@@ -107,6 +126,7 @@ public class TuteLab01
       ravg = (resistance[0] + resistance[1] + resistance[2]) / 3;
       rmax = Math.max(Math.max(resistance[0], resistance[1]), resistance[2]);
       rmin = Math.min(Math.min(resistance[0], resistance[1]), resistance[2]);
+      
 
       System.out.println("R (Ohms) .. Avg=" + ravg + ", Max=" + rmax + ", Min=" + rmin);
    }

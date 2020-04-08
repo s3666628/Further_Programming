@@ -11,13 +11,13 @@ public class ScoreBetImpl implements ScoreBet{
 
 	@Override
 	public Player getPlayer() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub.
 		return null;
 	}
 
 	@Override
 	public int getAmount() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub......
 		return 0;
 	}
 
