@@ -32,21 +32,35 @@ public class TuteLab01
    
    private static final int NUM_INPUTS = 3;
    // message for intputting information
+   
    private static String enterMessage(String kind, String subKind)
    {
 	String message = "Enter " + kind +  " in " + subKind + ":";
 	return message;
 	   
+   }   
+   // calcs averarge of array of doubles
+   private static double calcAverage(double[] myarray) {
+	double calcAvg = (myarray[0] + myarray[1] + myarray[2]) / 3;
+	 return calcAvg;
    }
-   
-   // message for intputting information
-   private static String calcAverage(String kind)
-  	int iavg = (kind[0] + amps[1] + amps[2]) / 3;
-   {
-	String message = "Enter " + kind +  " in " + subKind + ":";
+   // calcs max for array of doubles
+   private static double calcMax(double[] myarray) {
+	double calcMax = Math.max(Math.max(myarray[0], myarray[1]), myarray[2]);
+	 return calcMax;
+   }
+   // calcs mins for array of doubles
+   private static double calcMin(double[] myarray) {
+	double calcMin = Math.min(Math.max(myarray[0], myarray[1]), myarray[2]);
+	 return calcMin;
+   }
+   public static String toString(double avg, double max, double min, String kind) {
+	   String message = (kind + "  .. Avg=" + avg + ", Max=" + max + ", Min=" + min);
 	return message;
 	   
    }
+
+   
 
    public static void main(String[] args)
    {
@@ -111,23 +125,22 @@ public class TuteLab01
          System.out.println("Resistance R is " + r + " ohms\n");
       }
 
-      vavg = (volts[0] + volts[1] + volts[2]) / 3;
-      vmax = Math.max(Math.max(volts[0], volts[1]), volts[2]);
-      vmin = Math.min(Math.min(volts[0], volts[1]), volts[2]);
-
-      System.out.println("V (Volts) .. Avg=" + vavg + ", Max=" + vmax + ", Min=" + vmin);
-
-      iavg = (amps[0] + amps[1] + amps[2]) / 3;
-      imax = Math.max(Math.max(amps[0], amps[1]), amps[2]);
-      imin = Math.min(Math.min(amps[0], amps[1]), amps[2]);
-
-      System.out.println("I (Amperes) .. Avg=" + iavg + ", Max=" + imax + ", Min=" + imin);
-
-      ravg = (resistance[0] + resistance[1] + resistance[2]) / 3;
-      rmax = Math.max(Math.max(resistance[0], resistance[1]), resistance[2]);
-      rmin = Math.min(Math.min(resistance[0], resistance[1]), resistance[2]);
+      vavg = calcAverage(volts);
+      vmax = calcMax(volts);
+      vmin = calcMin(volts);
       
+      System.out.println(toString(vavg, vmax, vmin, "Volts"));
 
-      System.out.println("R (Ohms) .. Avg=" + ravg + ", Max=" + rmax + ", Min=" + rmin);
+      iavg = calcAverage(amps);
+      imax = calcMax(amps);
+      imin = calcMin(amps);
+
+      System.out.println(toString(iavg, imax, imin, "Amperes"));
+
+      ravg = calcAverage(resistance);
+      rmax = calcMax(resistance);
+      rmin = calcMin(resistance);  
+
+      System.out.println(toString(ravg, rmax, rmin, "resistance"));
    }
 }
