@@ -1,4 +1,4 @@
-package vehicles;
+package cms.model.vehicle;
 
 public abstract class Vehicle {
 //	Van(reg, make, model, year, odo, serviceInterval)
@@ -9,7 +9,11 @@ public abstract class Vehicle {
 	private double odometer;
 	private double serviceInterval;
 	private int wear;
-	private double profit = 0.5; 
+	private final double PROFIT_MARGIN = 0.5;
+	private double wearTear;
+	private double profit;
+	private double lastServicePoint;
+	private double loadCapacity = 0;
 	
 	public Vehicle(String reg, String make, String model, int year, double odometer, double serviceInterval) {
 		super();
@@ -19,6 +23,15 @@ public abstract class Vehicle {
 		this.year = year;
 		this.odometer = odometer;
 		this.serviceInterval = serviceInterval;
+		
+	}
+	
+	public double getLoadCapacity() {
+		return loadCapacity;
+	}
+	
+	public double calcWearTear() {
+		return wearTear;
 	}
 
 	public int getWear() {
@@ -29,6 +42,17 @@ public abstract class Vehicle {
 		this.wear = wear;
 	}
 	
+	
+	public double getLastServicePoint() {
+		return lastServicePoint;
+	}
+
+	public void setLastServicePoint(double lastServicePoint) {
+		
+		this.lastServicePoint = lastServicePoint;
+		System.out.print("last service point has been set to: " + this.lastServicePoint);
+	}
+
 	/**
 	 * @return the reg
 	 */

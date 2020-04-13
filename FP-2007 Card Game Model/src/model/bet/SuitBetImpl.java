@@ -5,63 +5,105 @@ import model.card.Hand;
 import model.card.Suit;
 
 public class SuitBetImpl implements SuitBet {
-	
-	public SuitBetImpl(Player player, int amount, Suit suit)throws NullPointerException, IllegalArgumentException{
-		
+
+	Player player;
+	int amount;
+	Suit suit;
+	int multiplier = 1;
+	BetResult result;
+
+	public SuitBetImpl(Player player, int amount, Suit suit) throws NullPointerException, IllegalArgumentException {
+		// set up the instance variables correctly
+		this.player = player;
+		this.amount = amount;
+		this.suit = suit;
+		this.result = BetResult.UNDETERMINED;
 	}
 
 	@Override
 	public Player getPlayer() {
-		// TODO Auto-generated method stub
-		return null;
+		// this should work
+		return this.player;
 	}
 
 	@Override
 	public int getAmount() {
-		// TODO Auto-generated method stub
-		return 0;
+		// this should work
+		return this.amount;
 	}
 
 	@Override
 	public int getMultiplier() {
-		// TODO Auto-generated method stub
-		return 0;
+		// this should work
+		return this.multiplier;
 	}
 
 	@Override
 	public BetResult finaliseBet(Hand houseHand) {
-		// TODO Auto-generated method stub
+		// posted on chat as no indea how to implement this
 		return null;
 	}
 
 	@Override
 	public BetResult getResult() {
-		// TODO Auto-generated method stub
-		return null;
+		// this should work returns bet result which is of type BetResult
+		return this.result;
 	}
 
 	@Override
 	public int getOutcome() {
-		// TODO Auto-generated method stub
+		// Returns the outcome of the bet; i.e. the amount won or lost as a result of
+		// the bet.
+		// If this method is called prior to the bet being finalised then it should
+		// return 0,
+		// otherwise is should return a negative value for a loss and a positive value
+		// for a win,
+		// both of which should be bases on the bet amount and the bet multiplier. A
+		// draw should return 0.
+		if (this.result == BetResult.UNDETERMINED) { // means bet has not been finalised
+			return 0;
+		}
+		if (this.result == BetResult.PLAYER_LOSS) { // means bet has not been finalised
+			return getAmount() * getMultiplier();
+		}
+		if (this.result == BetResult.DRAW) { // means bet has not been finalised
+			return 0;
+		}
+		if (this.result == BetResult.PLAYER_WIN) { // means bet has not been finalised
+			return getAmount() * getMultiplier();
+		}
 		return 0;
 	}
 
 	@Override
 	public int getOutcome(BetResult result) {
 		// TODO Auto-generated method stub
-		return 0;
+		return getOutcome();
 	}
 
 	@Override
 	public int compareTo(Bet bet) {
-		// TODO Auto-generated method stub
+//		 * Returns a negative integer, zero, or a positive integer as this Bet value is less than, 
+//		 * equal to, or greater than the supplied Bet.
+		if (this.amount < bet.getAmount()) {
+			return -1;
+		}
+		if (this.amount > bet.getAmount()) {
+			return 1;
+		}
+
 		return 0;
 	}
 
 	@Override
 	public Suit getSuit() {
-		// TODO Auto-generated method stub
-		return null;
+		// this should work
+		return this.suit;
+	}
+
+	@Override
+	public String toString() {
+		return "Suit Bet for " + getAmount() + "on suit " + getSuit();
 	}
 
 }

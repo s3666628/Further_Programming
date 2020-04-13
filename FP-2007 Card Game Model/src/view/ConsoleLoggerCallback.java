@@ -54,15 +54,15 @@ public class ConsoleLoggerCallback implements GameCallback
 
 	@Override
 	public void addPlayer(Player player) {
-		// TODO Auto-generated method stub
-		LOGGER.info("addPlayer method was called BEEBY");
-		LOGGER.info("logged to info level");
+		// TODO hand is not displayed correctly on log output
+		LOGGER.info("Added "+ player.toString());
 		
 	}
 
 	@Override
 	public void removePlayer(Player player) {
-		// TODO Auto-generated method stub
+		// this should work
+		LOGGER.info(player.toString());
 		
 	}
 
@@ -70,11 +70,13 @@ public class ConsoleLoggerCallback implements GameCallback
 	public void betUpdated(Player player) {
 		// TODO Auto-generated method stub
 		
+		
 	}
 
 	@Override
 	public void newDeck(Deck deck) {
 		// TODO Auto-generated method stub
+//		LOGGER.info(deck.toString());
 		
 	}
 

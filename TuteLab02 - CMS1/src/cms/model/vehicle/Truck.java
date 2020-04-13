@@ -1,4 +1,4 @@
-package vehicles;
+package cms.model.vehicle;
 
 public class Truck extends Vehicle {
 	
@@ -8,7 +8,7 @@ public class Truck extends Vehicle {
 			double odometer, double serviceInterval, double loadCapacity ) {
 		super(reg, make, model, year, odometer, serviceInterval);
 		// TODO Auto-generated constructor stubtedt
-		setWear(50);
+		setWear(6);
 		this.loadCapacity = loadCapacity;
 		
 	}

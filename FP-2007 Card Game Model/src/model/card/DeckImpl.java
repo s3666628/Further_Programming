@@ -9,47 +9,55 @@ import java.util.List;
 //import card.Suit;
 
 public class DeckImpl implements Deck {
-	
-	private DeckImpl () {
+
+	private DeckImpl() {
+
 	}
+
 	// this is from the interface Deck
-	private static int totalCards = Deck.TOTAL_NUM_CARDS;
-	static List<Card> deckOfCards = new ArrayList<>(totalCards);
-//	static List<String> deckOfCards2 = new ArrayList<>(totalCards);
+	private int totalCards = Deck.TOTAL_NUM_CARDS;
+
+
+	List<Card> mainDeckOfCards = new ArrayList<>(totalCards);
+	Iterator<Card> itr = mainDeckOfCards.iterator();
+
 	
-	
+
 	// Deck should be sorted by default as we create the deck in order
 	public static Deck createShuffledDeck() {
-		 for (Suit suit : Suit.values()) {
-			 for (Rank rank : Rank.values()) {
-			     deckOfCards.add(new CardImpl(suit, rank));	 
-			     }
-		 }
-		Collections.shuffle(deckOfCards);
-		return (Deck) deckOfCards;
+		DeckImpl deckOfCards = new DeckImpl();
+		for (Suit suit : Suit.values()) {
+			for (Rank rank : Rank.values()) {
+				Card card = new CardImpl(suit, rank);
+				deckOfCards.mainDeckOfCards.add(card);
+//				System.out.println(card.toString());
+			}
+		}
+		Collections.shuffle(deckOfCards.mainDeckOfCards);
+		
+		
+		return deckOfCards;
 	}
-	
-	
+
 	// Deck should be sorted by default as we create the deck in order
 	public static Deck createSortedDeck() {
-		 for (Suit suit : Suit.values()) {
-			 for (Rank rank : Rank.values()) {
-//			     System.out.print(rank + " of " );
-//			     System.out.print(suit + " ");
-			     deckOfCards.add(new CardImpl(suit, rank));
-//			     deckOfCards2.add(rank + " of " + suit);			 
-			     }
-		 }
-		return (Deck) deckOfCards;
+		DeckImpl deckOfCards = new DeckImpl();
+		for (Suit suit : Suit.values()) {
+			for (Rank rank : Rank.values()) {
+				Card card = new CardImpl(suit, rank);
+				deckOfCards.mainDeckOfCards.add(card);
+				System.out.println(card.toString());
+			}
+		}
+		return deckOfCards;
 	}
-	
+
 	@Override
 	public Card removeNextCard() throws IllegalStateException {
 		// TODO Auto-generated method stub
-		Card card = null;
-		Iterator<Card> itr = deckOfCards.iterator();
-		if (itr.hasNext() == true)
-		{
+		itr = mainDeckOfCards.iterator();
+		Card card = null;		
+		if (itr.hasNext() == true) {
 			card = itr.next();
 			return card;
 		}
@@ -59,14 +67,21 @@ public class DeckImpl implements Deck {
 	@Override
 	public int cardsInDeck() {
 		// gets the size of the deck of cards
-		return deckOfCards.size();
+		return mainDeckOfCards.size();
 	}
 
 	@Override
 	public void shuffleDeck() {
-		// TODO Auto-generated method stub
-		
+		// calling this method should shuffle the deck of cards
+		Collections.shuffle(mainDeckOfCards);
+
 	}
 
+	@Override
+	public String toString() {
+//		return "DeckImpl [totalCards=" + totalCards + "]";
+		return " A new deck of cards was created with" + Deck.TOTAL_NUM_CARDS + "cards";
+	}
+	
 
 }
