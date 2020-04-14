@@ -62,13 +62,15 @@ public class ConsoleLoggerCallback implements GameCallback
 	@Override
 	public void removePlayer(Player player) {
 		// this should work
-		LOGGER.info(player.toString());
+		LOGGER.info("Removed "+player.toString());
 		
 	}
 
 	@Override
 	public void betUpdated(Player player) {
 		// TODO Auto-generated method stub
+//		player.getBet();
+		LOGGER.info("test "+ player.getBet());
 		
 		
 	}

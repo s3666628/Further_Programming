@@ -3,16 +3,9 @@ package client;
 
 import validate.Validator;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import model.GameEngine;
 import model.GameEngineImpl;
 import model.PlayerImpl;
-import model.card.Card;
-import model.card.CardImpl;
-import model.card.Rank;
 import model.card.Suit;
 import view.ConsoleLoggerCallback;
 
@@ -44,60 +37,30 @@ public class BasicTestClient
 	{
 		// calls validator to check your code meets specifications
 		// set parameter to true for more verbose output
-		if(Validator.validate(true) == false)
+		if(Validator.validate(false) == false)
 			return;
 	
 		// Creates a game engine
 		GameEngine engine = new GameEngineImpl();
 		
 		// add ConsoleLoggerCallback
-//		engine.registerCallback(new ConsoleLoggerCallback(engine));
 		engine.registerCallback(new ConsoleLoggerCallback(engine));
 		
 		// you can / should be able to add a second logger (and double the logger output)
-//		engine.registerCallback(new ConsoleLoggerCallback(engine));		
+		//engine.registerCallback(new ConsoleLoggerCallback(engine));
+		
 
 		engine.addPlayer(new PlayerImpl("P1", "Player One", 1000));
 		engine.addPlayer(new PlayerImpl("P2", "Player Two", 2000));
 		engine.addPlayer(new PlayerImpl("P3", "Player Three", 3000));
 		engine.addPlayer(new PlayerImpl("X4", "Player Four", 4000));
-		// to be deleted as this is messing about and testing stuff
-		
-		CardImpl test = new CardImpl(Suit.HEARTS, Rank.TWO);
-		CardImpl test1 = new CardImpl(Suit.CLUBS, Rank.FOUR);
-//		test.getClass();
-//		test.getSuit();
-//		test1.getSuit();
-		System.out.println(test);
-		
-		List<Card> mydeck = new ArrayList<>(); 
-		
-		
-		
-//		System.out.print(test.getSuit());
-//		System.out.println(test.getValue());
-//		System.out.println(test.getValue());
-//		Rank myrank = test.getRank();
-//		System.out.print(myrank.ordinal());
-	
-		int result = test.compareTo(test1);
-		System.out.println(result);
-//		for (Rank c : Rank.values())
-//		    System.out.println(c);
-//		System.out.print(test.test();
-
-		
-//		HashMap<Rank, Integer> hmap = new HashMap<Rank, Integer>();
-//		hmap.put(Rank.ACE, 1);
-		
-		// end of messing about
 		
 		// removes player
 		engine.removePlayer("X4");
 		
 		engine.placeBet("P1", 100);
 		
-		engine.placeBet("P2", 100, Suit.HEARTS);
+		engine.placeBet("P2", 100, Suit.CLUBS);
 		
 		engine.dealPlayer("P2", TEST_DELAY);
 		engine.dealPlayer("P1", TEST_DELAY);

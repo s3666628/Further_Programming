@@ -19,10 +19,10 @@ public class PlayerImpl implements Player {
 		// TODO Auto-generated constructor stub
 		this.id = id;
 		this.name = name;
-		this.points = 0;
+		this.points = points;
 		// this creates a new hand which is associated with player object
 		this.hand = new HandImpl();
-		System.out.println("a new player has been created with an empty hand");
+//		System.out.println("a new player has been created with an empty hand");
 
 	}
 
@@ -103,7 +103,7 @@ public class PlayerImpl implements Player {
 
 	@Override
 	public String toString() {
-		return "Player id=" + id + ", name=" + name + ", points=" + points + " , " + bet + " , "+ hand;
+		return "Player id=" + id + ", name=" + name + ", points=" + points + ", " + bet + ", "+ hand.toString();
 	}
 	
 

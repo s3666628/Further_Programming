@@ -33,9 +33,7 @@ public class GameEngineImpl implements GameEngine, GameCallbackCollection {
 	private GameCallback getCallBack() {
 		GameCallback callback = callBackList.get(0); 
 		return callback;
-	}
-	
-
+	}	
 	
 
 	// no argument constructor
@@ -65,25 +63,15 @@ public class GameEngineImpl implements GameEngine, GameCallbackCollection {
 		players.put(player.getId(), player);
 		// logg information
 		GameCallback callback = getCallBack();
-		System.out.println(callback);
 		callback.addPlayer(player);
-	
-		
-		
-//		playerHands.put(player.getId(), new HandImpl());
-		
-
 	}
 
 	@Override
 	public void removePlayer(String playerId) throws NullPointerException, IllegalArgumentException {
 		// this should work - removes playerId that is passed in from the hash map
-
-		// get player object
-		Player player = players.get(playerId);
-//		GameCallback callback = callBackList.get(0);
+		Player player = players.get(playerId);//get player object from array via playerId string	
 		GameCallback callback = getCallBack();
-		//log inf about removing the player
+		//NB: make sure logg removing player before removing player otherwise it won't work
 		callback.removePlayer(player);	
 		players.remove(playerId);
 	
@@ -99,7 +87,10 @@ public class GameEngineImpl implements GameEngine, GameCallbackCollection {
 	@Override
 	public void placeBet(String playerId, int amount) throws NullPointerException, IllegalArgumentException {
 		// this will create a new score bet
+		Player player = players.get(playerId);
 		new ScoreBetImpl(players.get(playerId), amount);
+		GameCallback callback = getCallBack();
+		callback.betUpdated(player);
 
 	}
 

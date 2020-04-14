@@ -39,7 +39,7 @@ public class HandImpl implements Hand {
 		// TODO not sure how to make sure the card has been successfully added to the
 		// hand as add() does not return anything
 		if (this.hand.add(card)) {
-			System.out.println("card as been added to the hand: "+ card);
+//			System.out.println("card as been added to the hand: "+ card);
 			return true;
 		}
 		;
@@ -67,8 +67,8 @@ public class HandImpl implements Hand {
 		int total = 0;	
 		for (Card card : hand) { 		      
 			int valueOfCard = card.getValue(); 	
-			System.out.println("card is: " + card);
-			System.out.println("value of card is: " + card.getValue());
+//			System.out.println("card is: " + card);
+//			System.out.println("value of card is: " + card.getValue());
 			
 			total += valueOfCard;}
 		this.currentScore = total;
@@ -157,5 +157,14 @@ public class HandImpl implements Hand {
 		this.hand.clear();
 
 	}
+
+	@Override
+	public String toString() {
+		if (hand.isEmpty()){
+			return "Empty Hand";
+		}
+		return "HandImpl [currentScore=" + currentScore + ", hand=" + hand + "]";
+	}
+	
 
 }
