@@ -22,6 +22,7 @@ public class PlayerImpl implements Player {
 		this.points = points;
 		// this creates a new hand which is associated with player object
 		this.hand = new HandImpl();
+		this.Househand = new HandImpl();
 //		System.out.println("a new player has been created with an empty hand");
 
 	}
@@ -40,7 +41,10 @@ public class PlayerImpl implements Player {
 
 	@Override
 	public int getPoints() {
-		// this returns instance variable
+		// if there is a current bet then need to remove the current bet amount from the points
+		if (this.bet != Bet.NO_BET) {
+			this.points = this.points -bet.getAmount();
+		}
 		return this.points;
 	}
 
@@ -54,11 +58,11 @@ public class PlayerImpl implements Player {
 		// otherwise add the bet's value to it....
 		int totalPoints = this.points;
 		if (this.bet != Bet.NO_BET) {
-			return totalPoints;
+			return this.points;
 		}
 		// TODO need to figure out how to get the value of the bet as integer
 		else {
-			totalPoints = totalPoints; // + amount of the current bet
+			totalPoints = totalPoints + bet.getAmount(); // + amount of the current bet
 			return totalPoints;
 		}
 
@@ -104,6 +108,8 @@ public class PlayerImpl implements Player {
 	@Override
 	public String toString() {
 	return "Player id=" + id + ", name=" + name + ", points=" + points + ", " + bet + ", "+ hand.toString();
+//	Player id=P1, name=Player One, points=900, Score Bet for 100, Hand of 2 cards [Queen of Spades, 10 of Diamonds] Score: 20
+//	Player id=P1, name=Player One, points=1000, Score Bet for 100, HandImpl [currentScore=19, hand=[Ace of Hearts, Ten of Spades, Eight of Spades]]
 	}
 	
 

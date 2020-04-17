@@ -163,7 +163,7 @@ public class HandImpl implements Hand {
 		if (hand.isEmpty()){
 			return "Empty Hand";
 		}
-		return "HandImpl [currentScore=" + currentScore + ", hand=" + hand + "]";
+		return "Hand of " +hand.size()+" cards " +hand ;
 	}
 	
 

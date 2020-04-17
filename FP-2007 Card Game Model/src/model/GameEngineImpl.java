@@ -3,7 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.security.auth.callback.Callback;
 
@@ -15,6 +17,8 @@ import model.card.HandImpl;
 import model.card.Suit;
 import view.GameCallback;
 import view.GameCallbackCollection;
+import model.bet.Bet;
+import model.bet.BetResult;
 import model.bet.ScoreBetImpl;
 import model.bet.SuitBetImpl;
 
@@ -104,65 +108,6 @@ public class GameEngineImpl implements GameEngine, GameCallbackCollection {
 
 	}
 
-//	@Override
-//	public void dealPlayer(String playerId, int delay)
-//			throws NullPointerException, IllegalArgumentException, IllegalStateException {
-//		
-//		// prolly need loop here for each player do the following
-//		Player currentPlayer = players.get(playerId);
-//		GameCallback callback = getCallBack();
-//		callback.newDeck(mydeck);
-//	
-//		// a card is removed from the deck and dealt to the player
-////		HandImpl playerHand = new HandImpl();
-//		// 1 get the next card from the deck
-//		Card bustCard = null;
-//	
-////		// 2 get a hand for the current player
-//		Hand currentPlayerHand = currentPlayer.getHand();
-//		// 3 check the score of the hand	
-//		
-//		// if card does not bust pla
-//		while (currentPlayerHand.getScore() <= currentPlayerHand.BUST_SCORE) {
-//			
-//			System.out.println("current hand score: "+currentPlayerHand.getScore());
-//			currentPlayerHand.getScore();
-//			Card nextCard = mydeck.removeNextCard();
-//			
-//			// keep dealing cards until the player is bust
-//			currentPlayerHand.dealCard(nextCard);
-//			callback.playerCard(currentPlayer, nextCard);
-//			//get score players hand
-//			//update bust card so we know which card they went bust on
-//			
-//			bustCard = nextCard;
-//			
-//			
-//			
-//		}
-//		callback.playerBust(currentPlayer, bustCard);
-	// 4 add the current card to the players hand
-
-//		if nextCard.getValue();		
-
-//		Deals a hand to the specified player.
-//
-//		Cards are dealt to the specified player in the following manner
-//
-//		    a card is removed from the deck and dealt to the player
-//		    a delay occurs, of the specified time in ms, between the card being removed from the deck and it being dealt to the player
-//		        if the card does not bust in player's hand:
-//		            the GameCallback.playerCard(Player, model.card.Card) is invoked on all the GameCallback objects that have been registered, notifying the player and the card dealt (all get the same information!)
-//		            the process is then repeated for the next card until a bust occurs 
-//		        if the card does bust in the player's hand
-//		            the GameCallback.playerBust(Player, model.card.Card) is invoked on all the GameCallback objects that have been registered, notifying the player and the card that was attempted to be dealt to the player 
-//
-//		Note: A bust card is burnt, and not returned to the deck or dealt to any subsequent player.
-//		
-//		hand.dealCard();
-
-//	}
-
 	public void dealPlayer(String playerId, int delay)
 			throws NullPointerException, IllegalArgumentException, IllegalStateException {
 
@@ -201,6 +146,7 @@ public class GameEngineImpl implements GameEngine, GameCallbackCollection {
 			}
 
 		}
+		
 		callback.playerBust(currentPlayer, bustCard);
 
 	}
@@ -212,11 +158,11 @@ public class GameEngineImpl implements GameEngine, GameCallbackCollection {
 		// prolly need loop here for each player do the following
 //		Player currentPlayer = players.get(playerId); // get player object
 		GameCallback callback = getCallBack(); // create callback object
-		callback.newDeck(mydeck); // log the new deck
-
+//		callback.newDeck(mydeck); // log the new deck
+		Player dealer = new PlayerImpl ("DXX", "DEALER", 0);
 		Card bustCard = null;
 //		// 2 get a hand for the current player
-		Hand houseHand = currentPlayer.getHand();
+		Hand houseHand = dealer.getHand();
 		int loopCheck = 0;
 		// 3 check the score of the hand
 		int bustScore = 21;
@@ -229,26 +175,55 @@ public class GameEngineImpl implements GameEngine, GameCallbackCollection {
 			Card nextCard = mydeck.removeNextCard();
 			// these are to hold some values
 			int valueOfNextCard = nextCard.getValue();
-			int valueOfScore = currentPlayerHand.getScore();
+			int valueOfScore = houseHand.getScore();
 			int potentialScore = valueOfNextCard + valueOfScore;
 			// check if next card will bust player or not
 			if (potentialScore >= bustScore) {
 				// if next card will bust player then update loop check to 1 to stop running
 				bustCard = nextCard;
 				// get the score for the current hand
-				currentPlayerHand.getScore();
+				houseHand.getScore();
 				loopCheck = 1;
 			} else {
-				currentPlayerHand.dealCard(nextCard);
-				callback.playerCard(currentPlayer, nextCard);
+				houseHand.dealCard(nextCard);
+//				callback.playerCard(dealer, nextCard);
+				callback.houseCard(houseHand, nextCard);
 			}
 
 		}
-		callback.playerBust(currentPlayer, bustCard);
+//		callback.playerBust(dealer, bustCard);
+		callback.houseBust(houseHand, bustCard);
+		// check final results
+        // Getting an iterator 
+
+  
+        // Iterate through the hashmap 
+      //iterating over values only
+        for (Player player : players.values()) {
+            Bet playerBet = player.getBet();
+            BetResult result = playerBet.finaliseBet(houseHand);
+            Hand playerhand = player.getHand();
+//            player.toString(); 
+//			System.out.println(player.getBet());
+//			System.out.println(result);
+			System.out.println(player.toString()+"Score"+playerhand.getScore());
+			
+//			(playerBet instanceof SuitBetImpl);
+//			System.out.println(playerBet instanceof SuitBetImpl);//true  
+			
+//            System.out.println("Player = " + play
+//            BetResult result = player.finaliseBet(houseHand);
+        }
+
+  
+ 
+		
+	
+				
 
 	}
 
-	}
+	
 
 	@Override
 	public void resetAllBetsAndHands() {

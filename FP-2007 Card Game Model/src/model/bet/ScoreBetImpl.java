@@ -46,9 +46,30 @@ public class ScoreBetImpl implements ScoreBet {
 		// This result should also be stored in the bet for later use
 		// TODO do not know how to implement this atm
 		
+//		Player Loss The total score of the player’s hand is less than that of the House Player loses 100
+//		Draw The total score of the player’s hand is the same as that of the House No change (bet returned)
+//		Player Win The total score of the player’s hand is more than that of the House Player wins 200
+//		
+		Hand playerhand = player.getHand();
+		int playerScore = playerhand.getScore();
+		
+		if (playerScore  < houseHand.getScore()) {
+//			System.out.println("player Loss" + this.player.getName() + " has lost");
+			this.result = BetResult.PLAYER_LOSS;			
+		}
+		if (playerScore  == houseHand.getScore()) {
+//			System.out.println("player Draw" + this.player.getName() + " has Drawn");
+			this.result = BetResult.DRAW;
+		}
+		if (playerScore  > houseHand.getScore()) {
+//			System.out.println("player Win" + this.player.getName() + " has Won");
+			this.result = BetResult.PLAYER_WIN;
+		}
+		
+		
 //		You need to a) indicate that the bet has been finalised (you'll see in some of the other bet functions it tells you to return differently if the bet isn't yet finalised)
 //	b) compare the players hand to the houses hand and determine whether the player won, drew or lost, the way of doing so differs between score and suit bets
-		return null;
+		return this.result;
 
 	}
 
