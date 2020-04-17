@@ -4,17 +4,20 @@ package model.card;
  * This enum represent the suit for each card
  * 
  * <p>
- * The natural order of suits should be ascending alphabetically: clubs (lowest),
- * followed by diamonds, hearts, and spades (highest)
- *  
+ * The natural order of suits should be ascending alphabetically: clubs
+ * (lowest), followed by diamonds, hearts, and spades (highest)
+ * 
  * <p>
- * <b>Hint: </b>You may find it useful to override methods in the enum and/or
- * on each of the value.
+ * <b>Hint: </b>You may find it useful to override methods in the enum and/or on
+ * each of the value.
  * 
- * <p><b>Hint: </b>Be sure to follow naming conventions for your enum values
+ * <p>
+ * <b>Hint: </b>Be sure to follow naming conventions for your enum values
  * 
- * <p><b>Note: </b> The {@link Suit#valueOf(String)} and {@link Suit#values()} methods are 
- * provided by the API - you do not need to write or override them yourself.
+ * <p>
+ * <b>Note: </b> The {@link Suit#valueOf(String)} and {@link Suit#values()}
+ * methods are provided by the API - you do not need to write or override them
+ * yourself.
  * 
  * @author Ross Nye
  * 
@@ -23,14 +26,27 @@ package model.card;
  *
  */
 
-public enum Suit
-{
+public enum Suit {
 
-	CLUBS,
-	DIAMONDS,
-	HEARTS,
-	SPADES
-	
-	
+	CLUBS {
+		public String toString() {
+			return "Clubs";
+		}
+	},
+	DIAMONDS {
+		public String toString() {
+			return "Diamonds";
+		}
+	},
+	HEARTS {
+		public String toString() {
+			return "Hearts";
+		}
+	},
+	SPADES {
+		public String toString() {
+			return "Spades";
+		}
+	},
+
 }
-

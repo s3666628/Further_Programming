@@ -103,7 +103,7 @@ public class PlayerImpl implements Player {
 
 	@Override
 	public String toString() {
-		return "Player id=" + id + ", name=" + name + ", points=" + points + ", " + bet + ", "+ hand.toString();
+	return "Player id=" + id + ", name=" + name + ", points=" + points + ", " + bet + ", "+ hand.toString();
 	}
 	
 

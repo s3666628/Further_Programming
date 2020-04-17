@@ -89,7 +89,7 @@ public class CardImpl implements Card, Comparable<Card> {
 
 	@Override
 	public String toString() {
-		return "CardImpl [suit=" + suit + ", rank=" + rank + "]";
+		return rank +" of "+ suit;
 	}
 
 	@Override

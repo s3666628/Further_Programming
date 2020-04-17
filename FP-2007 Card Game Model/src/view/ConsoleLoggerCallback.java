@@ -12,11 +12,16 @@ import model.card.Deck;
 import model.card.Hand;
 
 /**
- * An implementation of GameCallback which uses a Logger to log game events to the console.
+ * An implementation of GameCallback which uses a Logger to log game events to
+ * the console.
  * 
- * <p><b>Important!</b> DO NOT EDIT THE STATIC BLOCK THAT SETS UP THE LOGGER OR IT'S DECLARATION!
+ * <p>
+ * <b>Important!</b> DO NOT EDIT THE STATIC BLOCK THAT SETS UP THE LOGGER OR
+ * IT'S DECLARATION!
  * 
- * <p><b>Note:</b> Logging message format should be consistent with the output trace.
+ * <p>
+ * <b>Note:</b> Logging message format should be consistent with the output
+ * trace.
  * 
  * @author Ross Nye
  * 
@@ -24,12 +29,10 @@ import model.card.Hand;
  * @see view.GameCallbackCollection
  *
  */
-public class ConsoleLoggerCallback implements GameCallback
-{
+public class ConsoleLoggerCallback implements GameCallback {
 	public ConsoleLoggerCallback(GameEngine engine) {
-		// TODO Auto-generated constructor stub
+// TODO Auto-generated constructor stub
 	}
-
 
 	/**
 	 * A static {@link java.util.logging.Logger} object used for logging information
@@ -38,12 +41,11 @@ public class ConsoleLoggerCallback implements GameCallback
 	 * DO NOT EDIT!
 	 */
 	public static final Logger LOGGER;
-	
-	static
-	{
-		// DO NOT EDIT THIS STATIC BLOCK!!
-		
-		// Creating consoleHandler, add it and set the log levels.
+
+	static {
+// DO NOT EDIT THIS STATIC BLOCK!!
+
+// Creating consoleHandler, add it and set the log levels.
 		LOGGER = Logger.getLogger(ConsoleLoggerCallback.class.getName());
 		LOGGER.setLevel(Level.FINER);
 		ConsoleHandler handler = new ConsoleHandler();
@@ -54,57 +56,58 @@ public class ConsoleLoggerCallback implements GameCallback
 
 	@Override
 	public void addPlayer(Player player) {
-		// TODO hand is not displayed correctly on log output
-		LOGGER.info("Added "+ player.toString());
-		
+// TODO hand is not displayed correctly on log output
+		LOGGER.info("Added " + player.toString());
+
 	}
 
 	@Override
 	public void removePlayer(Player player) {
-		// this should work
-		LOGGER.info("Removed "+player.toString());
-		
+// this should work
+		LOGGER.info("Removed " + player.toString());
+
 	}
 
 	@Override
 	public void betUpdated(Player player) {
-		// TODO Auto-generated method stub
-//		player.getBet();
-		LOGGER.info("test "+ player.getBet());
-		
-		
+// TODO Auto-generated method stub
+// player.getBet();
+		LOGGER.info("Bet updated for " + player.getName() + " to " + player.getBet());
+
 	}
 
 	@Override
 	public void newDeck(Deck deck) {
-		// TODO Auto-generated method stub
-//		LOGGER.info(deck.toString());
-		
+// TODO Auto-generated method stub
+		LOGGER.info(deck.toString());
+
 	}
 
 	@Override
 	public void playerCard(Player player, Card card) {
-		// TODO Auto-generated method stub
-		
+// System.out.println("testing player Card");
+		LOGGER.fine("Player " + player.getId() + " dealt " + card.toString());
+// Player P2 dealt Ace of Clubs
+
 	}
 
 	@Override
 	public void playerBust(Player player, Card card) {
-		// TODO Auto-generated method stub
-		
+		Hand playerHand = player.getHand();
+		LOGGER.fine("Player " + player.getId() + " bust on " + card.toString());
+		LOGGER.fine("Player " + player.getId() + " score is " + playerHand.getScore());
 	}
 
 	@Override
 	public void houseCard(Hand houseHand, Card card) {
-		// TODO Auto-generated method stub
-		
+// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public void houseBust(Hand houseHand, Card card) {
-		// TODO Auto-generated method stub
-		
+// TODO Auto-generated method stub
+
 	}
-	
 
 }

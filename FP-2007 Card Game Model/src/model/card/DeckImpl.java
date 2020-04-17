@@ -33,11 +33,12 @@ public class DeckImpl implements Deck {
 //				System.out.println(card.toString());
 			}
 		}
-		Collections.shuffle(deckOfCards.mainDeckOfCards);
+		deckOfCards.shuffleDeck();
 		
 		
 		return deckOfCards;
 	}
+	
 
 	// Deck should be sorted by default as we create the deck in order
 	public static Deck createSortedDeck() {
@@ -51,18 +52,25 @@ public class DeckImpl implements Deck {
 		}
 		return deckOfCards;
 	}
-
-	@Override
-	public Card removeNextCard() throws IllegalStateException {
+// this doesn't crash code but always removes the same card
+//	@Override
+//	public Card removeNextCard() throws IllegalStateException {
+//		// TODO Auto-generated method stub
+//		itr = mainDeckOfCards.iterator();
+//		Card card = null;		
+//		if (itr.hasNext() == true) {
+//			card = itr.next();
+//			return card;
+//		}
+//		return card;
+		
+		@Override
+		public Card removeNextCard() throws IllegalStateException {
 		// TODO Auto-generated method stub
-		itr = mainDeckOfCards.iterator();
-		Card card = null;		
-		if (itr.hasNext() == true) {
-			card = itr.next();
-			return card;
-		}
-		return card;
-	}
+		Card removeCard = mainDeckOfCards.get(0);
+		mainDeckOfCards.remove(removeCard);
+		return removeCard;}
+	
 
 	@Override
 	public int cardsInDeck() {
