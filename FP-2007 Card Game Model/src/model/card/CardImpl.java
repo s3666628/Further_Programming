@@ -7,8 +7,6 @@ public class CardImpl implements Card, Comparable<Card> {
 	private Rank rank;
 	private int value;
 
-//	static HashMap<Rank, Integer> hmap = new HashMap<Rank, Integer>();
-
 	public CardImpl(Suit suit, Rank rank) {
 		// assign the values from the constructor to instance variables
 		this.suit = suit;
@@ -37,14 +35,6 @@ public class CardImpl implements Card, Comparable<Card> {
 		return value;
 	}
 
-//	@Override
-	// checks whether card passed in is the same as card instance variable
-//	public boolean equals(Object obj) {
-//		if (obj instanceof Card)
-//			return this.equals((Card)obj);		
-//		return false;
-//	}
-
 	@Override
 	public int compareTo(Card card) {
 		// variables for the method
@@ -54,10 +44,6 @@ public class CardImpl implements Card, Comparable<Card> {
 		int valCurrSuit = this.suit.ordinal();
 		int valOtherSuit = card.getSuit().ordinal();
 
-		System.out.print("value of current suit");
-		System.out.print(valCurrSuit);
-		System.out.print("value of Other suit");
-		System.out.print(valOtherSuit);
 		// check if suits are the same - if they are then we need to check the ranks
 
 		if (valCurrSuit == valOtherSuit) {
@@ -89,7 +75,7 @@ public class CardImpl implements Card, Comparable<Card> {
 
 	@Override
 	public String toString() {
-		return rank +" of "+ suit;
+		return rank + " of " + suit;
 	}
 
 	@Override

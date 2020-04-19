@@ -33,6 +33,10 @@ public class GameEngineImpl implements GameEngine, GameCallbackCollection {
 	// this should give us a shuffled deck of cards - will be used to deal cards to
 	// the player
 	Deck mydeck = DeckImpl.createShuffledDeck();
+	// need this for the sleep function
+	Thread thread;
+
+	private static int NumberOfDeckMessage = 0;
 
 	private GameCallback getCallBack() {
 		GameCallback callback = callBackList.get(0);
@@ -72,8 +76,7 @@ public class GameEngineImpl implements GameEngine, GameCallbackCollection {
 		// this should work - removes playerId that is passed in from the hash map
 		Player player = players.get(playerId);// get player object from array via playerId string
 		GameCallback callback = getCallBack();
-		// NB: make sure logg removing player before removing player otherwise it won't
-		// work
+		// NB: make sure log removing player before removing player otherwise it won't
 		callback.removePlayer(player);
 		players.remove(playerId);
 
@@ -111,21 +114,22 @@ public class GameEngineImpl implements GameEngine, GameCallbackCollection {
 	public void dealPlayer(String playerId, int delay)
 			throws NullPointerException, IllegalArgumentException, IllegalStateException {
 
-		// prolly need loop here for each player do the following
 		Player currentPlayer = players.get(playerId); // get player object
 		GameCallback callback = getCallBack(); // create callback object
-		callback.newDeck(mydeck); // log the new deck
+		if (NumberOfDeckMessage == 0) { // we only want to call the new deck logging method once when first player is
+										// dealt hand
+			callback.newDeck(mydeck); // log the new deck
+			NumberOfDeckMessage += 1;
+		}
 
-		Card bustCard = null;
+		Card bustCard = null; // need this to know which card player went bust on
 //		// 2 get a hand for the current player
 		Hand currentPlayerHand = currentPlayer.getHand();
 		int loopCheck = 0;
 		// 3 check the score of the hand
 		int bustScore = 21;
-		// if card does not bust pla
+		// if card does not bust player
 		while (loopCheck <= bustScore && loopCheck == 0) {
-
-//			System.out.println("current hand score: "+currentPlayerHand.getScore());
 
 			// see what the next card is
 			Card nextCard = mydeck.removeNextCard();
@@ -141,32 +145,37 @@ public class GameEngineImpl implements GameEngine, GameCallbackCollection {
 				currentPlayerHand.getScore();
 				loopCheck = 1;
 			} else {
-				currentPlayerHand.dealCard(nextCard);
-				callback.playerCard(currentPlayer, nextCard);
+				try { // sleep to add delay when cards being dealth
+					Thread.sleep(delay * 10);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				currentPlayerHand.dealCard(nextCard);// add next card to players hand
+				callback.playerCard(currentPlayer, nextCard); // log the card
 			}
 
 		}
-		
-		callback.playerBust(currentPlayer, bustCard);
+
+		callback.playerBust(currentPlayer, bustCard); // if player is bust then this gets called
 
 	}
 
 	@Override
 	public void dealHouse(int delay) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		
-		// prolly need loop here for each player do the following
-//		Player currentPlayer = players.get(playerId); // get player object
+
+//TODO could make this into a static method as a lot of the same code used in both of these methods.
+
 		GameCallback callback = getCallBack(); // create callback object
-//		callback.newDeck(mydeck); // log the new deck
-		Player dealer = new PlayerImpl ("DXX", "DEALER", 0);
-		Card bustCard = null;
+		Player dealer = new PlayerImpl("DXX", "DEALER", 0); // create player for the dealer
+		Card bustCard = null; // card dealer goes bust on
 //		// 2 get a hand for the current player
 		Hand houseHand = dealer.getHand();
 		int loopCheck = 0;
 		// 3 check the score of the hand
 		int bustScore = 21;
-		// if card does not bust pla
+		// if card does not bust player
 		while (loopCheck <= bustScore && loopCheck == 0) {
 
 //			System.out.println("current hand score: "+currentPlayerHand.getScore());
@@ -183,51 +192,77 @@ public class GameEngineImpl implements GameEngine, GameCallbackCollection {
 				bustCard = nextCard;
 				// get the score for the current hand
 				houseHand.getScore();
+
 				loopCheck = 1;
 			} else {
+				try {
+					Thread.sleep(delay * 10);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				houseHand.dealCard(nextCard);
 //				callback.playerCard(dealer, nextCard);
 				callback.houseCard(houseHand, nextCard);
 			}
 
 		}
-//		callback.playerBust(dealer, bustCard);
+//
 		callback.houseBust(houseHand, bustCard);
 		// check final results
-        // Getting an iterator 
 
-  
-        // Iterate through the hashmap 
-      //iterating over values only
-        for (Player player : players.values()) {
-            Bet playerBet = player.getBet();
-            BetResult result = playerBet.finaliseBet(houseHand);
-            Hand playerhand = player.getHand();
-//            player.toString(); 
-//			System.out.println(player.getBet());
-//			System.out.println(result);
-			System.out.println(player.toString()+"Score"+playerhand.getScore());
-			
-//			(playerBet instanceof SuitBetImpl);
-//			System.out.println(playerBet instanceof SuitBetImpl);//true  
-			
-//            System.out.println("Player = " + play
-//            BetResult result = player.finaliseBet(houseHand);
-        }
+		for (Player player : players.values()) {
+			Bet playerBet = player.getBet();
+			playerBet.finaliseBet(houseHand);
+			player.applyBetResult(houseHand); // apply results
 
-  
- 
-		
-	
+			// This is output as print string and not logger message
+			System.out.println(player.toString());
+			// logic to print out different information for players where getOutcome returns 0		
+			if (playerBet.getOutcome() > 0){
+				System.out.println("Player: " + player.getId() + "\t" + "   " + player.getName() + "\t"
+						+ formatBetResult(playerBet.getResult()) + "\t" + playerBet.getOutcome());;
+			}
+			else {
+				System.out.println("Player: " + player.getId() + "\t" + "   " + player.getName() + "\t"
+						+ formatBetResult(playerBet.getResult()) + "\t");
 				
+			}		
+
+
+		}
 
 	}
 
-	
+// this is to get information on results so we can print out the right strings e.g. 'Loss'
+	private String formatBetResult(BetResult result) {
+		if (result == BetResult.PLAYER_LOSS) {
+			return " Loss";
+		}
+		if (result == BetResult.PLAYER_WIN) {
+			return " Win";
+		}
+		if (result == BetResult.DRAW) {
+			return " Draw";
+		}
+		if (result == BetResult.UNDETERMINED) {
+			return " No Bet";
+		}
+
+		return null;
+
+	}
 
 	@Override
 	public void resetAllBetsAndHands() {
 		// TODO Auto-generated method stub
+		GameCallback callback = getCallBack();
+		for (Player player : players.values()) {
+			// reset bets for all players
+			player.resetBet();
+			// call bet log message
+			callback.betUpdated(player);
+		}
 
 	}
 

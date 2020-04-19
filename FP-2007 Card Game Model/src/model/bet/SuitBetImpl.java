@@ -46,18 +46,19 @@ public class SuitBetImpl implements SuitBet {
 		// This result should also be stored in the bet for later use
 		// TODO do not know how to implement this atm
 		
-//		Player Loss The total number of cards of the nominated suit in the player’s hand
+//		Player Loss The total number of cards of the nominated suit in the playerï¿½s hand
 //		is less than or equal to the total number of cards of the same suit in
-//		the House’s hand
+//		the Houseï¿½s hand
 //		Player loses 100
-//		Player Win The total number of cards of the nominated suit in the player’s hand
-//		is exceeds the total number of cards of the same suit in the House’s
+//		Player Win The total number of cards of the nominated suit in the playerï¿½s hand
+//		is exceeds the total number of cards of the same suit in the Houseï¿½s
 //		hand
 //		Player wins 400
 //		
 		Hand playerhand = player.getHand();
 		Bet playerBet = player.getBet(); // need this so we know what player has bet
 		playerBet.getAmount();
+		
 		int playerClubs = playerhand.getSuitCount(suit.CLUBS);
 		int playerDiamonds = playerhand.getSuitCount(suit.DIAMONDS);
 		int playerHearts = playerhand.getSuitCount(suit.HEARTS);
@@ -73,10 +74,6 @@ public class SuitBetImpl implements SuitBet {
 		if (playerTotals  <= dealerTotals) {
 //			System.out.println("player Suit Loss " + this.player.getName() + " has lost");
 			this.result = BetResult.PLAYER_LOSS;
-			
-			
-			
-			
 			
 		}
 		else {
@@ -115,7 +112,7 @@ public class SuitBetImpl implements SuitBet {
 			return 0;
 		}
 		if (this.result == BetResult.PLAYER_LOSS) { // means bet has not been finalised
-			return getAmount() * getMultiplier();
+			return getAmount() * 4;
 		}
 		if (this.result == BetResult.DRAW) { // means bet has not been finalised
 			return 0;

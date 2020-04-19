@@ -88,7 +88,7 @@ public class DeckImpl implements Deck {
 	@Override
 	public String toString() {
 //		return "DeckImpl [totalCards=" + totalCards + "]";
-		return " A new deck of cards was created with" + Deck.TOTAL_NUM_CARDS + "cards";
+		return "A new deck of cards was created with " + Deck.TOTAL_NUM_CARDS + " cards";
 	}
 	
 

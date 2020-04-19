@@ -12,19 +12,6 @@ public class HandImpl implements Hand {
 	int currentScore;
 	Collection<Card> hand = new ArrayList<Card>();
 
-	// this is used to store the current hand for the player
-//	Collection<Card> hand = new ArrayList<Card>();
-	// not sure we will need this but being used by one method here to reset the
-	// score
-//	private static int currentScore = 0;
-
-//	private static int getCurrentScore() {
-//		return currentScore;
-//	}
-//	private static void setCurrentScore(int newCurrentScore) {
-//		currentScore = newCurrentScore;
-//	}
-
 	public HandImpl() {
 		// create a new hand for the player
 		this.hand = new ArrayList<Card>();
@@ -39,7 +26,6 @@ public class HandImpl implements Hand {
 		// TODO not sure how to make sure the card has been successfully added to the
 		// hand as add() does not return anything
 		if (this.hand.add(card)) {
-//			System.out.println("card as been added to the hand: "+ card);
 			return true;
 		}
 		;
@@ -64,13 +50,11 @@ public class HandImpl implements Hand {
 	public int getScore() {
 		// TODO this might need to be worked on
 //		for card in
-		int total = 0;	
-		for (Card card : hand) { 		      
-			int valueOfCard = card.getValue(); 	
-//			System.out.println("card is: " + card);
-//			System.out.println("value of card is: " + card.getValue());
-			
-			total += valueOfCard;}
+		int total = 0;
+		for (Card card : hand) {
+			int valueOfCard = card.getValue();
+			total += valueOfCard;
+		}
 		this.currentScore = total;
 		return this.currentScore;
 	}
@@ -160,11 +144,10 @@ public class HandImpl implements Hand {
 
 	@Override
 	public String toString() {
-		if (hand.isEmpty()){
+		if (hand.isEmpty()) {
 			return "Empty Hand";
 		}
-		return "Hand of " +hand.size()+" cards " +hand ;
+		return "Hand of " + hand.size() + " cards " + hand;
 	}
-	
 
 }

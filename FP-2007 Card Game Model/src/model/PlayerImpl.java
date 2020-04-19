@@ -1,6 +1,7 @@
 package model;
 
 import model.bet.Bet;
+import model.bet.BetResult;
 import model.card.Hand;
 import model.card.HandImpl;
 
@@ -41,29 +42,30 @@ public class PlayerImpl implements Player {
 
 	@Override
 	public int getPoints() {
-		// if there is a current bet then need to remove the current bet amount from the points
-		if (this.bet != Bet.NO_BET) {
-			this.points = this.points -bet.getAmount();
-		}
-		return this.points;
+		// if there is a current bet then need to remove the current bet amount from the
+		// points
+//		if (this.bet.getAmount() > 0) { //if bet amount is zero then means there is no bet
+//			System.out.println(this.bet.getAmount());
+//			return this.points;
+//			
+//		}
+		return this.points = this.points - bet.getAmount();
 	}
 
 	@Override
 	public int getTotalPoints() {
 
-		// Returns the current total points for a player, which includes any amount
-		// currently bet.
-		// Hint: If the player doesn't have a current bet this method should return the
-		// current points,
-		// otherwise add the bet's value to it....
-		int totalPoints = this.points;
-		if (this.bet != Bet.NO_BET) {
-			return this.points;
-		}
-		// TODO need to figure out how to get the value of the bet as integer
-		else {
-			totalPoints = totalPoints + bet.getAmount(); // + amount of the current bet
+		// does player have current bet
+
+		int totalPoints = 0;
+		Bet playerBet = getBet();
+		if (playerBet.getAmount() > 0) {
+			totalPoints = totalPoints + this.points + playerBet.getAmount();
 			return totalPoints;
+		} // player does not have bet just return current points
+		else {
+			return this.points;
+
 		}
 
 	}
@@ -91,10 +93,27 @@ public class PlayerImpl implements Player {
 
 	@Override
 	public void applyBetResult(Hand houseHand) {
-		// think this is correct
-		// takes the bet that has been passed in
-		// and assigns it to the variable stored in this class
-		this.hand = houseHand;
+		BetResult result = this.bet.finaliseBet(houseHand);
+		Bet playerBet = this.bet;
+		if (result == BetResult.PLAYER_LOSS) {
+//			System.out.println("points before applying result" + this.points);
+			this.points = this.points - playerBet.getAmount();
+
+//			System.out.println(this.name + " player Bet Amount on Loss" + playerBet.getAmount());
+//			System.out.println("points AFTER applying result" + this.points);
+		}
+		if (result == BetResult.PLAYER_WIN) {
+//			System.out.println("points before applying result" + this.points);
+			this.points = this.points + playerBet.getAmount();
+//			System.out.println(this.name + " player Bet Amount on Win" + playerBet.getAmount());
+		}
+		if (result == BetResult.DRAW) {
+			this.points = this.points;
+//			System.out.println(this.name + " player Draw" + playerBet.getAmount());
+		}
+		if (houseHand == null) {
+//			System.out.println("houseHand is empty - so cannot apply result");
+		}
 
 	}
 
@@ -107,10 +126,17 @@ public class PlayerImpl implements Player {
 
 	@Override
 	public String toString() {
-	return "Player id=" + id + ", name=" + name + ", points=" + points + ", " + bet + ", "+ hand.toString();
-//	Player id=P1, name=Player One, points=900, Score Bet for 100, Hand of 2 cards [Queen of Spades, 10 of Diamonds] Score: 20
-//	Player id=P1, name=Player One, points=1000, Score Bet for 100, HandImpl [currentScore=19, hand=[Ace of Hearts, Ten of Spades, Eight of Spades]]
+		String resultOutput;
+
+		// if player has empty hand no print out the score
+		if (this.hand.isEmpty() || this.bet == Bet.NO_BET) {
+			return resultOutput = "Player id=" + id + ", name=" + name + ", points=" + getPoints() + ", " + bet + ", "
+					+ hand.toString();
+		} else {
+			return resultOutput = "Player id=" + id + ", name=" + name + ", points=" + getPoints() + ", " + bet + ", "
+					+ hand.toString() + " Score: " + this.hand.getScore();
+		}
+
 	}
-	
 
 }

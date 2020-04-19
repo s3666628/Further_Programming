@@ -56,7 +56,6 @@ public class ConsoleLoggerCallback implements GameCallback {
 
 	@Override
 	public void addPlayer(Player player) {
-// TODO hand is not displayed correctly on log output
 		LOGGER.info("Added " + player.toString());
 
 	}
@@ -70,24 +69,19 @@ public class ConsoleLoggerCallback implements GameCallback {
 
 	@Override
 	public void betUpdated(Player player) {
-// TODO Auto-generated method stub
-// player.getBet();
 		LOGGER.info("Bet updated for " + player.getName() + " to " + player.getBet());
 
 	}
 
 	@Override
 	public void newDeck(Deck deck) {
-// TODO Auto-generated method stub
 		LOGGER.info(deck.toString());
 
 	}
 
 	@Override
 	public void playerCard(Player player, Card card) {
-// System.out.println("testing player Card");
 		LOGGER.fine("Player " + player.getId() + " dealt " + card.toString());
-// Player P2 dealt Ace of Clubs
 
 	}
 
@@ -100,11 +94,7 @@ public class ConsoleLoggerCallback implements GameCallback {
 
 	@Override
 	public void houseCard(Hand houseHand, Card card) {
-//	Hand playerHand = player.getHand();
-//	LOGGER.fine("House " + player.getId() + " bust on " + card.toString());
-//	LOGGER.fine("House Test Message");
-	LOGGER.fine("House dealt " + card.toString());
-
+		LOGGER.fine("House dealt " + card.toString());
 
 	}
 
@@ -112,12 +102,9 @@ public class ConsoleLoggerCallback implements GameCallback {
 	public void houseBust(Hand houseHand, Card card) {
 // TODO Auto-generated method stub
 		LOGGER.fine("House bust on " + card.toString());
-//		House Hand: Hand of 2 cards [Queen of Clubs, King of Spades] Score: 20
-		LOGGER.info("House Hand: Hand of "+houseHand.getNumberOfCards() +" cards " + houseHand.getCards() + " Score: " + houseHand.getScore());
+		LOGGER.info("House Hand: Hand of " + houseHand.getNumberOfCards() + " cards " + houseHand.getCards()
+				+ " Score: " + houseHand.getScore());
 		LOGGER.info("Final Results:");
-
-		
-//		Player id=P1, name=Player One, points=900, Score Bet for 100, Hand of 2 cards [Queen of Spades, 10 of Diamonds] Score: 20
 
 	}
 

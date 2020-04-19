@@ -9,8 +9,6 @@ public class ScoreBetImpl implements ScoreBet {
 	private int amount;
 	private int multiplier = 1; // assume this is one - can change if we learn more about the betting multiplier
 	BetResult result;
-	
-	
 
 	public ScoreBetImpl(Player player, int amount) throws NullPointerException, IllegalArgumentException {
 
@@ -45,28 +43,27 @@ public class ScoreBetImpl implements ScoreBet {
 		// indicate the result of the bet.
 		// This result should also be stored in the bet for later use
 		// TODO do not know how to implement this atm
-		
-//		Player Loss The total score of the player’s hand is less than that of the House Player loses 100
-//		Draw The total score of the player’s hand is the same as that of the House No change (bet returned)
-//		Player Win The total score of the player’s hand is more than that of the House Player wins 200
+
+//		Player Loss The total score of the playerï¿½s hand is less than that of the House Player loses 100
+//		Draw The total score of the playerï¿½s hand is the same as that of the House No change (bet returned)
+//		Player Win The total score of the playerï¿½s hand is more than that of the House Player wins 200
 //		
 		Hand playerhand = player.getHand();
 		int playerScore = playerhand.getScore();
-		
-		if (playerScore  < houseHand.getScore()) {
+
+		if (playerScore < houseHand.getScore()) {
 //			System.out.println("player Loss" + this.player.getName() + " has lost");
-			this.result = BetResult.PLAYER_LOSS;			
+			this.result = BetResult.PLAYER_LOSS;
 		}
-		if (playerScore  == houseHand.getScore()) {
+		if (playerScore == houseHand.getScore()) {
 //			System.out.println("player Draw" + this.player.getName() + " has Drawn");
 			this.result = BetResult.DRAW;
 		}
-		if (playerScore  > houseHand.getScore()) {
+		if (playerScore > houseHand.getScore()) {
 //			System.out.println("player Win" + this.player.getName() + " has Won");
 			this.result = BetResult.PLAYER_WIN;
 		}
-		
-		
+
 //		You need to a) indicate that the bet has been finalised (you'll see in some of the other bet functions it tells you to return differently if the bet isn't yet finalised)
 //	b) compare the players hand to the houses hand and determine whether the player won, drew or lost, the way of doing so differs between score and suit bets
 		return this.result;
@@ -97,7 +94,7 @@ public class ScoreBetImpl implements ScoreBet {
 			return 0;
 		}
 		if (this.result == BetResult.PLAYER_LOSS) { // means bet has not been finalised
-			return getAmount() * getMultiplier();
+			return getAmount() * 2;
 		}
 		if (this.result == BetResult.DRAW) { // means bet has not been finalised
 			return 0;
@@ -111,7 +108,7 @@ public class ScoreBetImpl implements ScoreBet {
 	@Override
 	public int getOutcome(BetResult result) {
 		// TODO Auto-generated method stub
-		
+
 		return getOutcome();
 	}
 
@@ -128,11 +125,10 @@ public class ScoreBetImpl implements ScoreBet {
 
 		return 0;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Score Bet for " +getAmount();
+		return "Score Bet for " + getAmount();
 	}
-	
 
 }
