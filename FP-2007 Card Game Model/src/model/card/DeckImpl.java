@@ -52,17 +52,6 @@ public class DeckImpl implements Deck {
 		}
 		return deckOfCards;
 	}
-// this doesn't crash code but always removes the same card
-//	@Override
-//	public Card removeNextCard() throws IllegalStateException {
-//		// TODO Auto-generated method stub
-//		itr = mainDeckOfCards.iterator();
-//		Card card = null;		
-//		if (itr.hasNext() == true) {
-//			card = itr.next();
-//			return card;
-//		}
-//		return card;
 		
 		@Override
 		public Card removeNextCard() throws IllegalStateException {

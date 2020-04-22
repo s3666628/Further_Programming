@@ -145,7 +145,7 @@ public class GameEngineImpl implements GameEngine, GameCallbackCollection {
 				currentPlayerHand.getScore();
 				loopCheck = 1;
 			} else {
-				try { // sleep to add delay when cards being dealth
+				try { // sleep to add delay when cards being dealt - reference - this code was copied from https://www.tutorialspoint.com/java/lang/thread_sleep_millis.htm
 					Thread.sleep(delay * 10);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
