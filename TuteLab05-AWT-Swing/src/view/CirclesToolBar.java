@@ -12,9 +12,18 @@ import control.ToolBarButtonListener;
 @SuppressWarnings(value = { "serial" })
 public class CirclesToolBar extends JToolBar {
 	
+	private ImageIcon bluePng;
+	private ImageIcon greenPng;
+	private ImageIcon orangePng;
+	private ImageIcon redPng;
+	private ImageIcon yellowPng;
+	
+	
 	public CirclesToolBar()
 	{
 		// create some new icons so we can use these with the buttons
+		// this works but tring something else 
+		
 		ImageIcon bluePng = new ImageIcon(CircleImages.BLUE.getImagePath());
 		ImageIcon greenPng = new ImageIcon(CircleImages.GREEN.getImagePath());
 		ImageIcon orangePng = new ImageIcon(CircleImages.ORANGE.getImagePath());
