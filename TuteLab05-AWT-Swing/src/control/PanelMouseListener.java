@@ -25,8 +25,7 @@ public class PanelMouseListener implements MouseMotionListener {
 	public void mouseMoved(MouseEvent e) {
 		System.out.println("MOUSE MOVED OVER LABEL#actionPerformed" + e.toString());
 //		JLabel yellowLabel = new JLabel(CircleImages.YELLOW.getImageIcon());
-		JLabel yellowLabel = new JLabel(CircleImages.YELLOW.getImageIcon());
-		
+				
 		// TODO Auto-generated method stub
 		
 	}

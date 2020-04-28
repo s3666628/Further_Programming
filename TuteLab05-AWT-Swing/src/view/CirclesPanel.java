@@ -1,12 +1,12 @@
 package view;
 
 import java.awt.GridLayout;
-import javax.swing.ImageIcon;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import control.PanelMouseListener;
-import control.ToolBarButtonListener;
 
 @SuppressWarnings("serial")
 public class CirclesPanel extends JPanel {
@@ -17,55 +17,49 @@ public class CirclesPanel extends JPanel {
 	JLabel orangeLabel;
 	JLabel yellowLabel;
 
-	private void generateGrid(int numberImages) {
+	// this creates the panel with all of the images
 
-		int counter = 0;
-		while (numberImages > counter) {
+	final static private int TOTAL_CIRCLES = 21; // num of icons we want in the panel
 
-			System.out.println("checking counter" + counter);
+	public CirclesPanel(CirclesFrame circlesFrame) {
+		
+		setLayout(new GridLayout(0, 6, 5, 5));
+		final int SIZE = CircleImages.values().length;
 
-//			add(new JLabel(CircleImages.BLUE.getImageIcon()));
-//			add(new JLabel(CircleImages.GREEN.getImageIcon()));
-//			add(new JLabel(CircleImages.RED.getImageIcon()));
-//			add(new JLabel(CircleImages.ORANGE.getImageIcon()));
-//			add(new JLabel(CircleImages.YELLOW.getImageIcon()));
-			// create new objects
-			JLabel blueLabel = new JLabel(CircleImages.BLUE.getImageIcon());
-			JLabel greenLabel = new JLabel(CircleImages.GREEN.getImageIcon());
-			JLabel redLabel = new JLabel(CircleImages.RED.getImageIcon());
-			JLabel orangeLabel = new JLabel(CircleImages.ORANGE.getImageIcon());
-			JLabel yellowLabel = new JLabel(CircleImages.YELLOW.getImageIcon());
-			// adds new objects to the panel as they are created
-			add(blueLabel);
-			add(greenLabel);
-			add(redLabel);
-			add(orangeLabel);
-			add(yellowLabel);
+			 // len of Enums array
+			// loop to create an label of each image inside the panel
+			int counter = 0;
+			while (TOTAL_CIRCLES > counter) {
 
-//			
-//			add(new JLabel(new ImageIcon(CircleImages.BLUE.getImagePath())));
-//			add(new JLabel(new ImageIcon(CircleImages.GREEN.getImagePath())));
-//			add(new JLabel(new ImageIcon(CircleImages.RED.getImagePath())));
-//			add(new JLabel(new ImageIcon(CircleImages.ORANGE.getImagePath())));
-			counter += 1;
+				System.out.println("checking counter" + counter);
+				// use this for place labels in random pattern
+				int randomNum = (int) (Math.random() * SIZE);
+
+//				add(new JLabel(CircleImages.values()[randomNum].getImageIcon()));
+				// create a new label for each iteration of the loop
+				JLabel labelOne = new JLabel(CircleImages.values()[randomNum].getImageIcon());
+				add(labelOne); // add the label to the panel
+				labelOne.addMouseListener(new MouseAdapter() {
+					
+					@Override
+					public void mouseEntered(MouseEvent e) {
+						// TODO Auto-generated method stub
+
+//						statusbar.status1.setText(String.format("Selected %s", images.toString()));
+						System.out.println("mouse event being called on mouse enter");
+						labelOne.setIcon(circlesFrame.getImages().getImageIcon());
+
+					}
+					
+				});
+				counter += 1; //update the counter which is outside of the while loop
+
+			}
 
 		}
 
-
-
-//		blue.addActionListener(new ToolBarButtonListener());
-//		green.addActionListener(new ToolBarButtonListener());
-//		orange.addActionListener(new ToolBarButtonListener());
-//		red.addActionListener(new ToolBarButtonListener());
-//		yellow.addActionListener(new ToolBarButtonListener());
-
-	}
-
-	public CirclesPanel() {
-
-		setLayout(new GridLayout(0, 6, 5, 5));
-		this.generateGrid(4);
-
-	}
+	// call the method which generates the grid
 
 }
+
+

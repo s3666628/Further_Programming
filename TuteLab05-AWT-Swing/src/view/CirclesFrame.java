@@ -8,6 +8,9 @@ import javax.swing.border.Border;
 
 @SuppressWarnings("serial")
 public class CirclesFrame extends JFrame {
+	
+	private CirclesStatus statusBar;
+	private CircleImages images;
 
 	public CirclesFrame() {
 		
@@ -20,12 +23,37 @@ public class CirclesFrame extends JFrame {
 		
 		// add children components
 		
-		this.add(new CirclesToolBar(), BorderLayout.NORTH);
-		this.add(new CirclesPanel(), BorderLayout.CENTER);
-		this.add(new CirclesStatus(), BorderLayout.SOUTH);
+		statusBar = new CirclesStatus();
+		
+		
+		this.add(new CirclesToolBar(this), BorderLayout.NORTH);
+		this.add(new CirclesPanel(this), BorderLayout.CENTER);
+//		this.add(new CirclesStatus(), BorderLayout.SOUTH);
+		this.add(statusBar, BorderLayout.SOUTH);
 		
 		setSize(400, 600);
+		pack(); 
 		this.setVisible(true); // by default frame is not visible
+		
 	}
+
+	public void updateColor(CircleImages images) {
+		// TODO Auto-generated method stub
+		
+		this.images = images;
+		statusBar.updateLabel(this.images);
+	}
+
+	public CirclesStatus getStatusBar() {
+		return statusBar;
+	}
+
+	public CircleImages getImages() {
+		return images;
+	}
+
+
+	
+
 	
 }
