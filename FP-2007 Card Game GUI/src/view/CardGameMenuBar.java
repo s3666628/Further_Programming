@@ -14,8 +14,10 @@ import javax.swing.KeyStroke;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
+import model.ComponentNames;
+
 @SuppressWarnings("serial")
-public class CardGameMenuBar extends JMenuBar implements MenuListener {
+public class CardGameMenuBar extends JMenuBar{
 
 	JMenuBar menuBar;
 	JMenu playerJmenu, dealerJmenu, aboutJMenu, dealerSubMenu;
@@ -54,29 +56,29 @@ public class CardGameMenuBar extends JMenuBar implements MenuListener {
 
 		// 3 create menu items
 //
-		playerMenuItem1 = new JMenuItem("Add Player");
+		playerMenuItem1 = new JMenuItem(ComponentNames.ADDPLAYER.toString());
 		playerMenuItem1.setMnemonic(KeyEvent.VK_P);
 		playerMenuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK));
 
-		playerMenuItem2 = new JMenuItem("Remove Player");
+		playerMenuItem2 = new JMenuItem(ComponentNames.REMOVE_PLAYER.toString());
 		playerMenuItem2.setMnemonic(KeyEvent.VK_R);
 		playerMenuItem2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.ALT_MASK));
 
-		playerMenuItem3 = new JMenuItem("Display all Players");
+		playerMenuItem3 = new JMenuItem(ComponentNames.DISPLAY_ALL_PLAYER.toString());
 		playerMenuItem3.setMnemonic(KeyEvent.VK_D);
 		playerMenuItem3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.ALT_MASK));
 
-		dealMenuItem1 = new JMenuItem("Player Place Bet");
+		dealMenuItem1 = new JMenuItem(ComponentNames.PLACE_BET.toString());
 		dealMenuItem1.setMnemonic(KeyEvent.VK_B);
 		dealMenuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.ALT_MASK));
 
-		dealMenuItem2 = new JMenuItem("Manual Deal");
+		dealMenuItem2 = new JMenuItem(ComponentNames.MANUAL_DEAL.toString());
 		dealMenuItem2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
 
-		dealMenuItem3 = new JMenuItem("Auto Deal");
+		dealMenuItem3 = new JMenuItem(ComponentNames.AUTO_DEAL.toString());
 		dealMenuItem3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, ActionEvent.ALT_MASK));
 
-		aboutlMenuItem = new JMenuItem("About This Game");
+		aboutlMenuItem = new JMenuItem(ComponentNames.ABOUT_THIS_GAME.toString());
 		aboutlMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.ALT_MASK));
 		// this is the code for the pop up box
 		aboutlMenuItem.addActionListener(new ActionListener() {
@@ -86,20 +88,19 @@ public class CardGameMenuBar extends JMenuBar implements MenuListener {
 				// TODO Auto-generated method stub
 				System.out.println("About Menu item has been clicked");
 				 // setsize of dialog 
-				aboutDialog = new cardGameDiaglogBox(cardGameFrame, "About this Game", "beeby", 100, true);
+				aboutDialog = new cardGameDiaglogBox(cardGameFrame, "About this Game", 500, true);
+				
+				
 //				aboutDialog.setSize(100, 100); 
-	  
-	            // set visibility of dialog 
-//				aboutDialog.setVisible(true); 
-//				JDialog.showMessageDialog(cardGameFrame,"Successfully Updated.","Alert",JOptionPane.WARNING_MESSAGE);   
+  
 				
 			}
 			
 	
 		
 				
-				
-	});
+		});
+	
 //
 //
 		// add all of the items to the menus
@@ -116,27 +117,30 @@ public class CardGameMenuBar extends JMenuBar implements MenuListener {
 		menuBar.add(dealerJmenu);
 		menuBar.add(aboutJMenu);
 		// NB ADD MENU BAR TO FRAME
-
-
-
-	}
-
-	@Override
-	public void menuSelected(MenuEvent e) {
-		// TODO Auto-generated method stub
 		
+//		menuBar.setVisible(true);
+		add(menuBar);
+
+
+
 	}
 
-	@Override
-	public void menuDeselected(MenuEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void menuCanceled(MenuEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+//	@Override
+//	public void menuSelected(MenuEvent e) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//	@Override
+//	public void menuDeselected(MenuEvent e) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//	@Override
+//	public void menuCanceled(MenuEvent e) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 }

@@ -6,13 +6,16 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.border.Border;
 
+import model.CircleColor;
+import model.CirclesModel;
+
 @SuppressWarnings("serial")
 public class CirclesFrame extends JFrame {
 	
 	private CirclesStatus statusBar;
-	private CircleImages images;
+	private CircleColor images;
 
-	public CirclesFrame() {
+	public CirclesFrame(CirclesModel model) {
 		
 		super("AWT/Swing Tutelab Exercises");
 		
@@ -23,11 +26,11 @@ public class CirclesFrame extends JFrame {
 		
 		// add children components
 		
-		statusBar = new CirclesStatus();
+		statusBar = new CirclesStatus(model);
 		
 		
-		this.add(new CirclesToolBar(this), BorderLayout.NORTH);
-		this.add(new CirclesPanel(this), BorderLayout.CENTER);
+		this.add(new CirclesToolBar(model), BorderLayout.NORTH);
+		this.add(new CirclesPanel(model), BorderLayout.CENTER);
 //		this.add(new CirclesStatus(), BorderLayout.SOUTH);
 		this.add(statusBar, BorderLayout.SOUTH);
 		
@@ -37,7 +40,7 @@ public class CirclesFrame extends JFrame {
 		
 	}
 
-	public void updateColor(CircleImages images) {
+	public void updateColor(CircleColor images) {
 		// TODO Auto-generated method stub
 		
 		this.images = images;
@@ -48,7 +51,7 @@ public class CirclesFrame extends JFrame {
 		return statusBar;
 	}
 
-	public CircleImages getImages() {
+	public CircleColor getImages() {
 		return images;
 	}
 

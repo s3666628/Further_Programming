@@ -5,7 +5,7 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.JLabel;
 
-import view.CircleImages;
+import model.CircleColor;
 
 public class PanelMouseListener implements MouseMotionListener {
 

@@ -1,8 +1,8 @@
-package view;
+package model;
 
 import javax.swing.ImageIcon;
 
-public enum CircleImages {
+public enum CircleColor {
 	// enum fields
 	BLUE {
 		@Override
@@ -13,7 +13,7 @@ public enum CircleImages {
 
 		@Override
 		public ImageIcon getImageIcon() {
-			ImageIcon blue = new ImageIcon(CircleImages.BLUE.getImagePath());
+			ImageIcon blue = new ImageIcon(CircleColor.BLUE.getImagePath());
 			return blue;
 		}
 		public String toString() {
@@ -31,7 +31,7 @@ public enum CircleImages {
 
 		public ImageIcon getImageIcon() {
 
-			ImageIcon green = new ImageIcon(CircleImages.GREEN.getImagePath());
+			ImageIcon green = new ImageIcon(CircleColor.GREEN.getImagePath());
 //			String message = "images/circle_green.png";
 			return green;
 		}
@@ -49,7 +49,7 @@ public enum CircleImages {
 
 		@Override
 		public ImageIcon getImageIcon() {
-			ImageIcon orange = new ImageIcon(CircleImages.ORANGE.getImagePath());
+			ImageIcon orange = new ImageIcon(CircleColor.ORANGE.getImagePath());
 			return orange;
 		}
 		public String toString() {
@@ -67,7 +67,7 @@ public enum CircleImages {
 		@Override
 		public ImageIcon getImageIcon() {
 			// TODO Auto-generated method stub
-			ImageIcon red = new ImageIcon(CircleImages.RED.getImagePath());
+			ImageIcon red = new ImageIcon(CircleColor.RED.getImagePath());
 			return red;
 		}
 		public String toString() {
@@ -84,7 +84,7 @@ public enum CircleImages {
 
 		@Override
 		public ImageIcon getImageIcon() {
-			ImageIcon yellow = new ImageIcon(CircleImages.YELLOW.getImagePath());
+			ImageIcon yellow = new ImageIcon(CircleColor.YELLOW.getImagePath());
 			return yellow;
 		}
 		public String toString() {
@@ -97,4 +97,11 @@ public enum CircleImages {
 	public abstract ImageIcon getImageIcon();
 	
 	public abstract String toString();
+	
+	public static CircleColor getRandom() {
+		return values()[(int)(Math.random()* values().length)];
+		
+	}
+	
+	
 }

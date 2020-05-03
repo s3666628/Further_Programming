@@ -13,15 +13,15 @@ public class ToolBarButtonListener implements ActionListener {
 	
 	public ToolBarButtonListener() {
 
-	final actionPerformed(ActionEvent e) 
-	{
-		// TODO Auto-generated method stub		
-		System.out.println("ToolBarButtonListener#actionPerformed" + e.toString());
-//		circlesFrame.updateColor(images);
-		
-				
-
-	}
+//	final actionPerformed(ActionEvent e) 
+//	{
+//		// TODO Auto-generated method stub		
+//		System.out.println("ToolBarButtonListener#actionPerformed" + e.toString());
+////		circlesFrame.updateColor(images);
+//		
+//				
+//
+//	}
 	}
 
 	@Override
