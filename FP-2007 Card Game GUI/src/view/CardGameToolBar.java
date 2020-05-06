@@ -18,8 +18,11 @@ public class CardGameToolBar extends JToolBar {
 		ButtonGroup toolButtonsGroup = new ButtonGroup(); // create new group for buttons in the tool bar
 
 		for (ComponentNames names : ComponentNames.values()) { // gets an array of enums
-
-			AbstractButton button = new JToggleButton(names.getImageIcon());
+			
+			// resize buttons
+			
+//			AbstractButton button = new JToggleButton(names.getImageIcon());
+			AbstractButton button = new JToggleButton(CardGameHelperMethods.resizeImageIcon(names.getImageIcon(), 130, 35));
 			add(button); // add button to the frame
 			toolButtonsGroup.add(button); // add button to group
 			button.setBorder(new LineBorder(Color.LIGHT_GRAY)); // put a border around it

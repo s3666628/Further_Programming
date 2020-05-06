@@ -10,6 +10,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
 
+@SuppressWarnings("serial")
 public class CardGameStatus extends JPanel {
 	
 	private JLabel status1;

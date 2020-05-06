@@ -17,8 +17,7 @@ public class CardGamePanel extends JPanel {
 	public CardGamePanel() {
 		super();
 		this.myicon = new PanelIcon("test");
-		this.panel1 = new TextPanel("test1");
-		
+		this.panel1 = new TextPanel("test1");		
 		this.tabbedPane = new JTabbedPane();
 		
 		

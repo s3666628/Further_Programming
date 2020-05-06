@@ -1,12 +1,24 @@
 package client;
 
+import javax.swing.SwingUtilities;
+
 import view.CardGameFrame;
 
 public class GuiCardGame {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		new CardGameFrame();
+
+		// runs everything to do with the UI on separate thread.
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+
+				new CardGameFrame();
+			}
+
+		});
+		
+		
 	}
 
 }

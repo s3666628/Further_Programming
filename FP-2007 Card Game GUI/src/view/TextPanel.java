@@ -1,7 +1,5 @@
 package view;
 
-import java.awt.GridLayout;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -16,7 +14,6 @@ public class TextPanel {
 	public TextPanel(String labelText) {
 		this.newPanel = new JPanel();
 		JLabel newLabel = new JLabel(labelText);
-//		this.newPanel.setLayout(new GridLayout(1, 1));
 		this.newPanel.add(newLabel);
 		
 	}

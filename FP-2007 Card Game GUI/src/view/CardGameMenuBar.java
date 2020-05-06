@@ -22,14 +22,9 @@ public class CardGameMenuBar extends JMenuBar{
 	JMenuBar menuBar;
 	JMenu playerJmenu, dealerJmenu, aboutJMenu, dealerSubMenu;
 	JMenuItem playerMenuItem1, playerMenuItem2, playerMenuItem3;
-
 	JMenuItem dealMenuItem1, dealMenuItem2, dealMenuItem3, aboutlMenuItem;
-
-	JMenuItem aboutMenuItem;
-	
-	cardGameDiaglogBox aboutDialog;
-	
-
+	JMenuItem aboutMenuItem;	
+	cardGameDiaglogBox aboutDialog;	
 
 //	https://docs.oracle.com/javase/tutorial/uiswing/components/menu.html
 
@@ -37,25 +32,17 @@ public class CardGameMenuBar extends JMenuBar{
 
 		// PLAYERS MENU
 		// 1 - create new menu bar
-
 		menuBar = new JMenuBar();
-
 		// 2 create the menus to go on the menu bar
 		playerJmenu = new JMenu("Player");
 		dealerJmenu = new JMenu("Deal");
 		aboutJMenu = new JMenu("About");
 //		// 2 a - add one sub munu
 		dealerSubMenu = new JMenu("Deal Cards to Player");
-		// dialog box 
-//		JDialog d = new JDialog(cardGameFrame, "About This Game"); 
-//		JLabel l = new JLabel("this is a dialog box"); 
-//		d.add(l);
-		
-		
+	
 		
 
 		// 3 create menu items
-//
 		playerMenuItem1 = new JMenuItem(ComponentNames.ADDPLAYER.toString());
 		playerMenuItem1.setMnemonic(KeyEvent.VK_P);
 		playerMenuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK));
@@ -85,10 +72,9 @@ public class CardGameMenuBar extends JMenuBar{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				System.out.println("About Menu item has been clicked");
-				 // setsize of dialog 
-				aboutDialog = new cardGameDiaglogBox(cardGameFrame, "About this Game", 500, true);
+				 // set size of dialog 
+				aboutDialog = new cardGameDiaglogBox(cardGameFrame, "About this Game", 250, true);
 				
 				
 //				aboutDialog.setSize(100, 100); 
