@@ -11,8 +11,7 @@ public class PlayersSample {
 		this.playerName = playerName;
 		this.playerScore = playerScore;
 		
-//		System.out.println(PlayersSample.this.toString());
-		
+	
 	}
 	public PlayersSample(String playerName, int playerScore, int betAmount, String betType, String betSuit) {
 		super();

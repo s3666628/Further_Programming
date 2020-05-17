@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.ImageIcon;
 
+@SuppressWarnings("serial")
 public class PanelIcon extends ImageIcon {
 	
 	private ImageIcon icon;

@@ -3,29 +3,23 @@ package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-
-import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
-import javax.swing.event.MenuEvent;
-import javax.swing.event.MenuListener;
-
 import model.ComponentNames;
 
 @SuppressWarnings("serial")
-public class CardGameMenuBar extends JMenuBar{
+public class CardGameMenuBar extends JMenuBar {
 
 	JMenuBar menuBar;
 	JMenu playerJmenu, dealerJmenu, aboutJMenu, dealerSubMenu;
 	JMenuItem playerMenuItem1, playerMenuItem2, playerMenuItem3;
 	JMenuItem dealMenuItem1, dealMenuItem2, dealMenuItem3, aboutlMenuItem;
-	JMenuItem aboutMenuItem;	
-	cardGameDiaglogBox aboutDialog;	
+	JMenuItem aboutMenuItem;
+	CardGameDiaglogBox aboutDialog;
 
+// code for this section based on tutorial at this locations	
 //	https://docs.oracle.com/javase/tutorial/uiswing/components/menu.html
 
 	CardGameMenuBar(CardGameFrame cardGameFrame) {
@@ -37,10 +31,8 @@ public class CardGameMenuBar extends JMenuBar{
 		playerJmenu = new JMenu("Player");
 		dealerJmenu = new JMenu("Deal");
 		aboutJMenu = new JMenu("About");
-//		// 2 a - add one sub munu
+//		// 2 a - add one sub menu
 		dealerSubMenu = new JMenu("Deal Cards to Player");
-	
-		
 
 		// 3 create menu items
 		playerMenuItem1 = new JMenuItem(ComponentNames.ADDPLAYER.toString());
@@ -73,22 +65,13 @@ public class CardGameMenuBar extends JMenuBar{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("About Menu item has been clicked");
-				 // set size of dialog 
-				aboutDialog = new cardGameDiaglogBox(cardGameFrame, "About this Game", 250, true);
-				
-				
-//				aboutDialog.setSize(100, 100); 
-  
-				
+				// set size of dialog
+				aboutDialog = new CardGameDiaglogBox(cardGameFrame, "About this Game", 200, true);
+
 			}
-			
-	
-		
-				
+
 		});
-	
-//
-//
+
 		// add all of the items to the menus
 		playerJmenu.add(playerMenuItem1);
 		playerJmenu.add(playerMenuItem2);
@@ -103,30 +86,10 @@ public class CardGameMenuBar extends JMenuBar{
 		menuBar.add(dealerJmenu);
 		menuBar.add(aboutJMenu);
 		// NB ADD MENU BAR TO FRAME
-		
+
 //		menuBar.setVisible(true);
 		add(menuBar);
 
-
-
 	}
-
-//	@Override
-//	public void menuSelected(MenuEvent e) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//	@Override
-//	public void menuDeselected(MenuEvent e) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//	@Override
-//	public void menuCanceled(MenuEvent e) {
-//		// TODO Auto-generated method stub
-//		
-//	}
 
 }

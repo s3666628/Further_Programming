@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 public class TextPanel {
 	
 	private JPanel newPanel;
-	private JLabel newLabel ;
 	
 	// constructor
 	public TextPanel(String labelText) {
@@ -25,6 +24,8 @@ public class TextPanel {
 
 	public void setNewPanel(JPanel newPanel) {
 		this.newPanel = newPanel;
+		
+		
 	}
 		
 	
