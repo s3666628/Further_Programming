@@ -13,6 +13,18 @@ public class SuitBetImpl implements SuitBet {
 	BetResult result;
 
 	public SuitBetImpl(Player player, int amount, Suit suit) throws NullPointerException, IllegalArgumentException {
+		
+		if (player == null) {
+			throw new NullPointerException("please pass in Player object - cannot be Null");
+		}
+		
+		if (amount < 0) {
+			throw new IllegalArgumentException(String.format ("Amount: %d is less than zero ", amount));
+		}
+		
+		if (amount > player.getPoints()) {
+			throw new IllegalArgumentException(String.format ("Amount: %d is greater than player points %d", amount, player.getPoints()));
+		}
 		// set up the instance variables correctly
 		this.player = player;
 		this.amount = amount;

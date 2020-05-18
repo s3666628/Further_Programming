@@ -40,7 +40,6 @@ public class CardImpl implements Card, Comparable<Card> {
 		// variables for the method
 		int valCurrCard = this.rank.ordinal() + 1;
 		int valOtherCard = card.getValue();
-
 		int valCurrSuit = this.suit.ordinal();
 		int valOtherSuit = card.getSuit().ordinal();
 

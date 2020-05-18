@@ -17,11 +17,8 @@ public class DeckImpl implements Deck {
 	// this is from the interface Deck
 	private int totalCards = Deck.TOTAL_NUM_CARDS;
 
-
 	List<Card> mainDeckOfCards = new ArrayList<>(totalCards);
 	Iterator<Card> itr = mainDeckOfCards.iterator();
-
-	
 
 	// Deck should be sorted by default as we create the deck in order
 	public static Deck createShuffledDeck() {
@@ -34,11 +31,9 @@ public class DeckImpl implements Deck {
 			}
 		}
 		deckOfCards.shuffleDeck();
-		
-		
+
 		return deckOfCards;
 	}
-	
 
 	// Deck should be sorted by default as we create the deck in order
 	public static Deck createSortedDeck() {
@@ -52,14 +47,22 @@ public class DeckImpl implements Deck {
 		}
 		return deckOfCards;
 	}
+
+	@Override
+	public Card removeNextCard() throws IllegalStateException {
+
+		if (mainDeckOfCards.isEmpty()) 
+			
+			{
+				throw new IllegalStateException(String.format("main deck of cards in empty - there are: %d in this deck", mainDeckOfCards.size()));
+				
+			}
 		
-		@Override
-		public Card removeNextCard() throws IllegalStateException {
-		// TODO Auto-generated method stub
+		
 		Card removeCard = mainDeckOfCards.get(0);
 		mainDeckOfCards.remove(removeCard);
-		return removeCard;}
-	
+		return removeCard;
+	}
 
 	@Override
 	public int cardsInDeck() {
@@ -79,6 +82,5 @@ public class DeckImpl implements Deck {
 //		return "DeckImpl [totalCards=" + totalCards + "]";
 		return "A new deck of cards was created with " + Deck.TOTAL_NUM_CARDS + " cards";
 	}
-	
 
 }

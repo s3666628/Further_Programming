@@ -7,7 +7,7 @@ package model.card;
  * The natural order of rank should be Ace, 2, 3, ... 9, 10, Jack, Queen, King
  * 
  * <p>
- * <b>Note: </b>You must provide the method {@link Rank#getRankValue()} in the
+ * <b>Note: </b>You must provide the method {@link Rank2#getRankValue()} in the
  * enum and/or for each of it's values.
  * 
  * <p>
@@ -18,7 +18,7 @@ package model.card;
  * <b>Hint: </b>Be sure to follow naming conventions for your enum values
  * 
  * <p>
- * <b>Note: </b> The {@link Rank#valueOf(String)} and {@link Rank#values()}
+ * <b>Note: </b> The {@link Rank2#valueOf(String)} and {@link Rank2#values()}
  * methods are provided by the API - you do not need to write or override them
  * yourself.
  * 
@@ -28,7 +28,7 @@ package model.card;
  * @see model.card.Suit
  *
  */
-public enum Rank {
+public enum Rank2 {
 	ACE {
 		private int aceValue = 1;
 
@@ -152,10 +152,9 @@ public enum Rank {
 		}
 	}, // calls constructor with value 2
 	JACK {
-		private int jackValue = 10;
-
+		
 		public int getRankValue() {
-			return jackValue;
+			return JACK.ordinal();
 
 		}
 
@@ -164,10 +163,9 @@ public enum Rank {
 		}
 	}, // calls constructor with value 2
 	QUEEN {
-		private int queenValue = 10;
-
+		
 		public int getRankValue() {
-			return queenValue;
+			return QUEEN.ordinal();
 
 		}
 
@@ -176,10 +174,9 @@ public enum Rank {
 		}
 	}, // calls constructor with value 2
 	KING {
-		private int kingValue = 10;
 
 		public int getRankValue() {
-			return kingValue;
+			return 10;
 
 		}
 
@@ -189,10 +186,13 @@ public enum Rank {
 	};
 
 // 
-	public int getRankValue() {
-
-		return 0;
-	}
+//	public int getRankValue() {
+//
+//		return 0;
+//	}
+	
+	public abstract int getRankValue();
+	public abstract String toString();
 // }
 // public void test() {
 // for (Rank c : Rank.values())

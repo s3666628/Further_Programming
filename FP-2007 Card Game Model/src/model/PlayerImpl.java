@@ -12,19 +12,28 @@ public class PlayerImpl implements Player {
 	private int points;
 	// these are the no instance variables
 	private Bet bet = Bet.NO_BET;
-	private Hand Househand;
-	private Hand hand;
+	private Hand hand = null;;
 //	java.lang.String id, java.lang.String name, int points)
 
 	public PlayerImpl(String id, String name, int points) throws NullPointerException, IllegalArgumentException {
+		
+		if (id == null) {
+			throw new NullPointerException("Player cannot be created without a Player ID");
+		}
+		if (name.isEmpty()) {
+			throw new IllegalArgumentException("Player cannot be created without a Name");
+		}
+		if (points < 0) {
+			throw new IllegalArgumentException("Player cannot be created with less than 1 Point");
+		}
+		
 		// TODO Auto-generated constructor stub
 		this.id = id;
 		this.name = name;
 		this.points = points;
 		// this creates a new hand which is associated with player object
 		this.hand = new HandImpl();
-		this.Househand = new HandImpl();
-//		System.out.println("a new player has been created with an empty hand");
+		new HandImpl();
 
 	}
 
@@ -49,32 +58,50 @@ public class PlayerImpl implements Player {
 //			return this.points;
 //			
 //		}
-		return this.points = this.points - bet.getAmount();
+		return this.points = this.points - bet.getAmount(); // original 
+//		
 	}
 
+//	@Override
+//	public int getTotalPoints() {
+//
+//		// does player have current bet
+//
+//		int totalPoints = 0;
+//		Bet playerBet = getBet();
+//		if (playerBet.getAmount() > 0) {
+//			totalPoints = totalPoints + this.points + playerBet.getAmount();
+//			return totalPoints;
+//		} // player does not have bet just return current points
+//		else {
+//			return this.points;
+//
+//		}
+
+//	}
+	
 	@Override
 	public int getTotalPoints() {
+		
 
-		// does player have current bet
-
-		int totalPoints = 0;
-		Bet playerBet = getBet();
-		if (playerBet.getAmount() > 0) {
-			totalPoints = totalPoints + this.points + playerBet.getAmount();
-			return totalPoints;
-		} // player does not have bet just return current points
-		else {
-			return this.points;
-
-		}
+//		Returns the current total points for a player, which includes any amount currently bet.
+//		Hint: If the player doesn't have a current bet this method should return the current points, otherwise add the bet's value to it.
+		Bet bet = getBet();		
+		return points + bet.getAmount();
 
 	}
 
 	@Override
 	public void assignBet(Bet bet) {
-		// get the bet that has been passed in and assign it bet variable which is
-		// stored here
-		this.bet = bet;
+	
+//		Assigns the supplied bet placed for the player via the GameEngine (DONE)
+//		The players points should be adjusted accordingly and the supplied bet parameter assigned to an appropriate instance variable.
+//		Take care when replacing a bet as the original bet amount has already been deducted from the current points.
+//
+//		Hint: Try to ensure you don't duplicate code between the Game Engine, Bet and Player when dealing with bets.
+		this.bet = bet; //assign player bet to the instance variable
+		this.points = getTotalPoints() - bet.getAmount();  // adjust the current points
+		
 
 	}
 
@@ -126,14 +153,12 @@ public class PlayerImpl implements Player {
 
 	@Override
 	public String toString() {
-		String resultOutput;
-
 		// if player has empty hand no print out the score
 		if (this.hand.isEmpty() || this.bet == Bet.NO_BET) {
-			return resultOutput = "Player id=" + id + ", name=" + name + ", points=" + getPoints() + ", " + bet + ", "
+			return "Player id=" + id + ", name=" + name + ", points=" + getPoints() + ", " + bet + ", "
 					+ hand.toString();
 		} else {
-			return resultOutput = "Player id=" + id + ", name=" + name + ", points=" + getPoints() + ", " + bet + ", "
+			return "Player id=" + id + ", name=" + name + ", points=" + getPoints() + ", " + bet + ", "
 					+ hand.toString() + " Score: " + this.hand.getScore();
 		}
 

@@ -3,18 +3,19 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import model.CalculatorModel;
-import view.CalculatorView;
+import view.CardGameFrame;
+import model.GameEngineImpl;
 
-public class CalculatorController {
+
+public class CardGameController {
 	// instance variables 
-	private CalculatorView theView;
-	private CalculatorModel theModel;
+	private CardGameFrame theView;
+	private GameEngineImpl theModel;
 	// contstructor which takes objs of Model and View
-	public CalculatorController(CalculatorView theView, CalculatorModel theModel) {
+	public CardGameController(CardGameFrame theView, GameEngineImpl theModel) {
 		this.theView = theView; //assigns what is passed in to the instance variables
 		this.theModel = theModel;
-		this.theView.addCalculationListerner(new CalculateListerner(theView, theModel)); // adds action listener to the view
+//		this.theView.addCalculationListerner(new CalculateListerner(theView, theModel)); // adds action listener to the view
 		
 		
 		
@@ -47,5 +48,3 @@ public class CalculatorController {
 		
 		 
 	}
-
-

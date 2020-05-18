@@ -11,6 +11,19 @@ public class ScoreBetImpl implements ScoreBet {
 	BetResult result;
 
 	public ScoreBetImpl(Player player, int amount) throws NullPointerException, IllegalArgumentException {
+		
+		if (player == null) {
+			throw new NullPointerException("please pass in Player object - cannot be Null");
+		}
+		
+		if (amount < 0) {
+			throw new IllegalArgumentException(String.format ("Amount: %d is less than zero ", amount));
+		}
+		
+		if (amount > player.getPoints()) {
+			throw new IllegalArgumentException(String.format ("Amount: %d is greater than player points %d", amount, player.getPoints()));
+		}
+
 
 		// values passed from constructor assigned to the instance variables
 		this.player = player;
