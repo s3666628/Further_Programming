@@ -129,6 +129,7 @@ public enum ComponentNames {
 		public String toString() {
 			return "About This Game";
 			}
+
 	};
 
 	public abstract String getComponentName();
@@ -139,6 +140,8 @@ public enum ComponentNames {
 	
 	public static ComponentNames getRandom() {
 		return values()[(int)(Math.random()* values().length)];
+		
+
 		
 	}
 	

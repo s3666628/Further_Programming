@@ -3,7 +3,10 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import view.CardGameAddPlayerPanel;
 import view.CardGameFrame;
+import view.CardGameToolBar;
+import model.GameEngine;
 import model.GameEngineImpl;
 
 
@@ -11,12 +14,18 @@ public class CardGameController {
 	// instance variables 
 	private CardGameFrame theView;
 	private GameEngineImpl theModel;
+	private CardGameToolBar theToolBar;
+	private CardGameAddPlayerPanel theSubView;
 	// contstructor which takes objs of Model and View
 	public CardGameController(CardGameFrame theView, GameEngineImpl theModel) {
 		this.theView = theView; //assigns what is passed in to the instance variables
 		this.theModel = theModel;
-//		this.theView.addCalculationListerner(new CalculateListerner(theView, theModel)); // adds action listener to the view
-		
+		this.theToolBar = theView.getToolBar();
+		this.theSubView = theView.getSubView();
+		theToolBar.addPlayerListerner(new AddPlayerButtonActionListener(theView, theModel)); // adds action listener to the view
+		theToolBar.removePlayerListerner(new RemovePlayerButtonActionListener(theView, theModel)); 
+		theSubView.addSubmitListener(new SubmitNewPlayerButtonActionListener(theView, theModel));
+		theSubView.cancelButtonListener(new CloseButtonActionListener (theView, 2));
 		
 		
 		

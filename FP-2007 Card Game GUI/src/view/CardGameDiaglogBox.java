@@ -19,15 +19,16 @@ public class CardGameDiaglogBox extends JDialog {
 	private static Date currentDate = new Date();
 	private JDialog dialog;
 	private JLabel label;
+	
 
 // create a new dialog box which takes a frame so we can add it to the frame
-	public CardGameDiaglogBox(JFrame frame, String dialogTitle, int size, boolean visible) {
+	public CardGameDiaglogBox(CardGameFrame cardGameFrame, String dialogTitle, int size, boolean visible) {
 		// create new dialog
-		this.dialog = new JDialog(frame, dialogTitle);
+		this.dialog = new JDialog(cardGameFrame, dialogTitle);
 		this.label = new JLabel(getDialogText());
 		this.dialog.add(this.label);
 		dialog.setLayout(new FlowLayout()); // otherwise it doesn't work
-		this.dialog.setLocationRelativeTo(frame);
+		this.dialog.setLocationRelativeTo(cardGameFrame);
 		this.dialog.setSize(size, size);
 
 		// create the button to go on the dialog box
@@ -35,7 +36,8 @@ public class CardGameDiaglogBox extends JDialog {
 		// action listener so that the button closes the window when user clicks on
 		// button
 //		close.addActionListener(e -> dialog.setVisible(false));
-		close.addActionListener(new CloseButtonActionListener(dialog));
+		int closeOption =1; // so we close the right thing
+		close.addActionListener(new CloseButtonActionListener(dialog, cardGameFrame, closeOption));
 		// Position the close button
 		close.setBounds(50, 100, 95, 30);
 		dialog.add(close);

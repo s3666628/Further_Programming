@@ -48,16 +48,34 @@ public class SubmitNewPlayerButtonActionListener implements ActionListener {
 //		int PlayerPoints;
 		
 		System.out.println("Submit button has been clicked");
-//		JOptionPane.showMessageDialog(theView.getSubView(), "Player Has Been Created");
 		
-//		PlayerId = theSubView.getPlayerID(); //gets first number from the view
-//		PlayerName = theSubView.getName(); // gets second number from the view
-//		PlayerPoints = theSubView.getPlayerPoints();
-//		
-//		theModel.addPlayer(new PlayerImpl(PlayerId, PlayerName, PlayerPoints));
+		try {
+		
+		
+		String PlayerId = theSubView.getPlayerID(); //gets first number from the view
+		String PlayerName = theSubView.getName(); // gets second number from the view
+		int PlayerPoints = theSubView.getPlayerPoints();
+		
+		theModel.addPlayer(new PlayerImpl(PlayerId, PlayerName, PlayerPoints));
+		JOptionPane.showMessageDialog(theView.getSubView(), "Player:" + PlayerName + "Has Been Created with " + PlayerPoints +"points");
+		}
+		catch(NumberFormatException ex) {
+			theSubView.displayErrorMessage("You need to enter a number for Player Points ");
+		}
+		catch(NullPointerException ex) {
+			theSubView.displayErrorMessage(ex.getMessage());
+		}
+		catch(IllegalArgumentException ex) {
+			theSubView.displayErrorMessage(ex.getMessage());
+		}
+		
+
+		
+		
+		
 //		theModel.addPlayer(new PlayerImpl("P1", "Player One", 1000));
 //		theModel.addPlayer(new Player());		
-//		
+		
 		
 		
 	}

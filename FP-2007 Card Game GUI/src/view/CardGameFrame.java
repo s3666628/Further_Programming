@@ -14,13 +14,15 @@ import model.GameEngine;
 public class CardGameFrame extends JFrame {
 	
 	private CardGameAddPlayerPanel subView;
+	private CardGameToolBar toolbar;
 
 	public CardGameFrame() {
 
 		
 		
 		super("Card Game");// add title
-		this.subView = subView; // comment out for now as not working as expected
+		this.subView = new CardGameAddPlayerPanel(); // create the Add Player window so that it is part of the main Frame
+		; // comment out for now as not working as expected
 		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE); // Determines what happens when press close buttons
 
@@ -44,10 +46,10 @@ public class CardGameFrame extends JFrame {
 		// add tool bar to the main frame
 
 		// ADD TOOL BAR
-		CardGameToolBar toolbar = new CardGameToolBar(JToolBar.VERTICAL, this);
+		this.toolbar = new CardGameToolBar(JToolBar.VERTICAL, this);
 		MatteBorder matteBorder = new MatteBorder(1, 1, 1, 1, Color.BLUE);
-		toolbar.setBorder(matteBorder);
-		toolbar.setOrientation(JToolBar.VERTICAL);
+		this.toolbar.setBorder(matteBorder);
+		this.toolbar.setOrientation(JToolBar.VERTICAL);
 		this.add(toolbar, BorderLayout.WEST);
 		// ADD STATUS BAR
 		CardGameStatus statusBar = new CardGameStatus();
@@ -62,8 +64,13 @@ public class CardGameFrame extends JFrame {
 	}
 
 	public CardGameAddPlayerPanel getSubView() {
-		return subView;
+		return this.subView;
 	}
+	
+	public CardGameToolBar getToolBar() {
+		return this.toolbar;
+	}
+	
 	
 		
 	

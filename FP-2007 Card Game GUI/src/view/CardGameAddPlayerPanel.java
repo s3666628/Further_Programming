@@ -19,6 +19,7 @@ public class CardGameAddPlayerPanel extends JFrame {
 	private JTextField PlayerPoints = new JTextField(10); // text field for PlayerName
 
 	private JButton submit = new JButton("Submit New Player"); // button for submitting player information
+	private JButton cancel = new JButton("Cancel"); // button cancelling and closing the screen
 
 	// constructor for the panel
 	public CardGameAddPlayerPanel() {
@@ -26,7 +27,7 @@ public class CardGameAddPlayerPanel extends JFrame {
 		JPanel addPlayerPanel = new JPanel(); // create new jPanel which will get called when constructor is called
 //		addPlayerPanel.setLayout(new GridLayout(2,2));
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); // so it closes
-		this.setSize(800, 75); // confused about the "this"
+		this.setSize(900, 75); // confused about the "this"
 
 		addPlayerPanel.add(playerIDLabel); // add PlayerIDLabel
 		addPlayerPanel.add(playerID); // addPlayerID Text Field
@@ -36,6 +37,7 @@ public class CardGameAddPlayerPanel extends JFrame {
 		addPlayerPanel.add(PlayerPoints); // add PlayerName Text Field
 
 		addPlayerPanel.add(submit);
+		addPlayerPanel.add(cancel);
 //		submit.addActionListener(new SubmitNewPlayerButtonActionListener(this, engine)); // pass in the frame to the action lister
 
 		this.setTitle("Add Player");
@@ -65,6 +67,11 @@ public class CardGameAddPlayerPanel extends JFrame {
 	public void addSubmitListener(ActionListener SubmitNewPLayerButtonActionListener) {
 
 		submit.addActionListener(SubmitNewPLayerButtonActionListener);
+	}
+	
+	public void cancelButtonListener(ActionListener CloseButtonActionListener) {
+
+		cancel.addActionListener(CloseButtonActionListener);
 	}
 
 	public void displayErrorMessage(String errorMessage) {
