@@ -9,19 +9,18 @@ import javax.swing.JToolBar;
 import javax.swing.border.MatteBorder;
 
 import model.GameEngine;
+import model.GameEngineImpl;
 
 @SuppressWarnings("serial")
-public class CardGameFrame extends JFrame {
+public class MainGameFrame extends JFrame {
 	
-	private CardGameAddPlayerPanel subView;
+	private AddPlayerPanel subView;
 	private CardGameToolBar toolbar;
-
-	public CardGameFrame() {
-
-		
-		
+	private TabbedPane tabbedPane;
+	
+	public MainGameFrame(GameEngineImpl theModel) {
 		super("Card Game");// add title
-		this.subView = new CardGameAddPlayerPanel(); // create the Add Player window so that it is part of the main Frame
+		this.subView = new AddPlayerPanel(); // create the Add Player window so that it is part of the main Frame
 		; // comment out for now as not working as expected
 		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE); // Determines what happens when press close buttons
@@ -34,9 +33,15 @@ public class CardGameFrame extends JFrame {
 		// set layout for the new panel
 		playerPanel.setLayout(new BoxLayout(playerPanel, BoxLayout.PAGE_AXIS));
 		// add components to the main
-		playerPanel.add((new CardGameTabbedPane(this)));
-		playerPanel.add((new CardGameHandPanel("Player")));
-		playerPanel.add((new CardGameHandPanel("Dealer")));
+		
+		this.tabbedPane = new TabbedPane(this);
+		playerPanel.add(tabbedPane);
+//		playerPanel.add((this.tabbedPane = new CardGameTabbedPane(this)));
+		
+		
+		
+		playerPanel.add((new HandPanel("Player")));
+		playerPanel.add((new HandPanel("Dealer")));
 
 		// // ADD MENU BAR
 		this.add(new CardGameMenuBar(this), BorderLayout.PAGE_START);
@@ -52,7 +57,7 @@ public class CardGameFrame extends JFrame {
 		this.toolbar.setOrientation(JToolBar.VERTICAL);
 		this.add(toolbar, BorderLayout.WEST);
 		// ADD STATUS BAR
-		CardGameStatus statusBar = new CardGameStatus();
+		StatusBar statusBar = new StatusBar();
 		this.add(statusBar, BorderLayout.SOUTH);
 		this.add(playerPanel, BorderLayout.CENTER);
 //		this.add(subview); // add subview to the main frame but won't be visible until addPlayer button is clicked on 
@@ -63,7 +68,7 @@ public class CardGameFrame extends JFrame {
 
 	}
 
-	public CardGameAddPlayerPanel getSubView() {
+	public AddPlayerPanel getSubView() {
 		return this.subView;
 	}
 	
@@ -71,6 +76,13 @@ public class CardGameFrame extends JFrame {
 		return this.toolbar;
 	}
 	
+	public TabbedPane getTabbedPane() {
+		return this.tabbedPane;
+	}
+	
+	public MainGameFrame getCardGameMainView() { 
+		return this;
+	}
 	
 		
 	

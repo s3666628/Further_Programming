@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
 
-public class CardGameAddPlayerPanel extends JFrame {
+public class AddPlayerPanel extends JFrame {
 
 	// instance variables
 	private JLabel playerIDLabel = new JLabel("PlayerID:"); // Label for playerID
@@ -22,7 +22,7 @@ public class CardGameAddPlayerPanel extends JFrame {
 	private JButton cancel = new JButton("Cancel"); // button cancelling and closing the screen
 
 	// constructor for the panel
-	public CardGameAddPlayerPanel() {
+	public AddPlayerPanel() {
 		System.out.println("CardGameAddPlayerPanel has been created");
 		JPanel addPlayerPanel = new JPanel(); // create new jPanel which will get called when constructor is called
 //		addPlayerPanel.setLayout(new GridLayout(2,2));

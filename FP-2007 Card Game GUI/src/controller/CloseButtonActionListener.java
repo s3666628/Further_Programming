@@ -5,17 +5,17 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JDialog;
 
-import view.CardGameAddPlayerPanel;
-import view.CardGameFrame;
+import view.AddPlayerPanel;
+import view.MainGameFrame;
 
 public class CloseButtonActionListener implements ActionListener {
 	
 	
 	private JDialog dialog;
-	private CardGameFrame theView;
+	private MainGameFrame theView;
 	private int closeOption;
 	
-	public CloseButtonActionListener(JDialog theDialog, CardGameFrame theView, int closeOption) 
+	public CloseButtonActionListener(JDialog theDialog, MainGameFrame theView, int closeOption) 
 	
 	{
 		this.dialog = theDialog;
@@ -25,7 +25,7 @@ public class CloseButtonActionListener implements ActionListener {
 		
 	}
 	
-	public CloseButtonActionListener(CardGameFrame theView, int closeOption) 
+	public CloseButtonActionListener(MainGameFrame theView, int closeOption) 
 	
 	{
 		this.theView = theView;
@@ -44,7 +44,7 @@ public class CloseButtonActionListener implements ActionListener {
 			System.out.println("Close button has been clicked");
 		}
 		if (closeOption ==2) {
-			CardGameAddPlayerPanel subView = theView.getSubView();
+			AddPlayerPanel subView = theView.getSubView();
 			subView.setVisible(false);
 			System.out.println("*****Add Player button has been clicked");
 			System.out.println("Close button has been clicked");

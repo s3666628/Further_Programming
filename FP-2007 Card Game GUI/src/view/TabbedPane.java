@@ -12,8 +12,11 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+
+import model.Player;
 import model.PlayerIcons;
 import model.PlayerImpl;
+import model.GameEngine;
 
 import java.util.Iterator;
 
@@ -21,12 +24,17 @@ import java.util.Iterator;
 
 // most code has been take from the demo of tab panes from Oracle
 //https://docs.oracle.com/javase/tutorial/uiswing/components/tabbedpane.html
-public class CardGameTabbedPane extends JPanel {
+public class TabbedPane extends JPanel {
 	// all the players code is for testing purposes so we can add players for A2a
+	
 	static ArrayList<PlayersSample> AllPlayers = createPlayers();
+	
+//	static ArrayList<PlayersSample> AllCurrentPlayers =  getAllPlayers() 
+	
 
 	public static ArrayList<PlayersSample> createPlayers() {
 		ArrayList<PlayersSample> listOfPlayers = new ArrayList<PlayersSample>();
+		
 
 		PlayersSample player1 = new PlayersSample("Philip Beeby", 2000, 100, "Suit", "Hearts");
 		PlayersSample player2 = new PlayersSample("Daniel Stephens", 9000, 10, "Score", "N/A");
@@ -53,27 +61,32 @@ public class CardGameTabbedPane extends JPanel {
 		;
 		return displayText;
 	}
-
-	public CardGameTabbedPane(CardGameFrame cardGameFrame) {
+	private JTabbedPane tabbedPane;
+	
+	static int PlayerNumber = 1;
+	
+	public TabbedPane(MainGameFrame cardGameFrame) {
 		super(new GridLayout(2, 4));
 
-		JTabbedPane tabbedPane = new JTabbedPane();
+//		JTabbedPane tabbedPane = new JTabbedPane();
+		
+		this.tabbedPane = new JTabbedPane();
 		
 		ImageIcon icon = new PanelIcon("test"); // not used at the moment
 //		String PlayerInfo = createPlayerScore(AllPlayers);
 
-		Iterator<PlayersSample> i = AllPlayers.iterator();
-		int PlayerNumber = 1;
-		while (i.hasNext()) {
-			PlayersSample player = i.next();
-			System.out.println(player.toString());
-			// makes a text panel
-			JComponent panel1 = makeTextPanel2(player); // loop through the players scores here.
-			panel1.setPreferredSize(new Dimension(50, 2));
-			tabbedPane.addTab("Player: " + PlayerNumber, PlayerIcons.getRandom().getImageIcon(), panel1,
-					"Details for player");
-			PlayerNumber += 1;
-		}
+//		Iterator<PlayersSample> i = AllPlayers.iterator();
+//		int PlayerNumber = 1;
+//		while (i.hasNext()) {
+//			PlayersSample player = i.next();
+//			System.out.println(player.toString());
+//			// makes a text panel
+//			JComponent panel1 = makeTextPanel2(player); // loop through the players scores here.
+//			panel1.setPreferredSize(new Dimension(50, 2));
+//			tabbedPane.addTab("Player: " + PlayerNumber, PlayerIcons.getRandom().getImageIcon(), panel1,
+//					"Details for player");
+//			PlayerNumber += 1;
+//		}
 
 		// Add the tabbed pane to this panel.
 		add(tabbedPane);
@@ -81,18 +94,30 @@ public class CardGameTabbedPane extends JPanel {
 		// The following line enables to use scrolling tabs.
 //		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 	}
-
-	protected JComponent makeTextPanel(String text) {
-		JPanel panel = new JPanel(false);
-		JLabel filler = new JLabel(text);
-		filler.setHorizontalAlignment(JLabel.CENTER);
-		filler.setVerticalAlignment(JLabel.CENTER);
-		panel.setLayout(new GridLayout(6, 2));
-		panel.add(filler);
-		return panel;
+	
+	public void addNewPlayerToTabbedFrame(Player player) {
+		
+		JComponent panel1 = makeTextPanel(player); // .
+		panel1.setPreferredSize(new Dimension(50, 2));
+		tabbedPane.addTab("Player: " + PlayerNumber, PlayerIcons.getRandom().getImageIcon(), panel1,
+				"Details for player");
+		PlayerNumber += 1;
+		
 	}
+//
+//	protected JComponent makeTextPanel(String text) {
+//		JPanel panel = new JPanel(false);
+//		JLabel filler = new JLabel(text);
+//		filler.setHorizontalAlignment(JLabel.CENTER);
+//		filler.setVerticalAlignment(JLabel.CENTER);
+//		panel.setLayout(new GridLayout(6, 2));
+//		panel.add(filler);
+//		return panel;
+//	}
 
-	protected JComponent makeTextPanel2(PlayersSample player) {
+	protected JComponent makeTextPanel(Player player) {
+		
+		//TODO some of this has hard coded values atm
 
 		JPanel panel = new JPanel(false); // only need this once
 		LayoutManager layout = new GridLayout(4, 4);
@@ -101,7 +126,7 @@ public class CardGameTabbedPane extends JPanel {
 		panel.setLayout(layout);
 //		      panel.setSize(10, 10);
 		panel.setPreferredSize(new Dimension(2, 2));
-		panel.setBorder(BorderFactory.createTitledBorder("Player: " + player.getPlayerName()));
+		panel.setBorder(BorderFactory.createTitledBorder("Player: " + player.getName()));
 
 		JFormattedTextField betAmountTextField;
 		JFormattedTextField playerScoreTextField;
@@ -113,7 +138,7 @@ public class CardGameTabbedPane extends JPanel {
 		betAmountTextField.setEditable(false);
 		JLabel amountLabel = new JLabel("Player Bet Amount $:");
 		amountLabel.setLabelFor(betAmountTextField);
-		betAmountTextField.setValue(player.getBetAmount()); // will need to change this as hard coded at the moment
+		betAmountTextField.setValue(player.getBet().getAmount()); // will need to change this as hard coded at the moment
 
 		// format score
 		NumberFormat principleFormat = NumberFormat.getNumberInstance();
@@ -123,25 +148,25 @@ public class CardGameTabbedPane extends JPanel {
 		playerScoreTextField.setEditable(false);
 		JLabel scoreLabel = new JLabel("Player Score");
 		scoreLabel.setLabelFor(playerScoreTextField);
-		playerScoreTextField.setValue(player.getPlayerScore());
+		playerScoreTextField.setValue(player.getPoints());
 
 		// format bet type
-		JFormattedTextField playerBetTypeTextField = new JFormattedTextField(player.getBetType());
+		JFormattedTextField playerBetTypeTextField = new JFormattedTextField(player.getBet());
 		playerBetTypeTextField.setName("Player Bet Type");
 		playerBetTypeTextField.setColumns(10);
 		playerBetTypeTextField.setEditable(false);
 		JLabel betTypeLabel = new JLabel("Player Bet Type");
 		betTypeLabel.setLabelFor(playerBetTypeTextField);
-		playerBetTypeTextField.setValue(player.getBetType());
+		playerBetTypeTextField.setValue(player.getBet());
 
 		// format bet Suit
-		JFormattedTextField playerBetSuitTextField = new JFormattedTextField(player.getBetSuit());
+		JFormattedTextField playerBetSuitTextField = new JFormattedTextField("Hearts");
 		playerBetSuitTextField.setName("Player Chosen Suit");
 		playerBetSuitTextField.setColumns(10);
 		playerBetSuitTextField.setEditable(false);
 		JLabel betSuitLabel = new JLabel("Player Chosen Suit");
 		betSuitLabel.setLabelFor(playerBetSuitTextField);
-		playerBetSuitTextField.setValue(player.getBetSuit());
+		playerBetSuitTextField.setValue("Heats");
 
 		panel.add(amountLabel);
 		panel.add(betAmountTextField);

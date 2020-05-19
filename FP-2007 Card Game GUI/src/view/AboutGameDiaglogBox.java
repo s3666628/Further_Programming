@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import controller.CloseButtonActionListener;
 
 @SuppressWarnings("serial")
-public class CardGameDiaglogBox extends JDialog {
+public class AboutGameDiaglogBox extends JDialog {
 
 	// this is used in the About dialog box to output student details
 	private final static String STUDENT_NAME = "Philip Beeby";
@@ -22,7 +22,7 @@ public class CardGameDiaglogBox extends JDialog {
 	
 
 // create a new dialog box which takes a frame so we can add it to the frame
-	public CardGameDiaglogBox(CardGameFrame cardGameFrame, String dialogTitle, int size, boolean visible) {
+	public AboutGameDiaglogBox(MainGameFrame cardGameFrame, String dialogTitle, int size, boolean visible) {
 		// create new dialog
 		this.dialog = new JDialog(cardGameFrame, dialogTitle);
 		this.label = new JLabel(getDialogText());

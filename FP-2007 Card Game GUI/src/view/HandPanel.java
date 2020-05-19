@@ -9,11 +9,11 @@ import javax.swing.JPanel;
 import model.CardPack;
 
 @SuppressWarnings("serial")
-public class CardGameHandPanel extends JPanel {
+public class HandPanel extends JPanel {
 
 	JLabel displayText;
 
-	public CardGameHandPanel(String displaytext) {
+	public HandPanel(String displaytext) {
 
 		setLayout(new GridLayout(0, 6, 5, 5)); // might need to change this
 		setBackground(Color.GREEN);

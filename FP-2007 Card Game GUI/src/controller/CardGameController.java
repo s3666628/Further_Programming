@@ -3,8 +3,8 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import view.CardGameAddPlayerPanel;
-import view.CardGameFrame;
+import view.AddPlayerPanel;
+import view.MainGameFrame;
 import view.CardGameToolBar;
 import model.GameEngine;
 import model.GameEngineImpl;
@@ -12,12 +12,12 @@ import model.GameEngineImpl;
 
 public class CardGameController {
 	// instance variables 
-	private CardGameFrame theView;
+	private MainGameFrame theView;
 	private GameEngineImpl theModel;
 	private CardGameToolBar theToolBar;
-	private CardGameAddPlayerPanel theSubView;
+	private AddPlayerPanel theSubView;
 	// contstructor which takes objs of Model and View
-	public CardGameController(CardGameFrame theView, GameEngineImpl theModel) {
+	public CardGameController(MainGameFrame theView, GameEngineImpl theModel) {
 		this.theView = theView; //assigns what is passed in to the instance variables
 		this.theModel = theModel;
 		this.theToolBar = theView.getToolBar();

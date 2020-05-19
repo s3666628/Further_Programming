@@ -114,8 +114,8 @@ public class GameEngineImpl implements GameEngine, GameCallbackCollection {
 		if (player == null) {
 			throw new NullPointerException("Player ID cannot be Null");
 		}
-		if (player.getId().isEmpty()) {
-			throw new IllegalArgumentException("Player ID has not been populated");
+		if (players.containsKey(player.getId())) {
+			throw new IllegalArgumentException("Player ID must be unique");
 		}
 		
 

@@ -6,8 +6,9 @@ import controller.CardGameController;
 import model.GameEngineImpl;
 import model.PlayerImpl;
 import model.card.Suit;
-import view.CardGameFrame;
+import view.MainGameFrame;
 import view.ConsoleLoggerCallback;
+import view.GuiCallback;
 
 public class GuiCardGame {
 
@@ -20,12 +21,14 @@ public class GuiCardGame {
 
 				
 				GameEngineImpl theModel = new GameEngineImpl();
-				CardGameFrame theView = new CardGameFrame();
+				MainGameFrame theView = new MainGameFrame(theModel);
 				CardGameController theController = new CardGameController(theView, theModel);
 				
 				
 				// add ConsoleLoggerCallback
 				theModel.registerCallback(new ConsoleLoggerCallback(theModel));
+				// add Gui Callback
+				theModel.registerCallback(new GuiCallback(theModel, theView));
 				
 
 				theModel.addPlayer(new PlayerImpl("P1", "Player One", 1000));

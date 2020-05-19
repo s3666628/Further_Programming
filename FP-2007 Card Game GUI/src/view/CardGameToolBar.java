@@ -21,7 +21,7 @@ public class CardGameToolBar extends JToolBar {
 	private AbstractButton addPlayerButton;
 	private AbstractButton removePlayerButton;
 	
-	CardGameToolBar(int vertical, CardGameFrame cardGameFrame) {
+	CardGameToolBar(int vertical, MainGameFrame cardGameFrame) {
 		
 		
 

@@ -30,6 +30,7 @@ import model.card.Hand;
  *
  */
 public class ConsoleLoggerCallback implements GameCallback {
+	
 	public ConsoleLoggerCallback(GameEngine engine) {
 // TODO Auto-generated constructor stub
 	}

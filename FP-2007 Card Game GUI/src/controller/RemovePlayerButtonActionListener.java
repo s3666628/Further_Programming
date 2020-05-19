@@ -4,15 +4,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import model.GameEngineImpl;
-import view.CardGameAddPlayerPanel;
-import view.CardGameFrame;
+import view.AddPlayerPanel;
+import view.MainGameFrame;
 
 public class RemovePlayerButtonActionListener implements ActionListener {
 
-	private CardGameFrame theView;
+	private MainGameFrame theView;
 	private GameEngineImpl theModel;
 
-	public RemovePlayerButtonActionListener(CardGameFrame theView, GameEngineImpl theModel) {
+	public RemovePlayerButtonActionListener(MainGameFrame theView, GameEngineImpl theModel) {
 		this.theView = theView;
 		this.theModel = theModel;
 	}

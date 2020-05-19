@@ -9,12 +9,12 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
 @SuppressWarnings("serial")
-public class CardGameStatus extends JPanel {
+public class StatusBar extends JPanel {
 
 	private JLabel status1;
 	private JLabel status2;
 
-	public CardGameStatus() {
+	public StatusBar() {
 
 		setLayout(new GridLayout(1, 2));// 1 row 2 cols
 		// create new border

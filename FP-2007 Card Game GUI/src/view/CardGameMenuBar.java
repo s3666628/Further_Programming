@@ -17,12 +17,12 @@ public class CardGameMenuBar extends JMenuBar {
 	JMenuItem playerMenuItem1, playerMenuItem2, playerMenuItem3;
 	JMenuItem dealMenuItem1, dealMenuItem2, dealMenuItem3, aboutlMenuItem;
 	JMenuItem aboutMenuItem;
-	CardGameDiaglogBox aboutDialog;
+	AboutGameDiaglogBox aboutDialog;
 
 // code for this section based on tutorial at this locations	
 //	https://docs.oracle.com/javase/tutorial/uiswing/components/menu.html
 
-	CardGameMenuBar(CardGameFrame cardGameFrame) {
+	CardGameMenuBar(MainGameFrame cardGameFrame) {
 
 		// PLAYERS MENU
 		// 1 - create new menu bar
@@ -66,7 +66,7 @@ public class CardGameMenuBar extends JMenuBar {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("About Menu item has been clicked");
 				// set size of dialog
-				aboutDialog = new CardGameDiaglogBox(cardGameFrame, "About this Game", 200, true);
+				aboutDialog = new AboutGameDiaglogBox(cardGameFrame, "About this Game", 200, true);
 
 			}
 
