@@ -23,7 +23,7 @@ public class RemovePlayerButtonActionListener implements ActionListener {
 //		CardGameAddPlayerPanel addNewPlayerDetails = new CardGameAddPlayerPanel();
 //		addNewPlayerDetails.setVisible(true);
 
-		System.out.println("*****Remove Player button has been clicked");
+		System.out.println("////////////Remove Player button has been clicked");
 
 	}
 

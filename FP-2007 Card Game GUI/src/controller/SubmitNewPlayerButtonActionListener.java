@@ -32,7 +32,7 @@ public class SubmitNewPlayerButtonActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		AddPlayerPanel theSubView = theView.getSubView();
+		AddPlayerPanel theSubView = theView.getAddPlayerSubView();
 		TabbedPane theTabbedPane = theView.getTabbedPane();
 
 //		
@@ -53,7 +53,7 @@ public class SubmitNewPlayerButtonActionListener implements ActionListener {
 //			theTabbedPane.addNewPlayerToTabbedFrame(player);
 //			theTabbedPane.addNewPlayerToTabbedFrame(player);
 			
-			JOptionPane.showMessageDialog(theView.getSubView(),
+			JOptionPane.showMessageDialog(theView.getAddPlayerSubView(),
 					"Player: " + PlayerName + " Has Been Created with " + PlayerPoints + " points");
 
 		} catch (NumberFormatException ex) {

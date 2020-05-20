@@ -161,6 +161,7 @@ public class GameEngineImpl implements GameEngine, GameCallbackCollection {
 		
 		HashMap<String, Player>clonedMapOfPlayers = (HashMap<String, Player>) players.clone(); 
 		return (Collection<Player>) clonedMapOfPlayers;
+//		return (Collection<Player>) players.clone();
 	}
 
 	@Override

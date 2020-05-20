@@ -13,16 +13,19 @@ import model.GameEngineImpl;
 
 @SuppressWarnings("serial")
 public class MainGameFrame extends JFrame {
-	
-	private AddPlayerPanel subView;
+
+	private AddPlayerPanel addPlayerSubView;
+	private RemovePlayerPanel removePlayerSubview;
 	private CardGameToolBar toolbar;
 	private TabbedPane tabbedPane;
-	
+
 	public MainGameFrame(GameEngineImpl theModel) {
 		super("Card Game");// add title
-		this.subView = new AddPlayerPanel(); // create the Add Player window so that it is part of the main Frame
+		this.addPlayerSubView = new AddPlayerPanel(); // create the Add Player window so that it is part of the main
+														// Frame
+		this.removePlayerSubview = new RemovePlayerPanel(theModel);
 		; // comment out for now as not working as expected
-		
+
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE); // Determines what happens when press close buttons
 
 		setLayout(new BorderLayout()); // don't need to call this if you want Flow which is default
@@ -33,13 +36,11 @@ public class MainGameFrame extends JFrame {
 		// set layout for the new panel
 		playerPanel.setLayout(new BoxLayout(playerPanel, BoxLayout.PAGE_AXIS));
 		// add components to the main
-		
+		// ADD TABBED PANE
 		this.tabbedPane = new TabbedPane(this);
 		playerPanel.add(tabbedPane);
 //		playerPanel.add((this.tabbedPane = new CardGameTabbedPane(this)));
-		
-		
-		
+
 		playerPanel.add((new HandPanel("Player")));
 		playerPanel.add((new HandPanel("Dealer")));
 
@@ -68,22 +69,25 @@ public class MainGameFrame extends JFrame {
 
 	}
 
-	public AddPlayerPanel getSubView() {
-		return this.subView;
+	public AddPlayerPanel getAddPlayerSubView() {
+		return this.addPlayerSubView;
+
 	}
-	
+
+	public RemovePlayerPanel getRemovePlayerPanel() {
+		return this.removePlayerSubview;
+	}
+
 	public CardGameToolBar getToolBar() {
 		return this.toolbar;
 	}
-	
+
 	public TabbedPane getTabbedPane() {
 		return this.tabbedPane;
 	}
-	
-	public MainGameFrame getCardGameMainView() { 
+
+	public MainGameFrame getCardGameMainView() {
 		return this;
 	}
-	
-		
-	
+
 }

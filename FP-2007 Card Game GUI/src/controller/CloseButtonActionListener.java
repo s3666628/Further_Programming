@@ -44,7 +44,7 @@ public class CloseButtonActionListener implements ActionListener {
 			System.out.println("Close button has been clicked");
 		}
 		if (closeOption ==2) {
-			AddPlayerPanel subView = theView.getSubView();
+			AddPlayerPanel subView = theView.getAddPlayerSubView();
 			subView.setVisible(false);
 			System.out.println("*****Add Player button has been clicked");
 			System.out.println("Close button has been clicked");

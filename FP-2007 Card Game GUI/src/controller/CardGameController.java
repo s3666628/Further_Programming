@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import view.AddPlayerPanel;
 import view.MainGameFrame;
+import view.RemovePlayerPanel;
 import view.CardGameToolBar;
 import model.GameEngine;
 import model.GameEngineImpl;
@@ -15,17 +16,23 @@ public class CardGameController {
 	private MainGameFrame theView;
 	private GameEngineImpl theModel;
 	private CardGameToolBar theToolBar;
-	private AddPlayerPanel theSubView;
+	private AddPlayerPanel addPlayerSubView;
+	private RemovePlayerPanel remPlayerSubView;
+	private int addPlayerNum =1;
+	private int remPlayerNum =2;
 	// contstructor which takes objs of Model and View
 	public CardGameController(MainGameFrame theView, GameEngineImpl theModel) {
 		this.theView = theView; //assigns what is passed in to the instance variables
 		this.theModel = theModel;
 		this.theToolBar = theView.getToolBar();
-		this.theSubView = theView.getSubView();
-		theToolBar.addPlayerListerner(new AddPlayerButtonActionListener(theView, theModel)); // adds action listener to the view
-		theToolBar.removePlayerListerner(new RemovePlayerButtonActionListener(theView, theModel)); 
-		theSubView.addSubmitListener(new SubmitNewPlayerButtonActionListener(theView, theModel));
-		theSubView.cancelButtonListener(new CloseButtonActionListener (theView, 2));
+		this.addPlayerSubView = theView.getAddPlayerSubView();
+		this.remPlayerSubView = theView.getRemovePlayerPanel();
+		theToolBar.addPlayerListerner(new AddRemovePlayerButtonActionListener(theView, theModel, addPlayerNum)); 
+		theToolBar.remPlayerListerner(new AddRemovePlayerButtonActionListener(theView, theModel, remPlayerNum)); 
+		// adds action listener to the view
+//		theToolBar.addRemPlayerListerner(new RemovePlayerButtonActionListener(theView, theModel)); 
+		addPlayerSubView.addSubmitListener(new SubmitNewPlayerButtonActionListener(theView, theModel));
+		addPlayerSubView.cancelButtonListener(new CloseButtonActionListener (theView, 2));
 		
 		
 		

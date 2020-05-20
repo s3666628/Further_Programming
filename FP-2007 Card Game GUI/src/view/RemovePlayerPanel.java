@@ -3,13 +3,18 @@ package view;
 import javax.swing.*;
 
 import model.GameEngineImpl;
+import model.Player;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @SuppressWarnings("serial")
 
 public class RemovePlayerPanel extends JFrame {
 
+	
+	
 	// instance variables
 	private JLabel playerIDLabel = new JLabel("PlayerID:"); // Label for playerID
 	private JTextField playerID = new JTextField(10); // text field for playerID
@@ -25,6 +30,17 @@ public class RemovePlayerPanel extends JFrame {
 
 	// constructor for the panel
 	public RemovePlayerPanel(GameEngineImpl theModel) {
+		
+		
+		
+//		Collection<Player> AllPlayers = theModel.getAllPlayers();
+		
+		System.out.println("Print out all of the players");
+//		theModel.
+//		System.out.println(AllPlayers);
+		
+//		JComboBox players=new JComboBox(AllPlayers); 
+
 		System.out.println("CardGameRemovePlayerPanel has been created");
 		JPanel removePlayerPanel = new JPanel(); // create new jPanel which will get called when constructor is called
 //		addPlayerPanel.setLayout(new GridLayout(2,2));
