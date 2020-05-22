@@ -3,6 +3,8 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JComboBox;
+
 import model.GameEngineImpl;
 import view.AddPlayerPanel;
 import view.MainGameFrame;
@@ -33,14 +35,18 @@ public class AddRemovePlayerButtonActionListener implements ActionListener {
 		AddPlayerPanel addPlayerSubView = theView.getAddPlayerSubView();
 		addPlayerSubView.setVisible(true);
 
+
 		System.out.println("*****Add Player button has been clicked");
 		}
 		
 		if (getButtonNumber() ==2) {
 		RemovePlayerPanel remPlayerSubView = theView.getRemovePlayerPanel();
+
+		remPlayerSubView.repaint();
 		remPlayerSubView.setVisible(true);
 
 		System.out.println("*****Remove Player button has been clicked");
+
 		}
 	}
 

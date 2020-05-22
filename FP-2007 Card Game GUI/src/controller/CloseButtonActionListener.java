@@ -7,6 +7,7 @@ import javax.swing.JDialog;
 
 import view.AddPlayerPanel;
 import view.MainGameFrame;
+import view.RemovePlayerPanel;
 
 public class CloseButtonActionListener implements ActionListener {
 	
@@ -47,6 +48,12 @@ public class CloseButtonActionListener implements ActionListener {
 			AddPlayerPanel subView = theView.getAddPlayerSubView();
 			subView.setVisible(false);
 			System.out.println("*****Add Player button has been clicked");
+			System.out.println("Close button has been clicked");
+		}
+		if (closeOption ==3) {
+			RemovePlayerPanel subView = theView.getRemovePlayerPanel();
+			subView.setVisible(false);
+			System.out.println("*****Remove Player cancel button has been clicked");
 			System.out.println("Close button has been clicked");
 		}
 

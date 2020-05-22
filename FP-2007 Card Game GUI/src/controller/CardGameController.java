@@ -33,6 +33,7 @@ public class CardGameController {
 //		theToolBar.addRemPlayerListerner(new RemovePlayerButtonActionListener(theView, theModel)); 
 		addPlayerSubView.addSubmitListener(new SubmitNewPlayerButtonActionListener(theView, theModel));
 		addPlayerSubView.cancelButtonListener(new CloseButtonActionListener (theView, 2));
+		remPlayerSubView.cancelButtonListener(new CloseButtonActionListener (theView, 3));
 		
 		
 		

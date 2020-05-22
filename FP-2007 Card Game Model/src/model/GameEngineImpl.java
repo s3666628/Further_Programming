@@ -157,10 +157,10 @@ public class GameEngineImpl implements GameEngine, GameCallbackCollection {
 	@Override
 	public Collection<Player> getAllPlayers() {
 		// TODO this has not been worked out properly
-//		Collection<Player> allPlayers = (Collection<Player>) players.clone();
+		Collection<Player> allPlayers = players.values();
 		
-		HashMap<String, Player>clonedMapOfPlayers = (HashMap<String, Player>) players.clone(); 
-		return (Collection<Player>) clonedMapOfPlayers;
+//		HashMap<String, Player>clonedMapOfPlayers = (HashMap<String, Player>) players.clone(); 
+		return allPlayers;
 //		return (Collection<Player>) players.clone();
 	}
 

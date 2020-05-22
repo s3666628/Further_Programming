@@ -104,6 +104,17 @@ public class TabbedPane extends JPanel {
 		PlayerNumber += 1;
 		
 	}
+	
+	public void removePlayerFromTabbedFrame(Player player) {
+		
+//		JComponent panel1 = makeTextPanel(player); // .
+//		panel1.setPreferredSize(new Dimension(50, 2));
+		tabbedPane.addTab("Player: " + PlayerNumber, PlayerIcons.getRandom().getImageIcon(), panel1,
+				"Details for player");
+		tabbedPane.remove(PlayerNumber);
+		PlayerNumber += 1;
+		
+	}
 //
 //	protected JComponent makeTextPanel(String text) {
 //		JPanel panel = new JPanel(false);

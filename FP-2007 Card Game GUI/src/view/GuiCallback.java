@@ -25,7 +25,9 @@ public class GuiCallback  implements GameCallback {
 	public void addPlayer(Player player) {
 		// TODO Auto-generated method stub
 		TabbedPane theTabbedPane = theFrame.getTabbedPane();
+		RemovePlayerPanel theRemovePlayerPanel = theFrame.getRemovePlayerPanel();
 		theTabbedPane.addNewPlayerToTabbedFrame(player);
+		theRemovePlayerPanel.addPlayerToCombo(player.getName());
 		
 	}
 
