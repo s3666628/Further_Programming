@@ -9,7 +9,6 @@ import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 import javax.swing.border.LineBorder;
 
-import controller.AddRemovePlayerButtonActionListener;
 import model.ComponentNames;
 
 @SuppressWarnings("serial")
@@ -18,6 +17,8 @@ public class CardGameToolBar extends JToolBar {
 
 	private AbstractButton addPlayerButton;
 	private AbstractButton removePlayerButton;
+	private AbstractButton viewAllPlayersButton;
+	private AbstractButton placeBetButton;
 
 	CardGameToolBar(int vertical, MainGameFrame cardGameFrame) {
 
@@ -34,6 +35,18 @@ public class CardGameToolBar extends JToolBar {
 		add(removePlayerButton);
 		toolButtonsGroup.add(removePlayerButton);
 		removePlayerButton.setBorder(new LineBorder(Color.LIGHT_GRAY)); // put a border around it
+		
+		this.viewAllPlayersButton = new JToggleButton(
+				CardGameHelperMethods.resizeImageIcon(ComponentNames.DISPLAY_ALL_PLAYER.getImageIcon(), 130, 35));
+		add(viewAllPlayersButton);
+		toolButtonsGroup.add(viewAllPlayersButton);
+		viewAllPlayersButton.setBorder(new LineBorder(Color.LIGHT_GRAY)); // put a border around it
+		
+		this.placeBetButton = new JToggleButton(
+				CardGameHelperMethods.resizeImageIcon(ComponentNames.PLACE_BET.getImageIcon(), 130, 35));
+		add(placeBetButton);
+		toolButtonsGroup.add(placeBetButton);
+		placeBetButton.setBorder(new LineBorder(Color.LIGHT_GRAY)); // put a border around it
 
 //		for (ComponentNames names : ComponentNames.values()) { // gets an array of enums
 //			
@@ -59,6 +72,16 @@ public class CardGameToolBar extends JToolBar {
 	public void remPlayerListerner(ActionListener AddRemovePlayerButtonActionListener) {
 
 		removePlayerButton.addActionListener(AddRemovePlayerButtonActionListener);
+	}
+	
+	public void viewAllPlayerActionListener (ActionListener AddRemovePlayerButtonActionListener) {
+
+		viewAllPlayersButton.addActionListener(AddRemovePlayerButtonActionListener);
+	}
+	
+	public void placeBetActionListener (ActionListener AddRemovePlayerButtonActionListener) {
+
+		placeBetButton.addActionListener(AddRemovePlayerButtonActionListener);
 	}
 
 }

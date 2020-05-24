@@ -27,7 +27,7 @@ public class GameEngineImpl implements GameEngine, GameCallbackCollection {
 	// hashmap for storing players (key = playerID, value = player object)
 
 	HashMap<String, Player> players = new HashMap<String, Player>();
-	
+
 	static // collection for the callback logger
 	List<GameCallback> callBackList = new ArrayList<>();
 
@@ -75,9 +75,9 @@ public class GameEngineImpl implements GameEngine, GameCallbackCollection {
 			cb.houseBust(houseHand, bustCard); // log the card
 		}
 	}
-	
+
 //	callback.newDeck(mydeck)
-	
+
 	private static void callBackNewDeck(Deck deck) {
 		// run the callback for Player Card
 		for (GameCallback cb : callBackList) {
@@ -110,14 +110,13 @@ public class GameEngineImpl implements GameEngine, GameCallbackCollection {
 
 	@Override
 	public void addPlayer(Player player) throws NullPointerException, IllegalArgumentException {
-		
+
 		if (player == null) {
 			throw new NullPointerException("Player ID cannot be Null");
 		}
 		if (players.containsKey(player.getId())) {
 			throw new IllegalArgumentException("Player ID must be unique");
 		}
-		
 
 		players.put(player.getId(), player); // add player to the collect of players
 
@@ -130,14 +129,14 @@ public class GameEngineImpl implements GameEngine, GameCallbackCollection {
 
 	@Override
 	public void removePlayer(String playerId) throws NullPointerException, IllegalArgumentException {
-		
+
 		if (playerId == null) {
 			throw new NullPointerException("Player ID cannot be Null");
 		}
 		if (playerId.isEmpty()) {
 			throw new IllegalArgumentException("Player ID has not been populated");
 		}
-		
+
 		// this should work - removes playerId that is passed in from the hash map
 		Player player = players.get(playerId);// get player object from array via playerId string
 //		GameCallback callback = getCallBack();
@@ -158,7 +157,7 @@ public class GameEngineImpl implements GameEngine, GameCallbackCollection {
 	public Collection<Player> getAllPlayers() {
 		// TODO this has not been worked out properly
 		Collection<Player> allPlayers = players.values();
-		
+
 //		HashMap<String, Player>clonedMapOfPlayers = (HashMap<String, Player>) players.clone(); 
 		return allPlayers;
 //		return (Collection<Player>) players.clone();
@@ -167,7 +166,7 @@ public class GameEngineImpl implements GameEngine, GameCallbackCollection {
 	@Override
 	public void placeBet(String playerId, int amount) throws NullPointerException, IllegalArgumentException {
 		// this will create a new score bet
-		
+
 		if (playerId == null) {
 			throw new NullPointerException("Player ID cannot be Null");
 		}
@@ -191,9 +190,7 @@ public class GameEngineImpl implements GameEngine, GameCallbackCollection {
 
 	@Override
 	public void placeBet(String playerId, int amount, Suit suit) throws NullPointerException, IllegalArgumentException {
-		
-		
-				
+
 		// null pointer exceptions
 		if (playerId == null) {
 			throw new NullPointerException("Player ID cannot be Null");
@@ -201,26 +198,29 @@ public class GameEngineImpl implements GameEngine, GameCallbackCollection {
 		if (suit == null) {
 			throw new NullPointerException("Suit cannot be Null");
 		}
-		
+
 		// illegal argument exceptions
-		
+
 		if (playerId.isEmpty()) {
 			throw new IllegalArgumentException("Player ID has not been populated");
 		}
-				
+
 		if (!players.containsKey(playerId)) { // if player is not in the list
-			throw new IllegalArgumentException(String.format ("Player ID: %s does not exist", playerId));
+			throw new IllegalArgumentException(String.format("Player ID: %s does not exist", playerId));
 		}
 		if (amount < 0) {
 			throw new IllegalArgumentException("Bet Amount cannot be negative");
 		}
-		if (players.get(playerId).getPoints() < amount ) {
-			throw new IllegalArgumentException(String.format ("Player ID: %s has placed bet for Bet Amount: %d which is greater than number of points %d", playerId, amount, players.get(playerId).getPoints()));
+		if (players.get(playerId).getPoints() < amount) {
+			throw new IllegalArgumentException(String.format(
+					"Player ID: %s has placed bet for Bet Amount: %d which is greater than number of points %d",
+					playerId, amount, players.get(playerId).getPoints()));
 		}
-		
-		//TODO Add another Exception 
-		//From Java Docs: if, when replacing an existing bet, the bet amount is not greater the existing bet 
-		
+
+		// TODO Add another Exception
+		// From Java Docs: if, when replacing an existing bet, the bet amount is not
+		// greater the existing bet
+
 		// this will create a new suit bet
 		Player player = players.get(playerId);
 		SuitBetImpl Suitbet = new SuitBetImpl(players.get(playerId), amount, suit);
@@ -236,36 +236,38 @@ public class GameEngineImpl implements GameEngine, GameCallbackCollection {
 
 	public void dealPlayer(String playerId, int delay)
 			throws NullPointerException, IllegalArgumentException, IllegalStateException {
-		
+
 		Player currentPlayer = players.get(playerId); // get player object
-		
+
 		if (playerId == null) {
 			throw new NullPointerException("Player ID cannot be Null");
 		}
-		
+
 		if (!players.containsKey(playerId)) { // if player is not in the list
-			throw new IllegalArgumentException(String.format ("Player ID: %s does not exist", playerId));
+			throw new IllegalArgumentException(String.format("Player ID: %s does not exist", playerId));
 		}
-		
+
 		if (delay < 0) {
-			throw new IllegalArgumentException(String.format ("Delay: %d is not greater than zero please enter a positive number for the delay", delay));
+			throw new IllegalArgumentException(String
+					.format("Delay: %d is not greater than zero please enter a positive number for the delay", delay));
 		}
-		
+
 //		if the player with the supplied playerId has not placed a bet 
 		if (currentPlayer.getBet() == Bet.NO_BET)
 
 		{
-			throw new IllegalStateException("Player has not place a bet - you must place bet before cards can be dealt");
-			
+			throw new IllegalStateException(
+					"Player has not place a bet - you must place bet before cards can be dealt");
+
 		}
-		//TODO not sure how to implement this - if it's by card dealt or by whether player has a hand or not.
-		
+		// TODO not sure how to implement this - if it's by card dealt or by whether
+		// player has a hand or not.
+
 //		if ((currentPlayer.getHand() == null))
 //
 //		{
 //			throw new IllegalStateException(String.format ("Player ID : %s has already been dealt cards so cannot be dealt again", playerId));
 //		}
-
 
 //		GameCallback callback = getCallBack(); // create callback object
 		if (NumberOfDeckMessage == 0) { // we only want to call the new deck logging method once when first player is
@@ -320,11 +322,11 @@ public class GameEngineImpl implements GameEngine, GameCallbackCollection {
 
 	@Override
 	public void dealHouse(int delay) throws IllegalArgumentException {
-		
-		if (delay < 0) {
-			throw new IllegalArgumentException(String.format ("Delay: %d is not greater than zero please enter a positive number for the delay", delay));
-		}
 
+		if (delay < 0) {
+			throw new IllegalArgumentException(String
+					.format("Delay: %d is not greater than zero please enter a positive number for the delay", delay));
+		}
 
 //TODO could make this into a static method as a lot of the same code used in both of these methods.
 

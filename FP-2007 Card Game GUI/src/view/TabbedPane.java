@@ -5,6 +5,8 @@ import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -26,29 +28,27 @@ import java.util.Iterator;
 //https://docs.oracle.com/javase/tutorial/uiswing/components/tabbedpane.html
 public class TabbedPane extends JPanel {
 	// all the players code is for testing purposes so we can add players for A2a
-	
-	static ArrayList<PlayersSample> AllPlayers = createPlayers();
-	
-//	static ArrayList<PlayersSample> AllCurrentPlayers =  getAllPlayers() 
-	
 
-	public static ArrayList<PlayersSample> createPlayers() {
-		ArrayList<PlayersSample> listOfPlayers = new ArrayList<PlayersSample>();
-		
+//	static ArrayList<PlayersSample> AllPlayers = createPlayers();
 
-		PlayersSample player1 = new PlayersSample("Philip Beeby", 2000, 100, "Suit", "Hearts");
-		PlayersSample player2 = new PlayersSample("Daniel Stephens", 9000, 10, "Score", "N/A");
-		PlayersSample player3 = new PlayersSample("David Wallace", 1000, 40, "Suit", "Clubs");
-		PlayersSample player4 = new PlayersSample("Ian James", 3000, 200, "Suit", "Diamonds");
-		
 
-		listOfPlayers.add(player1);
-		listOfPlayers.add(player2);
-		listOfPlayers.add(player3);
-		listOfPlayers.add(player4);
-		return listOfPlayers;
+	public static HashMap<String, JComponent> playerPanel = new HashMap<String, JComponent>(); // stores panel for players
 
-	}
+//	public static ArrayList<PlayersSample> createPlayers() {
+//		ArrayList<PlayersSample> listOfPlayers = new ArrayList<PlayersSample>();
+//
+//		PlayersSample player1 = new PlayersSample("Philip Beeby", 2000, 100, "Suit", "Hearts");
+//		PlayersSample player2 = new PlayersSample("Daniel Stephens", 9000, 10, "Score", "N/A");
+//		PlayersSample player3 = new PlayersSample("David Wallace", 1000, 40, "Suit", "Clubs");
+//		PlayersSample player4 = new PlayersSample("Ian James", 3000, 200, "Suit", "Diamonds");
+//
+//		listOfPlayers.add(player1);
+//		listOfPlayers.add(player2);
+//		listOfPlayers.add(player3);
+//		listOfPlayers.add(player4);
+//		return listOfPlayers;
+//
+//	}
 
 	public String createPlayerScore(ArrayList<PlayersSample> players) {
 		String displayText = "<html>";
@@ -61,74 +61,50 @@ public class TabbedPane extends JPanel {
 		;
 		return displayText;
 	}
+
 	private JTabbedPane tabbedPane;
-	
-	static int PlayerNumber = 1;
-	
+
+	static int playerNumber = 1;
+	static int playerPanelNum = 0;
+
 	public TabbedPane(MainGameFrame cardGameFrame) {
 		super(new GridLayout(2, 4));
-
-//		JTabbedPane tabbedPane = new JTabbedPane();
-		
 		this.tabbedPane = new JTabbedPane();
-		
 		ImageIcon icon = new PanelIcon("test"); // not used at the moment
-//		String PlayerInfo = createPlayerScore(AllPlayers);
-
-//		Iterator<PlayersSample> i = AllPlayers.iterator();
-//		int PlayerNumber = 1;
-//		while (i.hasNext()) {
-//			PlayersSample player = i.next();
-//			System.out.println(player.toString());
-//			// makes a text panel
-//			JComponent panel1 = makeTextPanel2(player); // loop through the players scores here.
-//			panel1.setPreferredSize(new Dimension(50, 2));
-//			tabbedPane.addTab("Player: " + PlayerNumber, PlayerIcons.getRandom().getImageIcon(), panel1,
-//					"Details for player");
-//			PlayerNumber += 1;
-//		}
-
-		// Add the tabbed pane to this panel.
 		add(tabbedPane);
 
-		// The following line enables to use scrolling tabs.
-//		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 	}
-	
+
 	public void addNewPlayerToTabbedFrame(Player player) {
-		
+
 		JComponent panel1 = makeTextPanel(player); // .
 		panel1.setPreferredSize(new Dimension(50, 2));
-		tabbedPane.addTab("Player: " + PlayerNumber, PlayerIcons.getRandom().getImageIcon(), panel1,
+		tabbedPane.addTab("Player: " + playerNumber, PlayerIcons.getRandom().getImageIcon(), panel1,
 				"Details for player");
-		PlayerNumber += 1;
-		
+		playerPanel.put(player.getId(), panel1); // add player id and panel to hash map
+		System.out.println("Player panel numner is: " + playerPanelNum);
+		System.out.println("Player has been added to Hash Map" + playerPanel.get(player.getId()));
+		playerNumber += 1;
+		playerPanelNum += 1;
+
 	}
-	
-	public void removePlayerFromTabbedFrame(Player player) {
-		
-//		JComponent panel1 = makeTextPanel(player); // .
-//		panel1.setPreferredSize(new Dimension(50, 2));
-		tabbedPane.addTab("Player: " + PlayerNumber, PlayerIcons.getRandom().getImageIcon(), panel1,
-				"Details for player");
-		tabbedPane.remove(PlayerNumber);
-		PlayerNumber += 1;
-		
+
+	public void removePlayerFromTabbedFrame(Player player) throws NullPointerException, IllegalArgumentException {
+		if (player.getId() == null) {
+			throw new NullPointerException("Player Id is null");
+		}
+		if (playerPanel.get(player.getId()) == null) {
+			throw new NullPointerException("Cannot locate Player ID to remove Player Panel");
+		}
+		playerNumber -= 1; // reduce the num of players
+
+		tabbedPane.remove(playerPanel.get(player.getId())); // remove the player panel object
+
 	}
-//
-//	protected JComponent makeTextPanel(String text) {
-//		JPanel panel = new JPanel(false);
-//		JLabel filler = new JLabel(text);
-//		filler.setHorizontalAlignment(JLabel.CENTER);
-//		filler.setVerticalAlignment(JLabel.CENTER);
-//		panel.setLayout(new GridLayout(6, 2));
-//		panel.add(filler);
-//		return panel;
-//	}
 
 	protected JComponent makeTextPanel(Player player) {
-		
-		//TODO some of this has hard coded values atm
+
+		// TODO some of this has hard coded values atm
 
 		JPanel panel = new JPanel(false); // only need this once
 		LayoutManager layout = new GridLayout(4, 4);
@@ -149,7 +125,8 @@ public class TabbedPane extends JPanel {
 		betAmountTextField.setEditable(false);
 		JLabel amountLabel = new JLabel("Player Bet Amount $:");
 		amountLabel.setLabelFor(betAmountTextField);
-		betAmountTextField.setValue(player.getBet().getAmount()); // will need to change this as hard coded at the moment
+		betAmountTextField.setValue(player.getBet().getAmount()); // will need to change this as hard coded at the
+																	// moment
 
 		// format score
 		NumberFormat principleFormat = NumberFormat.getNumberInstance();

@@ -14,15 +14,16 @@ import model.Player;
 import model.PlayerImpl;
 import view.AddPlayerPanel;
 import view.MainGameFrame;
+import view.PlaceBetPanel;
 import view.RemovePlayerPanel;
 import view.TabbedPane;
 
-public class SubmitRemPlayerButtonActionListener implements ActionListener {
+public class SubmitBetButtonActionListener implements ActionListener {
 
 	private GameEngine theModel;
 	private MainGameFrame theView;
 
-	public SubmitRemPlayerButtonActionListener(MainGameFrame theView, GameEngine theModel)
+	public SubmitBetButtonActionListener(MainGameFrame theView, GameEngine theModel)
 
 	{
 		this.theView = theView;
@@ -33,15 +34,10 @@ public class SubmitRemPlayerButtonActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		RemovePlayerPanel theSubView = theView.getRemovePlayerPanel();
-		TabbedPane theTabbedPane = theView.getTabbedPane();
+//		RemovePlayerPanel theSubView = theView.getRemovePlayerPanel();
+		PlaceBetPanel theSubView = theView.getPlaceBetPanel();
 
-//		
-//		String PlayerId;
-//		String PlayerName;
-//		int PlayerPoints;
-
-		System.out.println("Remove Player Submit button has been clicked");
+		System.out.println("Submit **BET** button has been clicked");
 
 		try {
 
@@ -49,17 +45,27 @@ public class SubmitRemPlayerButtonActionListener implements ActionListener {
 //			String PlayerName = theSubView.getPlayername(); // gets second number from the view
 //			int PlayerPoints = theSubView.getPlayerPoints();
 
-			String PlayerID = (String) theSubView.getplayersCombo().getSelectedItem(); // player to remove
+			String playerID = (String) theSubView.getplayersCombo().getSelectedItem(); // player to remove
+			int betAmount = theSubView.getPlayerBetAmount();
 
-			theModel.removePlayer(PlayerID);
+			theModel.placeBet(playerID, betAmount);
 
-//			theModel.addPlayer(player);
-//			theTabbedPane.addNewPlayerToTabbedFrame(player);
-//			theTabbedPane.addNewPlayerToTabbedFrame(player);
+//			if (playerId == null) {
+//				throw new NullPointerException("Player ID cannot be Null");
+//			}
+//			if (playerId.isEmpty()) {
+//				throw new IllegalArgumentException("Player ID has not been populated");
+//			}
+//			if (amount < 0) {
+//				throw new IllegalArgumentException("Bet Amount cannot be negative");
+//			}
 
 			JOptionPane.showMessageDialog(theView.getAddPlayerSubView(),
-					"Player: " + PlayerID + " Has Been Removed from the game");
+					"Player: " + playerID + " Has Place a Bet for $ "+betAmount);
 
+		} catch (NumberFormatException ex) {
+			theSubView.displayErrorMessage("Bet Amount must be a Number");
+			
 		} catch (NullPointerException ex) {
 			theSubView.displayErrorMessage(ex.getMessage());
 		} catch (IllegalArgumentException ex) {

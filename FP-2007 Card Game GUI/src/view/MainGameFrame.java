@@ -18,13 +18,19 @@ public class MainGameFrame extends JFrame {
 	private RemovePlayerPanel removePlayerSubview;
 	private CardGameToolBar toolbar;
 	private TabbedPane tabbedPane;
+	private AllPlayersTable allPlayersTable;
+	private PlaceBetPanel thePlaceBetPanel;
 
 	public MainGameFrame(GameEngineImpl theModel) {
 		super("Card Game");// add title
 		this.addPlayerSubView = new AddPlayerPanel(); // create the Add Player window so that it is part of the main
 														// Frame
 		this.removePlayerSubview = new RemovePlayerPanel(theModel);
-		; // comment out for now as not working as expected
+		// comment out for now as not working as expected
+		this.allPlayersTable = new AllPlayersTable(theModel);
+		
+		//create a new place bet panel
+		this.thePlaceBetPanel = new PlaceBetPanel(theModel);
 
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE); // Determines what happens when press close buttons
 
@@ -84,6 +90,13 @@ public class MainGameFrame extends JFrame {
 
 	public TabbedPane getTabbedPane() {
 		return this.tabbedPane;
+	}
+	
+	public AllPlayersTable getAllPlayersTable() {
+		return this.allPlayersTable;
+	}
+	public PlaceBetPanel getPlaceBetPanel() {
+		return this.thePlaceBetPanel;
 	}
 
 	public MainGameFrame getCardGameMainView() {

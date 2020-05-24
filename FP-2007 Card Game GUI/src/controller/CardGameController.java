@@ -1,67 +1,58 @@
 package controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import view.AddPlayerPanel;
+import view.AllPlayersTable;
 import view.MainGameFrame;
+import view.PlaceBetPanel;
 import view.RemovePlayerPanel;
 import view.CardGameToolBar;
-import model.GameEngine;
 import model.GameEngineImpl;
 
-
 public class CardGameController {
-	// instance variables 
+	// instance variables
 	private MainGameFrame theView;
 	private GameEngineImpl theModel;
 	private CardGameToolBar theToolBar;
 	private AddPlayerPanel addPlayerSubView;
 	private RemovePlayerPanel remPlayerSubView;
-	private int addPlayerNum =1;
-	private int remPlayerNum =2;
-	// contstructor which takes objs of Model and View
+	private AllPlayersTable allPlayerSubView;
+	private PlaceBetPanel thePlaceBetPanel;
+	private int addPlayerNum = 1;
+	private int remPlayerNum = 2;
+	private int vwAllPlyrNum = 3;
+	private int placeBetNum = 4;
+
+	// Constructor which takes Model and View
 	public CardGameController(MainGameFrame theView, GameEngineImpl theModel) {
-		this.theView = theView; //assigns what is passed in to the instance variables
+		this.theView = theView; // assigns what is passed in to the instance variables
 		this.theModel = theModel;
 		this.theToolBar = theView.getToolBar();
 		this.addPlayerSubView = theView.getAddPlayerSubView();
 		this.remPlayerSubView = theView.getRemovePlayerPanel();
-		theToolBar.addPlayerListerner(new AddRemovePlayerButtonActionListener(theView, theModel, addPlayerNum)); 
-		theToolBar.remPlayerListerner(new AddRemovePlayerButtonActionListener(theView, theModel, remPlayerNum)); 
+		this.allPlayerSubView = theView.getAllPlayersTable();
+		this.thePlaceBetPanel = theView.getPlaceBetPanel();
+		
+		// Add Tool Bar Listeners
+		theToolBar.addPlayerListerner(new AddRemovePlayerButtonActionListener(theView, theModel, addPlayerNum));
+		theToolBar.remPlayerListerner(new AddRemovePlayerButtonActionListener(theView, theModel, remPlayerNum));
+		theToolBar.viewAllPlayerActionListener(
+				new AddRemovePlayerButtonActionListener(theView, theModel, vwAllPlyrNum));
+		theToolBar.placeBetActionListener(new AddRemovePlayerButtonActionListener(theView, theModel, placeBetNum));
 		// adds action listener to the view
 //		theToolBar.addRemPlayerListerner(new RemovePlayerButtonActionListener(theView, theModel)); 
+
+		// add player sub window - for Submit button this calls the listeners that affect the game
 		addPlayerSubView.addSubmitListener(new SubmitNewPlayerButtonActionListener(theView, theModel));
-		addPlayerSubView.cancelButtonListener(new CloseButtonActionListener (theView, 2));
-		remPlayerSubView.cancelButtonListener(new CloseButtonActionListener (theView, 3));
+		remPlayerSubView.addSubmitRemoveListener(new SubmitRemPlayerButtonActionListener(theView, theModel));
+		thePlaceBetPanel.addSubmitBetListener(new SubmitBetButtonActionListener(theView, theModel));
 		
-		
-		
-		
+		// Close Button Listeners
+		addPlayerSubView.cancelButtonListener(new CloseButtonActionListener(theView, 2));
+		remPlayerSubView.cancelButtonListener(new CloseButtonActionListener(theView, 3));
+		allPlayerSubView.cancelButtonListener(new CloseButtonActionListener(theView, 4));
+		thePlaceBetPanel.cancelButtonListener(new CloseButtonActionListener(theView, 5));
+
 	}
-	// inner class which implements action listener
-//	class CalculateListerner implements ActionListener{
-//
-//		@Override
-//		public void actionPerformed(ActionEvent e) {
-//			
-//			int firstNumber, secondNumber =0;
-//			
-//			try {
-//				firstNumber = theView.getFirstNumber();//gets first number from the view
-//				secondNumber = theView.getSecondNumber(); // gets second number from the view
-//				// calls the model to add the 2 numbers together
-//				theModel.addTwoNumbers(firstNumber, secondNumber); // calls the Model to add the 2 numbers that were passed in togeher
-//				theView.setCalcSolution(theModel.getCalculationValue());// gets the solution and outputs it on the screen
-//				
-//			}
-//			catch(NumberFormatException ex) {
-//				theView.displayErrorMessage("You need to enter a number");
-//			}
-//			
-//			// TODO Auto-generated method stub
-//			
-//		}
-		
-		 
-	}
+
+
+}

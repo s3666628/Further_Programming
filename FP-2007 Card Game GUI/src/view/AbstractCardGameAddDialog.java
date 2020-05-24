@@ -8,10 +8,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public abstract class AbstractCardGameAddDialog {
-	
+
 	private JDialog dialog;
 	private JLabel label;
-	
+
 	public AbstractCardGameAddDialog(JFrame frame, String dialogTitle, String dialogText, int size, boolean visible) {
 		// create new dialog
 		this.dialog = new JDialog(frame, dialogTitle);
@@ -31,8 +31,7 @@ public abstract class AbstractCardGameAddDialog {
 		dialog.add(close);
 		this.dialog.setVisible(visible);
 		// for testing use
-;
+		;
 	}
-
 
 }

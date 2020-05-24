@@ -7,7 +7,9 @@ import javax.swing.JComboBox;
 
 import model.GameEngineImpl;
 import view.AddPlayerPanel;
+import view.AllPlayersTable;
 import view.MainGameFrame;
+import view.PlaceBetPanel;
 import view.RemovePlayerPanel;
 
 public class AddRemovePlayerButtonActionListener implements ActionListener {
@@ -46,6 +48,24 @@ public class AddRemovePlayerButtonActionListener implements ActionListener {
 		remPlayerSubView.setVisible(true);
 
 		System.out.println("*****Remove Player button has been clicked");
+
+		}
+		
+		if (getButtonNumber() ==3) {
+		AllPlayersTable allPlayerSubView = new AllPlayersTable(theModel);
+		allPlayerSubView.repaint();
+		allPlayerSubView.setVisible(true);
+
+		System.out.println("*****VIEW ALL Player button has been clicked");
+
+		}
+		
+		if (getButtonNumber() ==4) {
+		PlaceBetPanel placeBetPanel =theView.getPlaceBetPanel();
+		placeBetPanel.repaint();
+		placeBetPanel.setVisible(true);
+
+		System.out.println("zzzPlaceBet button has been clicked");
 
 		}
 	}

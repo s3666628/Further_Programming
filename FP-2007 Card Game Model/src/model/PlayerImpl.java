@@ -16,7 +16,7 @@ public class PlayerImpl implements Player {
 //	java.lang.String id, java.lang.String name, int points)
 
 	public PlayerImpl(String id, String name, int points) throws NullPointerException, IllegalArgumentException {
-		
+
 		if (id == null) {
 			throw new NullPointerException("Player cannot be created without a Player ID");
 		}
@@ -26,7 +26,7 @@ public class PlayerImpl implements Player {
 		if (points < 0) {
 			throw new IllegalArgumentException("Player cannot be created with less than 1 Point");
 		}
-		
+
 		// TODO Auto-generated constructor stub
 		this.id = id;
 		this.name = name;
@@ -58,7 +58,7 @@ public class PlayerImpl implements Player {
 //			return this.points;
 //			
 //		}
-		return this.points = this.points - bet.getAmount(); // original 
+		return this.points = this.points - bet.getAmount(); // original
 //		
 	}
 
@@ -79,29 +79,27 @@ public class PlayerImpl implements Player {
 //		}
 
 //	}
-	
+
 	@Override
 	public int getTotalPoints() {
-		
 
 //		Returns the current total points for a player, which includes any amount currently bet.
 //		Hint: If the player doesn't have a current bet this method should return the current points, otherwise add the bet's value to it.
-		Bet bet = getBet();		
+		Bet bet = getBet();
 		return points + bet.getAmount();
 
 	}
 
 	@Override
 	public void assignBet(Bet bet) {
-	
+
 //		Assigns the supplied bet placed for the player via the GameEngine (DONE)
 //		The players points should be adjusted accordingly and the supplied bet parameter assigned to an appropriate instance variable.
 //		Take care when replacing a bet as the original bet amount has already been deducted from the current points.
 //
 //		Hint: Try to ensure you don't duplicate code between the Game Engine, Bet and Player when dealing with bets.
-		this.bet = bet; //assign player bet to the instance variable
-		this.points = getTotalPoints() - bet.getAmount();  // adjust the current points
-		
+		this.bet = bet; // assign player bet to the instance variable
+		this.points = getTotalPoints() - bet.getAmount(); // adjust the current points
 
 	}
 

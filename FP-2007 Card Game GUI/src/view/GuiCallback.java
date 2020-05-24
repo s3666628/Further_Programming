@@ -1,76 +1,86 @@
 package view;
 
 import model.GameEngine;
+import model.GameEngineImpl;
 import model.Player;
 import model.card.Card;
 import model.card.Deck;
 import model.card.Hand;
 import view.MainGameFrame;
 
+public class GuiCallback implements GameCallback {
 
-public class GuiCallback  implements GameCallback {
-	
 	private MainGameFrame theFrame;
-	
+	private GameEngine theEngine;
 
 	public GuiCallback(GameEngine engine, MainGameFrame theFrame) {
 		// TODO Auto-generated constructor stub
 		this.theFrame = theFrame;
+		this.theEngine = engine;
 	}
-	
-	
-	
 
 	@Override
 	public void addPlayer(Player player) {
-		// TODO Auto-generated method stub
+		// get the GUI elements we want to update
 		TabbedPane theTabbedPane = theFrame.getTabbedPane();
 		RemovePlayerPanel theRemovePlayerPanel = theFrame.getRemovePlayerPanel();
+		PlaceBetPanel thePlaceBetPanel = theFrame.getPlaceBetPanel();
+//		AllPlayersTable theAllPlayersTable = theFrame.getAllPlayersTable();
+		// call the methods in the GUI
 		theTabbedPane.addNewPlayerToTabbedFrame(player);
-		theRemovePlayerPanel.addPlayerToCombo(player.getName());
+		theRemovePlayerPanel.addPlayerToCombo(player.getId());
+		thePlaceBetPanel.addPlayerToCombo(player.getId());
+//		theAllPlayersTable.updateAllPlayersTable((GameEngineImpl) theEngine);
 		
+
 	}
 
 	@Override
 	public void removePlayer(Player player) {
-		// TODO Auto-generated method stub
+		RemovePlayerPanel theRemovePlayerPanel = theFrame.getRemovePlayerPanel();
+		TabbedPane theTabbedPane = theFrame.getTabbedPane();
+		PlaceBetPanel thePlaceBetPanel = theFrame.getPlaceBetPanel();
+		theRemovePlayerPanel.remPlayerFromCombo(player.getId());
+		theTabbedPane.removePlayerFromTabbedFrame(player);// remove the tabbed pane for this player
+		thePlaceBetPanel.remPlayerFromCombo(player.getId());
 		
+
 	}
 
 	@Override
 	public void betUpdated(Player player) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void newDeck(Deck deck) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void playerCard(Player player, Card card) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void playerBust(Player player, Card card) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void houseCard(Hand houseHand, Card card) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void houseBust(Hand houseHand, Card card) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

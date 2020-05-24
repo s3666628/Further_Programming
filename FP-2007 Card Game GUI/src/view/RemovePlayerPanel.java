@@ -8,6 +8,7 @@ import model.Player;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collection;
+import view.CardGameHelperMethods;
 
 @SuppressWarnings("serial")
 
@@ -28,19 +29,19 @@ public class RemovePlayerPanel extends JFrame {
 
 	}
 
-	public String[] createPlayersList(Collection<Player> AllPlayers) {
-		String[] playerNames = new String[AllPlayers.size()];
-		int counter = 0;
-		for (Player player : AllPlayers) {
-			playerNames[counter] = player.getId();
-//			playerIds[counter] = player.getId();
-			counter += 1;
-			System.out.println(player.getId());
-		}
-
-		return playerNames;
-
-	}
+//	public String[] createPlayerIdList(Collection<Player> allPlayers) {
+//		String[] playerNames = new String[allPlayers.size()];
+//		int counter = 0;
+//		for (Player player : allPlayers) {
+//			playerNames[counter] = player.getId();
+////			playerIds[counter] = player.getId();
+//			counter += 1;
+//			System.out.println(player.getId());
+//		}
+//
+//		return playerNames;
+//
+//	}
 
 	/**
 	 * @param allPlayers the allPlayers to set
@@ -51,8 +52,12 @@ public class RemovePlayerPanel extends JFrame {
 //	}
 	// this is called by GUI Callback when new player is added to the model
 	// so that the new player is added to the string of arrays and is then seen on the screen
-	public void addPlayerToCombo(String PlayerName) {
-		this.playersCombo.addItem(PlayerName);
+	public void addPlayerToCombo(String playerId) {
+		this.playersCombo.addItem(playerId);
+	}
+	
+	public void remPlayerFromCombo(String playerId) {
+		this.playersCombo.removeItem(playerId);
 	}
 
 //	public void setComboBox(String[] playerNames) {
@@ -67,7 +72,7 @@ public class RemovePlayerPanel extends JFrame {
 	public RemovePlayerPanel(GameEngineImpl theModel) {
 
 		this.AllPlayers = theModel.getAllPlayers();
-		this.playerNames = createPlayersList(AllPlayers); // this populates the combo box
+		this.playerNames = CardGameHelperMethods.createPlayerIdList(AllPlayers); // this populates the combo box
 
 		this.playersCombo = new JComboBox<String>(playerNames);
 
@@ -110,9 +115,9 @@ public class RemovePlayerPanel extends JFrame {
 //
 //	}
 
-	public void addSubmitListener(ActionListener SubmitNewPLayerButtonActionListener) {
+	public void addSubmitRemoveListener(ActionListener SubmitRemPlayerButtonActionListener) {
 
-		submit.addActionListener(SubmitNewPLayerButtonActionListener);
+		submit.addActionListener(SubmitRemPlayerButtonActionListener);
 	}
 
 	public void cancelButtonListener(ActionListener CloseButtonActionListener) {
