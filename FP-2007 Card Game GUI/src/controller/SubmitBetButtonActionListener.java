@@ -12,6 +12,7 @@ import model.GameEngine;
 import model.GameEngineImpl;
 import model.Player;
 import model.PlayerImpl;
+import model.card.Suit;
 import view.AddPlayerPanel;
 import view.MainGameFrame;
 import view.PlaceBetPanel;
@@ -39,41 +40,103 @@ public class SubmitBetButtonActionListener implements ActionListener {
 
 		System.out.println("Submit **BET** button has been clicked");
 
-		try {
+		String playerID = (String) theSubView.getPlayerCombo().getSelectedItem(); //
+		String suitBet = (String) theSubView.getSuitCombo().getSelectedItem();
+		int betAmount = theSubView.getPlayerBetAmount();
+		if (suitBet == "None (Score Bet)") {
 
-//			String PlayerId = theSubView.getPlayerID(); // gets first number from the view
-//			String PlayerName = theSubView.getPlayername(); // gets second number from the view
-//			int PlayerPoints = theSubView.getPlayerPoints();
+			try {
 
-			String playerID = (String) theSubView.getplayersCombo().getSelectedItem(); // player to remove
-			int betAmount = theSubView.getPlayerBetAmount();
+				theModel.placeBet(playerID, betAmount);
+				JOptionPane.showMessageDialog(theView.getAddPlayerSubView(),
+						"Player: " + playerID + " Has Place a Bet for $ " + betAmount);
 
-			theModel.placeBet(playerID, betAmount);
+			} catch (NumberFormatException ex) {
+				theSubView.displayErrorMessage("Bet Amount must be a Number");
 
-//			if (playerId == null) {
-//				throw new NullPointerException("Player ID cannot be Null");
-//			}
-//			if (playerId.isEmpty()) {
-//				throw new IllegalArgumentException("Player ID has not been populated");
-//			}
-//			if (amount < 0) {
-//				throw new IllegalArgumentException("Bet Amount cannot be negative");
-//			}
+			} catch (NullPointerException ex) {
+				theSubView.displayErrorMessage(ex.getMessage());
+			} catch (IllegalArgumentException ex) {
+				theSubView.displayErrorMessage(ex.getMessage());
+			}
 
-			JOptionPane.showMessageDialog(theView.getAddPlayerSubView(),
-					"Player: " + playerID + " Has Place a Bet for $ "+betAmount);
-
-		} catch (NumberFormatException ex) {
-			theSubView.displayErrorMessage("Bet Amount must be a Number");
-			
-		} catch (NullPointerException ex) {
-			theSubView.displayErrorMessage(ex.getMessage());
-		} catch (IllegalArgumentException ex) {
-			theSubView.displayErrorMessage(ex.getMessage());
 		}
 
-//		theModel.addPlayer(new PlayerImpl("P1", "Player One", 1000));
-//		theModel.addPlayer(new Player());		
+		else if (suitBet == "Clubs") {
 
+			try {
+
+				theModel.placeBet(playerID, betAmount, Suit.CLUBS);
+
+				JOptionPane.showMessageDialog(theView.getAddPlayerSubView(),
+						"Player: " + playerID + " Has Place a Bet for $ " + betAmount + "on the Suit: " + Suit.CLUBS.toString() );
+
+			} catch (NumberFormatException ex) {
+				theSubView.displayErrorMessage("Bet Amount must be a Number");
+
+			} catch (NullPointerException ex) {
+				theSubView.displayErrorMessage(ex.getMessage());
+			} catch (IllegalArgumentException ex) {
+				theSubView.displayErrorMessage(ex.getMessage());
+			}
+
+		}
+		else if (suitBet == "Diamonds") {
+
+			try {
+
+				theModel.placeBet(playerID, betAmount, Suit.DIAMONDS);
+
+				JOptionPane.showMessageDialog(theView.getAddPlayerSubView(),
+						"Player: " + playerID + " Has Place a Bet for $ " + betAmount + "on the Suit: " + Suit.DIAMONDS.toString() );
+
+			} catch (NumberFormatException ex) {
+				theSubView.displayErrorMessage("Bet Amount must be a Number");
+
+			} catch (NullPointerException ex) {
+				theSubView.displayErrorMessage(ex.getMessage());
+			} catch (IllegalArgumentException ex) {
+				theSubView.displayErrorMessage(ex.getMessage());
+			}
+
+		}
+		else if (suitBet == "Hearts") {
+
+			try {
+
+				theModel.placeBet(playerID, betAmount, Suit.HEARTS);
+
+				JOptionPane.showMessageDialog(theView.getAddPlayerSubView(),
+						"Player: " + playerID + " Has Place a Bet for $ " + betAmount + "on the Suit: " + Suit.HEARTS.toString() );
+
+			} catch (NumberFormatException ex) {
+				theSubView.displayErrorMessage("Bet Amount must be a Number");
+
+			} catch (NullPointerException ex) {
+				theSubView.displayErrorMessage(ex.getMessage());
+			} catch (IllegalArgumentException ex) {
+				theSubView.displayErrorMessage(ex.getMessage());
+			}
+
+		}
+		else {
+
+			try {
+
+				theModel.placeBet(playerID, betAmount, Suit.SPADES);
+
+				JOptionPane.showMessageDialog(theView.getAddPlayerSubView(),
+						"Player: " + playerID + " Has Place a Bet for $ " + betAmount + "on the Suit: " + Suit.SPADES.toString() );
+
+			} catch (NumberFormatException ex) {
+				theSubView.displayErrorMessage("Bet Amount must be a Number");
+
+			} catch (NullPointerException ex) {
+				theSubView.displayErrorMessage(ex.getMessage());
+			} catch (IllegalArgumentException ex) {
+				theSubView.displayErrorMessage(ex.getMessage());
+			}
+
+		}
 	}
 }

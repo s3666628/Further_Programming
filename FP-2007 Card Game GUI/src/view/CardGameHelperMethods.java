@@ -6,6 +6,7 @@ import java.util.Collection;
 import javax.swing.ImageIcon;
 
 import model.Player;
+import model.card.Suit;
 
 public class CardGameHelperMethods {
 
@@ -20,7 +21,7 @@ public class CardGameHelperMethods {
 	
 	public static String[] createPlayerIdList(Collection<Player> allPlayers) {
 		String[] playerNames = new String[allPlayers.size()];
-		int counter = 0;
+		int counter = 0;	
 		for (Player player : allPlayers) {
 			playerNames[counter] = player.getId();
 			counter += 1;
@@ -29,6 +30,19 @@ public class CardGameHelperMethods {
 
 		return playerNames;
 
+	}
+	
+	public static String[] getSuites () {
+		String[] allSuites = new String[5];
+		int counter = 1;
+		allSuites[0] = "None (Score Bet)";
+		for (Suit suit : Suit.values()) {
+			allSuites[counter] = suit.toString();
+			counter += 1;
+			System.out.println(suit.toString());
+			}
+		return allSuites;
+				
 	}
 
 }
