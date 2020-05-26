@@ -102,5 +102,9 @@ public class MainGameFrame extends JFrame {
 	public MainGameFrame getCardGameMainView() {
 		return this;
 	}
+	
+	public void doRePaintMain() {
+		this.repaint();
+	}
 
 }

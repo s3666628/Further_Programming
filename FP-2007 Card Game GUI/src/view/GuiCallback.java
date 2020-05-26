@@ -50,6 +50,9 @@ public class GuiCallback implements GameCallback {
 	@Override
 	public void betUpdated(Player player) {
 		// TODO Auto-generated method stub
+		TabbedPane theTabbedPane = theFrame.getTabbedPane();
+		System.out.println("GUI Callback Bet Updated");
+		theTabbedPane.refreshTabbedPane(player);
 
 	}
 

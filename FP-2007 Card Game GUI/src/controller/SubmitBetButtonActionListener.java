@@ -50,6 +50,7 @@ public class SubmitBetButtonActionListener implements ActionListener {
 				theModel.placeBet(playerID, betAmount);
 				JOptionPane.showMessageDialog(theView.getAddPlayerSubView(),
 						"Player: " + playerID + " Has Place a Bet for $ " + betAmount);
+//				theView.doRePaintMain();
 
 			} catch (NumberFormatException ex) {
 				theSubView.displayErrorMessage("Bet Amount must be a Number");

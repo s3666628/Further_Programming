@@ -27,28 +27,9 @@ import java.util.Iterator;
 // most code has been take from the demo of tab panes from Oracle
 //https://docs.oracle.com/javase/tutorial/uiswing/components/tabbedpane.html
 public class TabbedPane extends JPanel {
-	// all the players code is for testing purposes so we can add players for A2a
 
-//	static ArrayList<PlayersSample> AllPlayers = createPlayers();
-
-
-	public static HashMap<String, JComponent> playerPanel = new HashMap<String, JComponent>(); // stores panel for players
-
-//	public static ArrayList<PlayersSample> createPlayers() {
-//		ArrayList<PlayersSample> listOfPlayers = new ArrayList<PlayersSample>();
-//
-//		PlayersSample player1 = new PlayersSample("Philip Beeby", 2000, 100, "Suit", "Hearts");
-//		PlayersSample player2 = new PlayersSample("Daniel Stephens", 9000, 10, "Score", "N/A");
-//		PlayersSample player3 = new PlayersSample("David Wallace", 1000, 40, "Suit", "Clubs");
-//		PlayersSample player4 = new PlayersSample("Ian James", 3000, 200, "Suit", "Diamonds");
-//
-//		listOfPlayers.add(player1);
-//		listOfPlayers.add(player2);
-//		listOfPlayers.add(player3);
-//		listOfPlayers.add(player4);
-//		return listOfPlayers;
-//
-//	}
+	public static HashMap<String, JComponent> playerPanel = new HashMap<String, JComponent>(); // stores panel for
+																								// players
 
 	public String createPlayerScore(ArrayList<PlayersSample> players) {
 		String displayText = "<html>";
@@ -73,6 +54,13 @@ public class TabbedPane extends JPanel {
 		ImageIcon icon = new PanelIcon("test"); // not used at the moment
 		add(tabbedPane);
 
+	}
+
+	public void refreshTabbedPane(Player player) {
+		tabbedPane.remove(playerPanel.get(player.getId()));
+		playerNumber -= 1;
+		addNewPlayerToTabbedFrame(player);
+		playerPanelNum += 1;
 	}
 
 	public void addNewPlayerToTabbedFrame(Player player) {
@@ -154,7 +142,7 @@ public class TabbedPane extends JPanel {
 		playerBetSuitTextField.setEditable(false);
 		JLabel betSuitLabel = new JLabel("Player Chosen Suit");
 		betSuitLabel.setLabelFor(playerBetSuitTextField);
-		playerBetSuitTextField.setValue("Heats");
+		playerBetSuitTextField.setValue(player.getBet());
 
 		panel.add(amountLabel);
 		panel.add(betAmountTextField);
