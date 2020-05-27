@@ -19,6 +19,7 @@ public class CardGameToolBar extends JToolBar {
 	private AbstractButton removePlayerButton;
 	private AbstractButton viewAllPlayersButton;
 	private AbstractButton placeBetButton;
+	private AbstractButton dealCards; 
 
 	CardGameToolBar(int vertical, MainGameFrame cardGameFrame) {
 
@@ -48,6 +49,13 @@ public class CardGameToolBar extends JToolBar {
 		toolButtonsGroup.add(placeBetButton);
 		placeBetButton.setBorder(new LineBorder(Color.LIGHT_GRAY)); // put a border around it
 
+		
+		this.dealCards = new JToggleButton(
+				CardGameHelperMethods.resizeImageIcon(ComponentNames.AUTO_DEAL.getImageIcon(), 130, 35));
+		add(dealCards);
+		toolButtonsGroup.add(dealCards);
+		dealCards.setBorder(new LineBorder(Color.LIGHT_GRAY)); // put a border around it
+		
 //		for (ComponentNames names : ComponentNames.values()) { // gets an array of enums
 //			
 //			// resize buttons
@@ -82,6 +90,11 @@ public class CardGameToolBar extends JToolBar {
 	public void placeBetActionListener (ActionListener AddRemovePlayerButtonActionListener) {
 
 		placeBetButton.addActionListener(AddRemovePlayerButtonActionListener);
+	}
+	
+	public void autoDealActionListener (ActionListener AutoDealButtonActionListener) {
+
+		dealCards.addActionListener(AutoDealButtonActionListener);
 	}
 
 }

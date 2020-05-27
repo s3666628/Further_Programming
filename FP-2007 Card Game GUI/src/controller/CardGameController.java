@@ -38,6 +38,7 @@ public class CardGameController {
 		theToolBar.viewAllPlayerActionListener(
 				new AddRemovePlayerButtonActionListener(theView, theModel, vwAllPlyrNum));
 		theToolBar.placeBetActionListener(new AddRemovePlayerButtonActionListener(theView, theModel, placeBetNum));
+		theToolBar.autoDealActionListener(new AutoDealActionListener(theView, theModel));
 		// adds action listener to the view
 //		theToolBar.addRemPlayerListerner(new RemovePlayerButtonActionListener(theView, theModel)); 
 

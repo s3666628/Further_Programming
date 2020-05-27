@@ -18,6 +18,7 @@ import javax.swing.JTabbedPane;
 import model.Player;
 import model.PlayerIcons;
 import model.PlayerImpl;
+import model.bet.Bet;
 import model.GameEngine;
 
 import java.util.Iterator;
@@ -136,12 +137,14 @@ public class TabbedPane extends JPanel {
 		playerBetTypeTextField.setValue(player.getBet());
 
 		// format bet Suit
-		JFormattedTextField playerBetSuitTextField = new JFormattedTextField("Hearts");
+		JFormattedTextField playerBetSuitTextField = new JFormattedTextField("None");
 		playerBetSuitTextField.setName("Player Chosen Suit");
 		playerBetSuitTextField.setColumns(10);
 		playerBetSuitTextField.setEditable(false);
 		JLabel betSuitLabel = new JLabel("Player Chosen Suit");
 		betSuitLabel.setLabelFor(playerBetSuitTextField);
+		Bet playerBet = player.getBet();
+//		playerBet.
 		playerBetSuitTextField.setValue(player.getBet());
 
 		panel.add(amountLabel);
