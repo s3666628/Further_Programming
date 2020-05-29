@@ -21,7 +21,7 @@ public class CardGameToolBar extends JToolBar {
 	private AbstractButton placeBetButton;
 	private AbstractButton dealCards; 
 
-	CardGameToolBar(int vertical, MainGameFrame cardGameFrame) {
+	CardGameToolBar(int vertical, xxxMainGameFrame cardGameFrame) {
 
 		ButtonGroup toolButtonsGroup = new ButtonGroup(); // create new group for buttons in the tool bar
 

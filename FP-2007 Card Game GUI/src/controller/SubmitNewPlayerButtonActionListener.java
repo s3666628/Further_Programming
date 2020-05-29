@@ -8,15 +8,15 @@ import model.GameEngine;
 import model.Player;
 import model.PlayerImpl;
 import view.AddPlayerPanel;
-import view.MainGameFrame;
+import view.xxxMainGameFrame;
 import view.TabbedPane;
 
 public class SubmitNewPlayerButtonActionListener implements ActionListener {
 
 	private GameEngine theModel;
-	private MainGameFrame theView;
+	private xxxMainGameFrame theView;
 
-	public SubmitNewPlayerButtonActionListener(MainGameFrame theView, GameEngine theModel)
+	public SubmitNewPlayerButtonActionListener(xxxMainGameFrame theView, GameEngine theModel)
 
 	{
 		this.theView = theView;

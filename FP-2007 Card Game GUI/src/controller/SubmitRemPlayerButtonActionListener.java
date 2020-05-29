@@ -13,16 +13,16 @@ import model.GameEngineImpl;
 import model.Player;
 import model.PlayerImpl;
 import view.AddPlayerPanel;
-import view.MainGameFrame;
+import view.xxxMainGameFrame;
 import view.RemovePlayerPanel;
 import view.TabbedPane;
 
 public class SubmitRemPlayerButtonActionListener implements ActionListener {
 
 	private GameEngine theModel;
-	private MainGameFrame theView;
+	private xxxMainGameFrame theView;
 
-	public SubmitRemPlayerButtonActionListener(MainGameFrame theView, GameEngine theModel)
+	public SubmitRemPlayerButtonActionListener(xxxMainGameFrame theView, GameEngine theModel)
 
 	{
 		this.theView = theView;

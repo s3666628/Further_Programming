@@ -6,14 +6,14 @@ import model.Player;
 import model.card.Card;
 import model.card.Deck;
 import model.card.Hand;
-import view.MainGameFrame;
+import view.xxxMainGameFrame;
 
 public class GuiCallback implements GameCallback {
 
-	private MainGameFrame theFrame;
+	private xxxMainGameFrame theFrame;
 	private GameEngine theEngine;
 
-	public GuiCallback(GameEngine engine, MainGameFrame theFrame) {
+	public GuiCallback(GameEngine engine, xxxMainGameFrame theFrame) {
 		// TODO Auto-generated constructor stub
 		this.theFrame = theFrame;
 		this.theEngine = engine;
@@ -64,7 +64,7 @@ public class GuiCallback implements GameCallback {
 
 	@Override
 	public void playerCard(Player player, Card card) {
-		// TODO Auto-generated method stub
+		System.out.println("Player+"+player.getName() + card.toString()+"dealt");
 
 	}
 

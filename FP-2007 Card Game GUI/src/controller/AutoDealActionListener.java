@@ -16,7 +16,7 @@ import model.PlayerImpl;
 import model.bet.Bet;
 import model.card.Suit;
 import view.AddPlayerPanel;
-import view.MainGameFrame;
+import view.xxxMainGameFrame;
 import view.PlaceBetPanel;
 import view.RemovePlayerPanel;
 import view.TabbedPane;
@@ -24,9 +24,9 @@ import view.TabbedPane;
 public class AutoDealActionListener implements ActionListener {
 
 	private GameEngine theModel;
-	private MainGameFrame theView;
+	private xxxMainGameFrame theView;
 
-	public AutoDealActionListener(MainGameFrame theView, GameEngine theModel)
+	public AutoDealActionListener(xxxMainGameFrame theView, GameEngine theModel)
 
 	{
 		this.theView = theView;
@@ -40,21 +40,35 @@ public class AutoDealActionListener implements ActionListener {
 		Collection<Player> allPlayers = theModel.getAllPlayers();
 		int timeDelay = 1;
 
+		int numPlayers = 0;
 		for (Player player : allPlayers) {
-			try {
-				theModel.dealPlayer(player.getId(), timeDelay);
-			} catch (NullPointerException ex) {
+			if (player.getBet() == Bet.NO_BET) {
+				numPlayers += 1;
+			}
+		}
 
-				JOptionPane.showMessageDialog(null, "Player ID cannot be Null");
+		if (numPlayers == 0) {
 
-			} catch (IllegalArgumentException ex) {
-				JOptionPane.showMessageDialog(null, ex.getMessage());
+			for (Player player : allPlayers) {
+				try {
+					theModel.dealPlayer(player.getId(), timeDelay);
+				} catch (NullPointerException ex) {
 
-			} catch (IllegalStateException ex) {
-				JOptionPane.showMessageDialog(null, ex.getMessage());
+					JOptionPane.showMessageDialog(null, "Player ID" + player.getName() + "cannot be Null");
 
+				} catch (IllegalArgumentException ex) {
+					JOptionPane.showMessageDialog(null, ex.getMessage() + player.getName());
+
+				} catch (IllegalStateException ex) {
+					JOptionPane.showMessageDialog(null, ex.getMessage() + player.getName());
+
+				}
 			}
 
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "All Players must place a bet before Auto Deal can run");
+			
 		}
 
 	}

@@ -7,17 +7,17 @@ import javax.swing.JDialog;
 
 import view.AddPlayerPanel;
 import view.AllPlayersTable;
-import view.MainGameFrame;
+import view.xxxMainGameFrame;
 import view.PlaceBetPanel;
 import view.RemovePlayerPanel;
 
 public class CloseButtonActionListener implements ActionListener {
 
 	private JDialog dialog;
-	private MainGameFrame theView;
+	private xxxMainGameFrame theView;
 	private int closeOption;
 
-	public CloseButtonActionListener(JDialog theDialog, MainGameFrame theView, int closeOption)
+	public CloseButtonActionListener(JDialog theDialog, xxxMainGameFrame theView, int closeOption)
 
 	{
 		this.dialog = theDialog;
@@ -26,7 +26,7 @@ public class CloseButtonActionListener implements ActionListener {
 
 	}
 
-	public CloseButtonActionListener(MainGameFrame theView, int closeOption)
+	public CloseButtonActionListener(xxxMainGameFrame theView, int closeOption)
 
 	{
 		this.theView = theView;

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
@@ -49,8 +50,8 @@ public class TabbedPane extends JPanel {
 	static int playerNumber = 1;
 	static int playerPanelNum = 0;
 
-	public TabbedPane(MainGameFrame cardGameFrame) {
-		super(new GridLayout(2, 4));
+	public TabbedPane(xxxMainGameFrame cardGameFrame) {
+		super(new GridLayout(4, 4));
 		this.tabbedPane = new JTabbedPane();
 		ImageIcon icon = new PanelIcon("test"); // not used at the moment
 		add(tabbedPane);
@@ -67,12 +68,13 @@ public class TabbedPane extends JPanel {
 	public void addNewPlayerToTabbedFrame(Player player) {
 
 		JComponent panel1 = makeTextPanel(player); // .
-		panel1.setPreferredSize(new Dimension(50, 2));
+//		panel1.setPreferredSize(new Dimension(50, 2));
 		tabbedPane.addTab("Player: " + playerNumber, PlayerIcons.getRandom().getImageIcon(), panel1,
 				"Details for player");
 		playerPanel.put(player.getId(), panel1); // add player id and panel to hash map
 		System.out.println("Player panel numner is: " + playerPanelNum);
 		System.out.println("Player has been added to Hash Map" + playerPanel.get(player.getId()));
+		
 		playerNumber += 1;
 		playerPanelNum += 1;
 
@@ -96,12 +98,18 @@ public class TabbedPane extends JPanel {
 		// TODO some of this has hard coded values atm
 
 		JPanel panel = new JPanel(false); // only need this once
-		LayoutManager layout = new GridLayout(4, 4);
+		JPanel cardPlayerPanel =  new HandPanel(player, player.getName());
+		JPanel cardDealerPanel =  new HandPanel(player, "Dealer");
+		
+		Box theBox = Box.createVerticalBox();
+		
+		
+		LayoutManager layout = new GridLayout(5, 5);
 
 //		   panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		panel.setLayout(layout);
 //		      panel.setSize(10, 10);
-		panel.setPreferredSize(new Dimension(2, 2));
+//		panel.setPreferredSize(new Dimension(2, 2));
 		panel.setBorder(BorderFactory.createTitledBorder("Player: " + player.getName()));
 
 		JFormattedTextField betAmountTextField;
@@ -146,6 +154,8 @@ public class TabbedPane extends JPanel {
 		Bet playerBet = player.getBet();
 //		playerBet.
 		playerBetSuitTextField.setValue(player.getBet());
+		
+		
 
 		panel.add(amountLabel);
 		panel.add(betAmountTextField);
@@ -155,8 +165,12 @@ public class TabbedPane extends JPanel {
 		panel.add(playerBetTypeTextField);
 		panel.add(betSuitLabel);
 		panel.add(playerBetSuitTextField);
+//		panel.add(cardPanel);
+		theBox.add(panel);
+		theBox.add(cardPlayerPanel);
+		theBox.add(cardDealerPanel);
 
-		return panel;
+		return theBox;
 	}
 
 }

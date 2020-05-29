@@ -22,7 +22,7 @@ public class CardGameMenuBar extends JMenuBar {
 // code for this section based on tutorial at this locations	
 //	https://docs.oracle.com/javase/tutorial/uiswing/components/menu.html
 
-	CardGameMenuBar(MainGameFrame cardGameFrame) {
+	CardGameMenuBar(xxxMainGameFrame cardGameFrame) {
 
 		// PLAYERS MENU
 		// 1 - create new menu bar

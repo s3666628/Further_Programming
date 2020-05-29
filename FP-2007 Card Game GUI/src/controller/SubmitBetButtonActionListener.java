@@ -14,7 +14,7 @@ import model.Player;
 import model.PlayerImpl;
 import model.card.Suit;
 import view.AddPlayerPanel;
-import view.MainGameFrame;
+import view.xxxMainGameFrame;
 import view.PlaceBetPanel;
 import view.RemovePlayerPanel;
 import view.TabbedPane;
@@ -22,9 +22,9 @@ import view.TabbedPane;
 public class SubmitBetButtonActionListener implements ActionListener {
 
 	private GameEngine theModel;
-	private MainGameFrame theView;
+	private xxxMainGameFrame theView;
 
-	public SubmitBetButtonActionListener(MainGameFrame theView, GameEngine theModel)
+	public SubmitBetButtonActionListener(xxxMainGameFrame theView, GameEngine theModel)
 
 	{
 		this.theView = theView;

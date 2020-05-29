@@ -8,17 +8,17 @@ import javax.swing.JComboBox;
 import model.GameEngineImpl;
 import view.AddPlayerPanel;
 import view.AllPlayersTable;
-import view.MainGameFrame;
+import view.xxxMainGameFrame;
 import view.PlaceBetPanel;
 import view.RemovePlayerPanel;
 
 public class AddRemovePlayerButtonActionListener implements ActionListener {
 
-	private MainGameFrame theView;
+	private xxxMainGameFrame theView;
 	private GameEngineImpl theModel;
 	private int buttonNumber;
 
-	public AddRemovePlayerButtonActionListener(MainGameFrame theView, GameEngineImpl theModel, int buttonNumber) {
+	public AddRemovePlayerButtonActionListener(xxxMainGameFrame theView, GameEngineImpl theModel, int buttonNumber) {
 		this.theView = theView;
 		this.theModel = theModel;
 		this.buttonNumber = buttonNumber;

@@ -22,7 +22,7 @@ public class AboutGameDiaglogBox extends JDialog {
 	
 
 // create a new dialog box which takes a frame so we can add it to the frame
-	public AboutGameDiaglogBox(MainGameFrame cardGameFrame, String dialogTitle, int size, boolean visible) {
+	public AboutGameDiaglogBox(xxxMainGameFrame cardGameFrame, String dialogTitle, int size, boolean visible) {
 		// create new dialog
 		this.dialog = new JDialog(cardGameFrame, dialogTitle);
 		this.label = new JLabel(getDialogText());

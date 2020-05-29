@@ -2,7 +2,7 @@ package controller;
 
 import view.AddPlayerPanel;
 import view.AllPlayersTable;
-import view.MainGameFrame;
+import view.xxxMainGameFrame;
 import view.PlaceBetPanel;
 import view.RemovePlayerPanel;
 import view.CardGameToolBar;
@@ -10,7 +10,7 @@ import model.GameEngineImpl;
 
 public class CardGameController {
 	// instance variables
-	private MainGameFrame theView;
+	private xxxMainGameFrame theView;
 	private GameEngineImpl theModel;
 	private CardGameToolBar theToolBar;
 	private AddPlayerPanel addPlayerSubView;
@@ -23,7 +23,7 @@ public class CardGameController {
 	private int placeBetNum = 4;
 
 	// Constructor which takes Model and View
-	public CardGameController(MainGameFrame theView, GameEngineImpl theModel) {
+	public CardGameController(xxxMainGameFrame theView, GameEngineImpl theModel) {
 		this.theView = theView; // assigns what is passed in to the instance variables
 		this.theModel = theModel;
 		this.theToolBar = theView.getToolBar();

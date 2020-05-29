@@ -47,7 +47,7 @@ public class MainGameFrame extends JFrame {
 		playerPanel.add(tabbedPane);
 //		playerPanel.add((this.tabbedPane = new CardGameTabbedPane(this)));
 
-		playerPanel.add((new HandPanel("Player")));
+//		playerPanel.add((new HandPanel("Player")));
 		playerPanel.add((new HandPanel("Dealer")));
 
 		// // ADD MENU BAR

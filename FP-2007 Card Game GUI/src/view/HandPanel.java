@@ -7,21 +7,29 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.CardPack;
+import model.GameEngineImpl;
+import model.Player;
 
 @SuppressWarnings("serial")
 public class HandPanel extends JPanel {
 
 	JLabel displayText;
+	
+	void displayDealtCard(){
+		
+	}
 
-	public HandPanel(String displaytext) {
-
-		setLayout(new GridLayout(0, 6, 5, 5)); // might need to change this
+	public HandPanel(Player player, String displaytext) {
+		
+		
+//		setLayout(new GridLayout(0, 6, 5, 5)); // might need to change this
 		setBackground(Color.GREEN);
 
 		this.displayText = new JLabel(displaytext);
 		add(displayText);
 
 		// get number of cards in deck
+		player.getHand();
 		int numberCards = CardPack.values().length;
 		int counter = 0;
 		while (counter < numberCards) {
@@ -37,6 +45,8 @@ public class HandPanel extends JPanel {
 			counter += 1;
 
 		}
+		
+
 
 	}
 
