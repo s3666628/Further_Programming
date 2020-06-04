@@ -3,17 +3,14 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.MenuBar;
 import java.awt.Toolkit;
 
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import javax.swing.border.MatteBorder;
 
-import model.GameEngine;
 import model.GameEngineImpl;
 
 @SuppressWarnings("serial")
@@ -47,7 +44,7 @@ public class MainGameFrame extends JFrame {
 		this.toolbar.setBorder(matteBorder);
 		this.toolbar.setOrientation(JToolBar.VERTICAL);
 		//SOUTH
-		this.statusBar = new StatusBar();		
+		this.statusBar = new StatusBar("status1", "status2");		
 		//NORTH
 		this.menuBar = new CardGameMenuBar(this);
 		// Tabbed Pane
@@ -64,47 +61,19 @@ public class MainGameFrame extends JFrame {
 		// do this last so that user doesn't see frame being built
 
 		// creates a new panel
-		this.dealerPanel = new JPanel();
-		
+		this.dealerPanel = new JPanel();		
 		Box theBox = Box.createVerticalBox();
-
-//		playerPanel.add(());
-		
-//		theBox.add((new HandPanel("Player")));
 		theBox.add(tabbedPane);
-//		theBox.add((new HandPanel("Dealer")));
-		
-		
-		// set layout for the new panel
-//		playerPanel.setLayout(new BoxLayout(playerPanel, BoxLayout.PAGE_AXIS));
-		// add components to the main
-		// ADD TABBED PANE
 
-//		playerPanel.add(tabbedPane);
-//		playerPanel.add((this.tabbedPane = new CardGameTabbedPane(this)));
-
-//		playerPanel.add((new HandPanel("Player")));
-//		playerPanel.add((new JPanel("dealer"));
-
-		// // ADD MENU BAR
-
-		// add main game panel to the - might need one of these for each player added or
-
-//		this.add(new CardGamePanel(), BorderLayout.CENTER); not sure what this is so commented out
-		// add tool bar to the main frame
 
 		// ADD TOOL BAR
 		
 		this.add(menuBar, BorderLayout.NORTH);
 		this.add(toolbar, BorderLayout.WEST);
 		this.add(statusBar, BorderLayout.SOUTH);
-//		this.add(dealerPanel);
 		theBox.add(dealerPanel);
 		this.add(theBox, BorderLayout.CENTER);
-//		this.add(theBox);
 		
-//		this.add(playerPanel, BorderLayout.CENTER);
-//		this.add(subview); // add subview to the main frame but won't be visible until addPlayer button is clicked on 
 		// SET SIZE of Main Frame
 		
 		// Settings for the Main Frame
@@ -130,6 +99,8 @@ public class MainGameFrame extends JFrame {
 		return this.dealerPanel;
 
 	}
+	
+
 
 	public RemovePlayerPanel getRemovePlayerPanel() {
 		return this.removePlayerSubview;
@@ -146,6 +117,9 @@ public class MainGameFrame extends JFrame {
 	public TabbedPane getTabbedPane() {
 		return this.tabbedPane;
 	}
+	public StatusBar getStatusBar() {
+		return this.statusBar;
+	} ;
 	
 	public AllPlayersTable getAllPlayersTable() {
 		return this.allPlayersTable;

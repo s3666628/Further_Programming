@@ -10,9 +10,6 @@ import view.CardGameToolBar;
 import model.GameEngineImpl;
 
 public class CardGameController {
-	// instance variables
-	private MainGameFrame theView;
-	private GameEngineImpl theModel;
 	private CardGameToolBar theToolBar;
 	private AddPlayerPanel addPlayerSubView;
 	private RemovePlayerPanel remPlayerSubView;
@@ -26,8 +23,7 @@ public class CardGameController {
 
 	// Constructor which takes Model and View
 	public CardGameController(MainGameFrame theView, GameEngineImpl theModel) {
-		this.theView = theView; // assigns what is passed in to the instance variables
-		this.theModel = theModel;
+				
 		this.theToolBar = theView.getToolBar();
 		this.addPlayerSubView = theView.getAddPlayerSubView();
 		this.remPlayerSubView = theView.getRemovePlayerPanel();

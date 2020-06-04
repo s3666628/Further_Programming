@@ -9,7 +9,6 @@ import model.Player;
 import model.PlayerImpl;
 import view.AddPlayerPanel;
 import view.MainGameFrame;
-import view.TabbedPane;
 
 public class SubmitNewPlayerButtonActionListener implements ActionListener {
 
@@ -27,36 +26,36 @@ public class SubmitNewPlayerButtonActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		AddPlayerPanel theSubView = theView.getAddPlayerSubView();
-//		TabbedPane theTabbedPane = theView.getTabbedPane();
+		new Thread() {
+			@Override
+			public void run() {
 
-//		
-//		String PlayerId;
-//		String PlayerName;
-//		int PlayerPoints;
+				AddPlayerPanel theSubView = theView.getAddPlayerSubView();
+				System.out.println("Submit button has been clicked");
 
-		System.out.println("Submit button has been clicked");
+				try {
 
-		try {
+					String PlayerId = theSubView.getPlayerID(); // gets first number from the view
+					String PlayerName = theSubView.getPlayername(); // gets second number from the view
+					int PlayerPoints = theSubView.getPlayerPoints();
+					Player player = new PlayerImpl(PlayerId, PlayerName, PlayerPoints);
 
-			String PlayerId = theSubView.getPlayerID(); // gets first number from the view
-			String PlayerName = theSubView.getPlayername(); // gets second number from the view
-			int PlayerPoints = theSubView.getPlayerPoints();
-			Player player = new PlayerImpl(PlayerId, PlayerName, PlayerPoints);
+					theModel.addPlayer(player);
 
-			theModel.addPlayer(player);
+					JOptionPane.showMessageDialog(theView.getAddPlayerSubView(),
+							"Player: " + PlayerName + " Has Been Created with " + PlayerPoints + " points");
 
-			JOptionPane.showMessageDialog(theView.getAddPlayerSubView(),
-					"Player: " + PlayerName + " Has Been Created with " + PlayerPoints + " points");
+				} catch (NumberFormatException ex) {
+					theSubView.displayErrorMessage("You need to enter a number for Player Points ");
+				} catch (NullPointerException ex) {
+					theSubView.displayErrorMessage(ex.getMessage());
+				} catch (IllegalArgumentException ex) {
+					theSubView.displayErrorMessage(ex.getMessage());
+				}
 
-		} catch (NumberFormatException ex) {
-			theSubView.displayErrorMessage("You need to enter a number for Player Points ");
-		} catch (NullPointerException ex) {
-			theSubView.displayErrorMessage(ex.getMessage());
-		} catch (IllegalArgumentException ex) {
-			theSubView.displayErrorMessage(ex.getMessage());
-		}
+			}
+
+		}.start();
 
 	}
-
 }

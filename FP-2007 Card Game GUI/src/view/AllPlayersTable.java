@@ -20,8 +20,7 @@ import model.Player;
 public class AllPlayersTable extends JFrame implements TableModel{
 
 	private JButton close = new JButton("Close");
-	private String []  tableHeaders = { "Player ID", "Player Name", "Player Points" };
-	private String[][] playerDetails;
+	
 
 	// example based on code from here
 	// https://www.javatpoint.com/java-jtable
@@ -69,36 +68,17 @@ public class AllPlayersTable extends JFrame implements TableModel{
 		}
 
 		// button cancelling and closing the screen
-//		tableFrame = new JFrame();
-		JPanel tablePanel = new JPanel();
-//		String data[][] = { { "101", "Amit", "780000" }, { "102", "Jai", "780000" }, { "101", "Sachin", "700000" } };
-//		String column[] = { "101", "NAME", "123456" };
-//
+		JPanel tablePanel = new JPanel();//
 		JTable playerSummaryTable = new JTable(playerDetails, tableHeaders);
 		playerSummaryTable.setBounds(30, 40, 400, 400);
 		playerSummaryTable.setShowGrid(true);
-//		JScrollPane scrollPane = new JScrollPane(playerSummaryTable);
-//		tablePanel.add(playerSummaryTable);
-//		tablePanel.add(scrollPane);
-//	
-//		tablePanel.add(close);
 		tablePanel.setSize(540, 540);
-
-
-
-		
-//		JFrame frame = new JFrame();
-//	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-//	    JTable table = new JTable(playerDetails, tableHeaders);
 	    tablePanel.add(playerSummaryTable);
 	    JScrollPane scrollPane = new JScrollPane(playerSummaryTable);
 	    tablePanel.add(scrollPane, BorderLayout.CENTER);
 
 	    tablePanel.setVisible(true);
 	    this.add(tablePanel);
-	
-
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); // so it closes
 		this.setSize(540, 540); // confused about the "this"
 		this.setTitle("All Players Summary");

@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.text.NumberFormat;
@@ -9,7 +8,6 @@ import java.util.HashMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
@@ -18,10 +16,6 @@ import javax.swing.JTabbedPane;
 
 import model.Player;
 import model.PlayerIcons;
-import model.PlayerImpl;
-import model.bet.Bet;
-import model.GameEngine;
-
 import java.util.Iterator;
 
 @SuppressWarnings("serial")
@@ -53,7 +47,6 @@ public class TabbedPane extends JPanel {
 	public TabbedPane(MainGameFrame cardGameFrame) {
 		super(new GridLayout(4, 4));
 		this.tabbedPane = new JTabbedPane();
-		ImageIcon icon = new PanelIcon("test"); // not used at the moment
 		add(tabbedPane);
 
 	}
@@ -151,8 +144,7 @@ public class TabbedPane extends JPanel {
 		playerBetSuitTextField.setEditable(false);
 		JLabel betSuitLabel = new JLabel("Player Chosen Suit");
 		betSuitLabel.setLabelFor(playerBetSuitTextField);
-		Bet playerBet = player.getBet();
-//		playerBet.
+		//		playerBet.
 		playerBetSuitTextField.setValue(player.getBet());
 		
 		

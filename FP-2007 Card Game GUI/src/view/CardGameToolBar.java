@@ -56,16 +56,6 @@ public class CardGameToolBar extends JToolBar {
 		toolButtonsGroup.add(dealCards);
 		dealCards.setBorder(new LineBorder(Color.LIGHT_GRAY)); // put a border around it
 		
-//		for (ComponentNames names : ComponentNames.values()) { // gets an array of enums
-//			
-//			// resize buttons
-//			AbstractButton button = new JToggleButton(CardGameHelperMethods.resizeImageIcon(names.getImageIcon(), 130, 35));
-//			add(button); // add button to the frame
-//			button.addActionListener(new AddPlayerButtonActionListener());
-//			toolButtonsGroup.add(button); // add button to group
-//			button.setBorder(new LineBorder(Color.LIGHT_GRAY)); // put a border around it
-//
-//		};
 
 	}
 

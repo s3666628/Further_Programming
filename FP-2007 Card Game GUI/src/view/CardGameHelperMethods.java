@@ -2,9 +2,7 @@ package view;
 
 import java.awt.Image;
 import java.util.Collection;
-
 import javax.swing.ImageIcon;
-
 import model.Player;
 import model.card.Suit;
 

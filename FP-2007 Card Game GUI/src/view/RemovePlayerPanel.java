@@ -6,7 +6,6 @@ import model.GameEngineImpl;
 import model.Player;
 
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Collection;
 import view.CardGameHelperMethods;
 
@@ -20,7 +19,6 @@ public class RemovePlayerPanel extends JFrame {
 	private JButton cancel = new JButton("Cancel"); // button cancelling and closing the screen
 
 	private String[] playerNames;
-	private String[] playerIds;
 	private JComboBox<String> playersCombo;
 	private Collection<Player> AllPlayers;
 
@@ -29,27 +27,8 @@ public class RemovePlayerPanel extends JFrame {
 
 	}
 
-//	public String[] createPlayerIdList(Collection<Player> allPlayers) {
-//		String[] playerNames = new String[allPlayers.size()];
-//		int counter = 0;
-//		for (Player player : allPlayers) {
-//			playerNames[counter] = player.getId();
-////			playerIds[counter] = player.getId();
-//			counter += 1;
-//			System.out.println(player.getId());
-//		}
-//
-//		return playerNames;
-//
-//	}
 
-	/**
-	 * @param allPlayers the allPlayers to set
-	 */
-//	public void setAllPlayers(Collection<Player> allPlayers) {
-//		AllPlayers = allPlayers;
 
-//	}
 	// this is called by GUI Callback when new player is added to the model
 	// so that the new player is added to the string of arrays and is then seen on the screen
 	public void addPlayerToCombo(String playerId) {
@@ -60,13 +39,6 @@ public class RemovePlayerPanel extends JFrame {
 		this.playersCombo.removeItem(playerId);
 	}
 
-//	public void setComboBox(String[] playerNames) {
-//
-//		this.playerNames = playerNames;
-//		this.playersCombo = new JComboBox<String>(playerNames);
-//
-//		this.repaint();
-//	}
 
 	// constructor for the panel
 	public RemovePlayerPanel(GameEngineImpl theModel) {
@@ -96,24 +68,6 @@ public class RemovePlayerPanel extends JFrame {
 
 	}
 
-	// think these are to get the data from the fields
-//	public String getPlayerID() {
-//
-//		return playerID.getText();
-//
-//	}
-//
-//	public String getPlayername() {
-//
-//		return PlayerName.getText();
-//
-//	}
-//
-//	public int getPlayerPoints() {
-//
-//		return Integer.parseInt(PlayerPoints.getText());
-//
-//	}
 
 	public void addSubmitRemoveListener(ActionListener SubmitRemPlayerButtonActionListener) {
 

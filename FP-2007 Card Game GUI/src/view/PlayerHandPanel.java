@@ -1,9 +1,6 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.GridLayout;
-import java.awt.Image;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -11,8 +8,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import model.ClubCardPack;
-import model.GameEngineImpl;
 import model.Player;
 import model.card.Card;
 import model.card.Hand;
