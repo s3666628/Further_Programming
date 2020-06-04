@@ -4,9 +4,10 @@ import javax.swing.SwingUtilities;
 
 import controller.CardGameController;
 import model.GameEngineImpl;
+import model.Player;
 import model.PlayerImpl;
 import model.card.Suit;
-import view.xxxMainGameFrame;
+import view.MainGameFrame;
 import view.ConsoleLoggerCallback;
 import view.GuiCallback;
 
@@ -20,7 +21,7 @@ public class GuiCardGame {
 			public void run() {
 
 				GameEngineImpl theModel = new GameEngineImpl();
-//				theModel.addPlayer(new PlayerImpl("P1", "Player One", 1000));
+//				theModel.addPlayer(new PlayerImpl("DXX", "DEALER", 0));
 //				theModel.addPlayer(new PlayerImpl("P2", "Player Two", 1000));
 //				theModel.addPlayer(new PlayerImpl("P3", "Player Three", 3000));
 //				theModel.addPlayer(new PlayerImpl("X4", "Player Four", 4000));
@@ -44,7 +45,7 @@ public class GuiCardGame {
 
 //				theModel.resetAllBetsAndHands();
 
-				xxxMainGameFrame theView = new xxxMainGameFrame(theModel);
+				MainGameFrame theView = new MainGameFrame(theModel);
 				CardGameController theController = new CardGameController(theView, theModel);
 				theModel.registerCallback(new GuiCallback(theModel, theView));
 			}

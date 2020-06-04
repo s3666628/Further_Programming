@@ -5,14 +5,14 @@ import java.awt.event.ActionListener;
 
 import model.GameEngineImpl;
 import view.AddPlayerPanel;
-import view.xxxMainGameFrame;
+import view.MainGameFrame;
 
 public class RemovePlayerButtonActionListener implements ActionListener {
 
-	private xxxMainGameFrame theView;
+	private MainGameFrame theView;
 	private GameEngineImpl theModel;
 
-	public RemovePlayerButtonActionListener(xxxMainGameFrame theView, GameEngineImpl theModel) {
+	public RemovePlayerButtonActionListener(MainGameFrame theView, GameEngineImpl theModel) {
 		this.theView = theView;
 		this.theModel = theModel;
 	}

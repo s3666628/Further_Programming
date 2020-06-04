@@ -16,7 +16,7 @@ import model.PlayerImpl;
 import model.bet.Bet;
 import model.card.Suit;
 import view.AddPlayerPanel;
-import view.xxxMainGameFrame;
+import view.MainGameFrame;
 import view.PlaceBetPanel;
 import view.RemovePlayerPanel;
 import view.TabbedPane;
@@ -24,9 +24,9 @@ import view.TabbedPane;
 public class AutoDealActionListener implements ActionListener {
 
 	private GameEngine theModel;
-	private xxxMainGameFrame theView;
+	private MainGameFrame theView;
 
-	public AutoDealActionListener(xxxMainGameFrame theView, GameEngine theModel)
+	public AutoDealActionListener(MainGameFrame theView, GameEngine theModel)
 
 	{
 		this.theView = theView;
@@ -38,16 +38,16 @@ public class AutoDealActionListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("Auto Deal button has been clicked");
 		Collection<Player> allPlayers = theModel.getAllPlayers();
-		int timeDelay = 1;
+		int timeDelay = 100;
 
-		int numPlayers = 0;
+		int numPlayersNoBet = 0;
 		for (Player player : allPlayers) {
 			if (player.getBet() == Bet.NO_BET) {
-				numPlayers += 1;
+				numPlayersNoBet += 1;
 			}
 		}
-
-		if (numPlayers == 0) {
+// do not deal cards if there are players that have not placed a bet
+		if (numPlayersNoBet == 0) {
 
 			for (Player player : allPlayers) {
 				try {
@@ -64,6 +64,10 @@ public class AutoDealActionListener implements ActionListener {
 
 				}
 			}
+			try {
+				theModel.dealHouse(timeDelay);
+				}catch (IllegalArgumentException ex) {
+					JOptionPane.showMessageDialog(null, ex.getMessage());}
 
 		}
 		else {

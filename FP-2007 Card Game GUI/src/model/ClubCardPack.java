@@ -2,7 +2,7 @@ package model;
 
 import javax.swing.ImageIcon;
 
-public enum CardPack {
+public enum ClubCardPack {
 	// enum fields
 	ACE_CLUBS {
 		@Override
@@ -13,7 +13,7 @@ public enum CardPack {
 
 		@Override
 		public ImageIcon getImageIcon() {
-			ImageIcon aceClubs = new ImageIcon(CardPack.ACE_CLUBS.getImagePath());
+			ImageIcon aceClubs = new ImageIcon(ClubCardPack.ACE_CLUBS.getImagePath());
 			return aceClubs;
 		}
 		public String toString() {
@@ -31,7 +31,7 @@ public enum CardPack {
 
 		public ImageIcon getImageIcon() {
 
-			ImageIcon green = new ImageIcon(CardPack.TWO_CLUBS.getImagePath());
+			ImageIcon green = new ImageIcon(ClubCardPack.TWO_CLUBS.getImagePath());
 //			String message = "images/circle_green.png";
 			return green;
 		}
@@ -49,7 +49,7 @@ public enum CardPack {
 
 		@Override
 		public ImageIcon getImageIcon() {
-			ImageIcon orange = new ImageIcon(CardPack.THREE_CLUBS.getImagePath());
+			ImageIcon orange = new ImageIcon(ClubCardPack.THREE_CLUBS.getImagePath());
 			return orange;
 		}
 		public String toString() {
@@ -67,7 +67,7 @@ public enum CardPack {
 		@Override
 		public ImageIcon getImageIcon() {
 			// TODO Auto-generated method stub
-			ImageIcon red = new ImageIcon(CardPack.FOUR_CLUBS.getImagePath());
+			ImageIcon red = new ImageIcon(ClubCardPack.FOUR_CLUBS.getImagePath());
 			return red;
 		}
 		public String toString() {
@@ -84,7 +84,7 @@ public enum CardPack {
 
 		@Override
 		public ImageIcon getImageIcon() {
-			ImageIcon yellow = new ImageIcon(CardPack.FIVE_CLUBS.getImagePath());
+			ImageIcon yellow = new ImageIcon(ClubCardPack.FIVE_CLUBS.getImagePath());
 			return yellow;
 		}
 		public String toString() {
@@ -94,11 +94,13 @@ public enum CardPack {
 
 	public abstract String getImagePath();
 
+
+
 	public abstract ImageIcon getImageIcon();
 	
 	public abstract String toString();
 	
-	public static CardPack getRandom() {
+	public static ClubCardPack getRandom() {
 		return values()[(int)(Math.random()* values().length)];
 		
 	}

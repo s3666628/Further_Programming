@@ -14,15 +14,15 @@ public class CardGameMenuBar extends JMenuBar {
 
 	JMenuBar menuBar;
 	JMenu playerJmenu, dealerJmenu, aboutJMenu, dealerSubMenu;
-	JMenuItem playerMenuItem1, playerMenuItem2, playerMenuItem3;
-	JMenuItem dealMenuItem1, dealMenuItem2, dealMenuItem3, aboutlMenuItem;
+	JMenuItem addPlayerMenuItem, removePlayerMenuItem, displayAllPlayerMenuItem;
+	JMenuItem placeBetMenuItem, manualDealMenuItem, autoDealMenuItem, aboutlMenuItem;
 	JMenuItem aboutMenuItem;
 	AboutGameDiaglogBox aboutDialog;
 
 // code for this section based on tutorial at this locations	
 //	https://docs.oracle.com/javase/tutorial/uiswing/components/menu.html
 
-	CardGameMenuBar(xxxMainGameFrame cardGameFrame) {
+	public CardGameMenuBar(MainGameFrame cardGameFrame) {
 
 		// PLAYERS MENU
 		// 1 - create new menu bar
@@ -35,27 +35,27 @@ public class CardGameMenuBar extends JMenuBar {
 		dealerSubMenu = new JMenu("Deal Cards to Player");
 
 		// 3 create menu items
-		playerMenuItem1 = new JMenuItem(ComponentNames.ADDPLAYER.toString());
-		playerMenuItem1.setMnemonic(KeyEvent.VK_P);
-		playerMenuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK));
+		addPlayerMenuItem = new JMenuItem(ComponentNames.ADDPLAYER.toString());
+		addPlayerMenuItem.setMnemonic(KeyEvent.VK_P);
+		addPlayerMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK));
 
-		playerMenuItem2 = new JMenuItem(ComponentNames.REMOVE_PLAYER.toString());
-		playerMenuItem2.setMnemonic(KeyEvent.VK_R);
-		playerMenuItem2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.ALT_MASK));
+		removePlayerMenuItem = new JMenuItem(ComponentNames.REMOVE_PLAYER.toString());
+		removePlayerMenuItem.setMnemonic(KeyEvent.VK_R);
+		removePlayerMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.ALT_MASK));
 
-		playerMenuItem3 = new JMenuItem(ComponentNames.DISPLAY_ALL_PLAYER.toString());
-		playerMenuItem3.setMnemonic(KeyEvent.VK_D);
-		playerMenuItem3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.ALT_MASK));
+		displayAllPlayerMenuItem = new JMenuItem(ComponentNames.DISPLAY_ALL_PLAYER.toString());
+		displayAllPlayerMenuItem.setMnemonic(KeyEvent.VK_D);
+		displayAllPlayerMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.ALT_MASK));
 
-		dealMenuItem1 = new JMenuItem(ComponentNames.PLACE_BET.toString());
-		dealMenuItem1.setMnemonic(KeyEvent.VK_B);
-		dealMenuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.ALT_MASK));
+		placeBetMenuItem = new JMenuItem(ComponentNames.PLACE_BET.toString());
+		placeBetMenuItem.setMnemonic(KeyEvent.VK_B);
+		placeBetMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.ALT_MASK));
 
-		dealMenuItem2 = new JMenuItem(ComponentNames.MANUAL_DEAL.toString());
-		dealMenuItem2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
+		manualDealMenuItem = new JMenuItem(ComponentNames.MANUAL_DEAL.toString());
+		manualDealMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
 
-		dealMenuItem3 = new JMenuItem(ComponentNames.AUTO_DEAL.toString());
-		dealMenuItem3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, ActionEvent.ALT_MASK));
+		autoDealMenuItem = new JMenuItem(ComponentNames.AUTO_DEAL.toString());
+		autoDealMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, ActionEvent.ALT_MASK));
 
 		aboutlMenuItem = new JMenuItem(ComponentNames.ABOUT_THIS_GAME.toString());
 		aboutlMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.ALT_MASK));
@@ -73,12 +73,12 @@ public class CardGameMenuBar extends JMenuBar {
 		});
 
 		// add all of the items to the menus
-		playerJmenu.add(playerMenuItem1);
-		playerJmenu.add(playerMenuItem2);
-		playerJmenu.add(playerMenuItem3);
-		dealerJmenu.add(dealMenuItem1);
-		dealerSubMenu.add(dealMenuItem2);
-		dealerSubMenu.add(dealMenuItem3);
+		playerJmenu.add(addPlayerMenuItem);
+		playerJmenu.add(removePlayerMenuItem);
+		playerJmenu.add(displayAllPlayerMenuItem);
+		dealerJmenu.add(placeBetMenuItem);
+		dealerSubMenu.add(manualDealMenuItem);
+		dealerSubMenu.add(autoDealMenuItem);
 		dealerJmenu.add(dealerSubMenu);
 		aboutJMenu.add(aboutlMenuItem);
 		// add to main menu bars
@@ -90,6 +90,32 @@ public class CardGameMenuBar extends JMenuBar {
 //		menuBar.setVisible(true);
 		add(menuBar);
 
+	}
+	
+	public void addPlayerListerner(ActionListener AddRemovePlayerButtonActionListener) {
+
+		addPlayerMenuItem.addActionListener(AddRemovePlayerButtonActionListener);
+
+	}
+
+	public void remPlayerListerner(ActionListener AddRemovePlayerButtonActionListener) {
+
+		removePlayerMenuItem.addActionListener(AddRemovePlayerButtonActionListener);
+	}
+	
+	public void viewAllPlayerActionListener (ActionListener AddRemovePlayerButtonActionListener) {
+
+		displayAllPlayerMenuItem.addActionListener(AddRemovePlayerButtonActionListener);
+	}
+	
+	public void placeBetActionListener (ActionListener AddRemovePlayerButtonActionListener) {
+
+		placeBetMenuItem.addActionListener(AddRemovePlayerButtonActionListener);
+	}
+	
+	public void autoDealActionListener (ActionListener AutoDealButtonActionListener) {
+
+		autoDealMenuItem.addActionListener(AutoDealButtonActionListener);
 	}
 
 }

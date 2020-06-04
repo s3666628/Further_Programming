@@ -50,7 +50,7 @@ public class TabbedPane extends JPanel {
 	static int playerNumber = 1;
 	static int playerPanelNum = 0;
 
-	public TabbedPane(xxxMainGameFrame cardGameFrame) {
+	public TabbedPane(MainGameFrame cardGameFrame) {
 		super(new GridLayout(4, 4));
 		this.tabbedPane = new JTabbedPane();
 		ImageIcon icon = new PanelIcon("test"); // not used at the moment
@@ -98,8 +98,8 @@ public class TabbedPane extends JPanel {
 		// TODO some of this has hard coded values atm
 
 		JPanel panel = new JPanel(false); // only need this once
-		JPanel cardPlayerPanel =  new HandPanel(player, player.getName());
-		JPanel cardDealerPanel =  new HandPanel(player, "Dealer");
+		JPanel cardPlayerPanel =  new PlayerHandPanel(player, player.getName());
+//		JPanel cardDealerPanel =  new DealerHandPanel("dealer");
 		
 		Box theBox = Box.createVerticalBox();
 		
@@ -168,7 +168,7 @@ public class TabbedPane extends JPanel {
 //		panel.add(cardPanel);
 		theBox.add(panel);
 		theBox.add(cardPlayerPanel);
-		theBox.add(cardDealerPanel);
+//		theBox.add(cardDealerPanel);
 
 		return theBox;
 	}

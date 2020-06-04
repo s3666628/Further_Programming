@@ -1,19 +1,23 @@
 package view;
 
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import model.GameEngine;
 import model.GameEngineImpl;
 import model.Player;
 import model.card.Card;
 import model.card.Deck;
 import model.card.Hand;
-import view.xxxMainGameFrame;
+import view.MainGameFrame;
 
 public class GuiCallback implements GameCallback {
 
-	private xxxMainGameFrame theFrame;
+	private MainGameFrame theFrame;
 	private GameEngine theEngine;
 
-	public GuiCallback(GameEngine engine, xxxMainGameFrame theFrame) {
+	public GuiCallback(GameEngine engine, MainGameFrame theFrame) {
 		// TODO Auto-generated constructor stub
 		this.theFrame = theFrame;
 		this.theEngine = engine;
@@ -64,7 +68,9 @@ public class GuiCallback implements GameCallback {
 
 	@Override
 	public void playerCard(Player player, Card card) {
-		System.out.println("Player+"+player.getName() + card.toString()+"dealt");
+		System.out.println("GUI CALL BACK  **** Player+"+player.getName() + card.toString()+"dealt");
+		TabbedPane theTabbedPane = theFrame.getTabbedPane();
+		theTabbedPane.refreshTabbedPane(player);
 
 	}
 
@@ -77,6 +83,14 @@ public class GuiCallback implements GameCallback {
 	@Override
 	public void houseCard(Hand houseHand, Card card) {
 		// TODO Auto-generated method stub
+		MainGameFrame mainFrame = theFrame.getCardGameMainView();
+		
+//		JPanel dealerPanel = theFrame.getDealerPane();
+		TabbedPane theTabbedPane = theFrame.getTabbedPane();
+		DealerHandPanel dealPanel = new DealerHandPanel(houseHand, card);
+//		mainFrame.add(dealPanel);
+		theTabbedPane.add(dealPanel);
+		
 
 	}
 

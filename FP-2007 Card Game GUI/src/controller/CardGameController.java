@@ -2,7 +2,8 @@ package controller;
 
 import view.AddPlayerPanel;
 import view.AllPlayersTable;
-import view.xxxMainGameFrame;
+import view.CardGameMenuBar;
+import view.MainGameFrame;
 import view.PlaceBetPanel;
 import view.RemovePlayerPanel;
 import view.CardGameToolBar;
@@ -10,20 +11,21 @@ import model.GameEngineImpl;
 
 public class CardGameController {
 	// instance variables
-	private xxxMainGameFrame theView;
+	private MainGameFrame theView;
 	private GameEngineImpl theModel;
 	private CardGameToolBar theToolBar;
 	private AddPlayerPanel addPlayerSubView;
 	private RemovePlayerPanel remPlayerSubView;
 	private AllPlayersTable allPlayerSubView;
 	private PlaceBetPanel thePlaceBetPanel;
+	private CardGameMenuBar theMenuBar;
 	private int addPlayerNum = 1;
 	private int remPlayerNum = 2;
 	private int vwAllPlyrNum = 3;
 	private int placeBetNum = 4;
 
 	// Constructor which takes Model and View
-	public CardGameController(xxxMainGameFrame theView, GameEngineImpl theModel) {
+	public CardGameController(MainGameFrame theView, GameEngineImpl theModel) {
 		this.theView = theView; // assigns what is passed in to the instance variables
 		this.theModel = theModel;
 		this.theToolBar = theView.getToolBar();
@@ -31,6 +33,7 @@ public class CardGameController {
 		this.remPlayerSubView = theView.getRemovePlayerPanel();
 		this.allPlayerSubView = theView.getAllPlayersTable();
 		this.thePlaceBetPanel = theView.getPlaceBetPanel();
+		this.theMenuBar = theView.getCardGameMenuBar();
 		
 		// Add Tool Bar Listeners
 		theToolBar.addPlayerListerner(new AddRemovePlayerButtonActionListener(theView, theModel, addPlayerNum));
@@ -39,6 +42,16 @@ public class CardGameController {
 				new AddRemovePlayerButtonActionListener(theView, theModel, vwAllPlyrNum));
 		theToolBar.placeBetActionListener(new AddRemovePlayerButtonActionListener(theView, theModel, placeBetNum));
 		theToolBar.autoDealActionListener(new AutoDealActionListener(theView, theModel));
+		
+		// add Menu Bar listeners
+		
+		// Add Tool Bar Listeners
+		theMenuBar.addPlayerListerner(new AddRemovePlayerButtonActionListener(theView, theModel, addPlayerNum));
+		theMenuBar.remPlayerListerner(new AddRemovePlayerButtonActionListener(theView, theModel, remPlayerNum));
+		theMenuBar.viewAllPlayerActionListener(
+				new AddRemovePlayerButtonActionListener(theView, theModel, vwAllPlyrNum));
+		theMenuBar.placeBetActionListener(new AddRemovePlayerButtonActionListener(theView, theModel, placeBetNum));
+		theMenuBar.autoDealActionListener(new AutoDealActionListener(theView, theModel));
 		// adds action listener to the view
 //		theToolBar.addRemPlayerListerner(new RemovePlayerButtonActionListener(theView, theModel)); 
 
